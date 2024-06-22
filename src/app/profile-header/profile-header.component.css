@@ -1,4 +1,5 @@
 .profile-header {
+    font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 2rem;
@@ -43,12 +44,16 @@
   .profile-title h2 {
     margin: 0;
     font-size: 1.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
   }
   
   .profile-title p {
     margin: 0.5rem 0 0;
     font-size: 1rem;
     opacity: 0.8;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
   }
   
   .edit-button {
@@ -61,10 +66,27 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
   }
   
   .edit-button:hover {
     background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .animated-title {
+    min-height: 1.2em; /* Osigurava da visina ne "skače" tijekom animacije */
+    display: inline-block;
+  }
+  
+  .cursor {
+    animation: blink 0.7s infinite;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
   }
   
   @media (max-width: 600px) {
