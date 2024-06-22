@@ -1,46 +1,175 @@
-.osobni-podaci {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
+:host {
+  display: block;
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: Arial, sans-serif;
+}
+
+.profile-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+
+
+
+
+
+.file-upload-label:hover {
+  background: #45a049;
+}
+
+
+
+.profile-body {
+  padding: 2rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.field i {
+  margin-right: 1rem;
+  color: #667eea;
+  font-size: 1.5rem;
+}
+
+.field-content {
+  flex-grow: 1;
+}
+
+.field-content span,
+.field-content input {
+  font-size: 1rem;
+  color: #333;
+}
+
+.field-content input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.field-content input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.icon-link:hover {
+  background-color: #667eea;
+}
+
+.link-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.link-url {
+  font-size: 0.9em;
+  color: #666;
+  word-break: break-all;
+}
+
+.link-edit, .link-add {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.link-edit input, .link-add input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.link-edit button, .link-add button {
+  padding: 0.5rem 1rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.link-edit button:hover, .link-add button:hover {
+  background-color: #5a6eea;
+}
+
+.edit-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #5a6eea;
+}
+
+@media (max-width: 600px) {
+  .profile-card {
+    margin: 1rem;
   }
-  
-  .osobni-podaci h2 {
-    color: #4CAF50;
-    font-size: 24px;
-    margin-bottom: 20px;
+
+  .profile-header {
+    padding: 1.5rem;
   }
-  
-  .osobni-podaci label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
   }
-  
-  .osobni-podaci input, .osobni-podaci p {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+  .profile-body {
+    padding: 1.5rem;
   }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    border-radius: 5px;
+
+  .field i {
+    font-size: 1.2rem;
   }
-  
-  button:hover {
-    background-color: #45a049;
+
+  .field-content span,
+  .field-content input {
+    font-size: 0.9rem;
   }
-  
-  img {
-    display: block;
-    margin: 10px 0;
-  }
-  
+}

@@ -1,39 +1,58 @@
-<div class="osobni-podaci">
-    <h2>Osobni Podaci</h2>
-    <button *ngIf="isAuthor()" (click)="toggleEdit()">
-      {{ isEditing() ? 'Završi uređivanje' : 'Uredi podatke' }}
-    </button>
-    <div *ngFor="let field of fields()">
-      <label>{{ field.label }}:</label>
-      <div *ngIf="isEditing(); else viewMode">
-        <div *ngIf="field.label === 'Slika'">
-          <input type="file" (change)="onFileSelected($event)">
-          <img *ngIf="slika()" [src]="slika()" alt="Profilna slika" style="max-width: 200px; margin-top: 10px;">
-        </div>
-        <div *ngIf="field.label !== 'Slika'">
-          <input [value]="field.value()" (input)="updateField(field, $event)">
+<div class="profile-card">
+  <app-profile-header
+    [slika]="slika()"
+    [imePrezime]="imePrezime()"
+    [titula]="titula()"
+    [isEditing]="isEditing()"
+    [isAuthor]="isAuthor()"
+    (fileSelected)="onFileSelected($event)"
+    (editToggled)="toggleEdit()"
+  ></app-profile-header>
+  
+  <div class="profile-body">
+    <div *ngFor="let field of fields()" class="field">
+      <i class="material-icons">{{ field.icon }}</i>
+      <div class="field-content">
+        <ng-container *ngIf="!isEditing(); else editMode">
+          <span>{{ field.value() }}</span>
+        </ng-container>
+        <ng-template #editMode>
+          <input [type]="field.type" [value]="field.value()" (input)="updateField(field, $event)">
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="field">
+      <i class="material-icons">links</i>
+      <div class="field-content">
+        <div class="links-container">
+          <ng-container *ngIf="!isEditing(); else editLinks">
+            <div *ngFor="let link of socialLinks()" class="social-link">
+              <a [href]="link.url" target="_blank" class="icon-link">
+                <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
+              </a>
+              <span class="link-url">{{ link.url }}</span>
+            </div>
+          </ng-container>
+          <ng-template #editLinks>
+            <div *ngFor="let link of socialLinks(); let i = index" class="link-edit">
+              <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
+              <input [(ngModel)]="link.platform" placeholder="Platform">
+              <input [(ngModel)]="link.url" placeholder="URL">
+              <button (click)="removeSocialLink(i)">Remove</button>
+            </div>
+            <div class="link-add">
+              <input [(ngModel)]="newSocialLink.platform" placeholder="New Platform">
+              <input [(ngModel)]="newSocialLink.url" placeholder="New URL">
+              <button (click)="addSocialLink()">Add</button>
+            </div>
+          </ng-template>
         </div>
       </div>
-      <ng-template #viewMode>
-        <div *ngIf="field.label === 'Slika'">
-          <img *ngIf="slika()" [src]="slika()" alt="Profilna slika" style="max-width: 200px; margin-top: 10px;">
-        </div>
-        <div *ngIf="field.label !== 'Slika'">
-          <p>
-            <span *ngIf="field.label === 'LinkedIn'">
-              <a href="{{field.value()}}" target="_blank">
-                <img src="assets/linkedin.png" alt="LinkedIn" style="width: 20px; vertical-align: middle;">
-              </a>
-            </span>
-            <span *ngIf="field.label === 'WhatsApp'">
-              <a href="https://wa.me/{{field.value()}}" target="_blank">
-                <img src="assets/whatsapp.png" alt="WhatsApp" style="width: 20px; vertical-align: middle;">
-              </a>
-            </span>
-            {{ field.value() }}
-          </p>
-        </div>
-      </ng-template>
     </div>
   </div>
-  
+
+  <button *ngIf="isAuthor()" (click)="toggleEdit()" class="edit-button">
+    {{ isEditing() ? 'Spremi' : 'Uredi' }}
+  </button>
+</div>

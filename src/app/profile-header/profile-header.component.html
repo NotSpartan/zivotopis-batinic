@@ -1,0 +1,17 @@
+<div class="profile-header">
+    <div class="profile-image-container">
+      <img [src]="slika"  class="profile-image">
+      <label *ngIf="isEditing" for="file-upload" class="file-upload-label">
+        <i class="material-icons">add_a_photo</i>
+      </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" *ngIf="isEditing" style="display:none">
+    </div>
+    <div class="profile-title">
+      <h2>{{ imePrezime }}</h2>
+      <p>{{ titula }}</p>
+    </div>
+    <button *ngIf="isAuthor" (click)="toggleEdit()" class="edit-button">
+      {{ isEditing ? 'Spremi' : 'Uredi' }}
+    </button>
+  </div>
+  
