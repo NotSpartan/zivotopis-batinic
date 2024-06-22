@@ -1,7 +1,39 @@
-<div>
+<div class="osobni-podaci">
     <h2>Osobni Podaci</h2>
-    <div *for="let field of fields">
-      <label>{{field.label}}:</label>
-      <input [value]="field.value()" (input)="updateField(field, $event)">
+    <button *ngIf="isAuthor()" (click)="toggleEdit()">
+      {{ isEditing() ? 'Završi uređivanje' : 'Uredi podatke' }}
+    </button>
+    <div *ngFor="let field of fields()">
+      <label>{{ field.label }}:</label>
+      <div *ngIf="isEditing(); else viewMode">
+        <div *ngIf="field.label === 'Slika'">
+          <input type="file" (change)="onFileSelected($event)">
+          <img *ngIf="slika()" [src]="slika()" alt="Profilna slika" style="max-width: 200px; margin-top: 10px;">
+        </div>
+        <div *ngIf="field.label !== 'Slika'">
+          <input [value]="field.value()" (input)="updateField(field, $event)">
+        </div>
+      </div>
+      <ng-template #viewMode>
+        <div *ngIf="field.label === 'Slika'">
+          <img *ngIf="slika()" [src]="slika()" alt="Profilna slika" style="max-width: 200px; margin-top: 10px;">
+        </div>
+        <div *ngIf="field.label !== 'Slika'">
+          <p>
+            <span *ngIf="field.label === 'LinkedIn'">
+              <a href="{{field.value()}}" target="_blank">
+                <img src="assets/LinkedIn.png" alt="LinkedIn" style="width: 20px; vertical-align: middle;">
+              </a>
+            </span>
+            <span *ngIf="field.label === 'WhatsApp'">
+              <a href="https://wa.me/{{field.value()}}" target="_blank">
+                <img src="assets/whatsapp.png" alt="WhatsApp" style="width: 20px; vertical-align: middle;">
+              </a>
+            </span>
+            {{ field.value() }}
+          </p>
+        </div>
+      </ng-template>
     </div>
   </div>
+  

@@ -1,0 +1,46 @@
+.osobni-podaci {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  
+  .osobni-podaci h2 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .osobni-podaci label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .osobni-podaci input, .osobni-podaci p {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  img {
+    display: block;
+    margin: 10px 0;
+  }
+  
