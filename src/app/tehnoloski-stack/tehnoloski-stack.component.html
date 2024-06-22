@@ -1,0 +1,9 @@
+<div>
+    <h2>Tehnološki Stack</h2>
+    <div *for="let tehnologija of tehnologije()">
+      <div>
+        <img [src]="tehnologija.ikona" alt="{{tehnologija.naziv}} ikona" />
+        {{tehnologija.naziv}}
+      </div>
+    </div>
+  </div>

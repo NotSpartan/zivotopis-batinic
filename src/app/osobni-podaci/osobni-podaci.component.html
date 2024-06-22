@@ -1,0 +1,7 @@
+<div>
+    <h2>Osobni Podaci</h2>
+    <div *for="let field of fields">
+      <label>{{field.label}}:</label>
+      <input [value]="field.value()" (input)="updateField(field, $event)">
+    </div>
+  </div>
