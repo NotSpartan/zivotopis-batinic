@@ -1,15 +1,37 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ciljevi-motivacija',
-  templateUrl: './ciljevi-motivacija.component.html',
+  template: `
+    <div class="ciljevi-motivacija">
+      <h3>Ciljevi i motivacija</h3>
+      <ng-container *ngIf="!isEditing; else editMode">
+        <p>{{ ciljevi }}</p>
+      </ng-container>
+      <ng-template #editMode>
+        <textarea [(ngModel)]="editableCiljevi" rows="4"></textarea>
+      </ng-template>
+    </div>
+  `,
   standalone: true,
+  imports: [FormsModule, CommonModule]
 })
 export class CiljeviMotivacijaComponent {
-  ciljevi = signal('Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.');
+  @Input() ciljevi: string = '';
+  @Input() isEditing: boolean = false;
+  @Output() ciljeviChange = new EventEmitter<string>();
 
-  updateCiljevi(event: Event) {
-    const input = event.target as HTMLTextAreaElement;
-    this.ciljevi.set(input.value);
+  editableCiljevi: string = '';
+
+  ngOnChanges() {
+    if (this.isEditing) {
+      this.editableCiljevi = this.ciljevi;
+    } else {
+      if (this.editableCiljevi !== this.ciljevi) {
+        this.ciljeviChange.emit(this.editableCiljevi);
+      }
+    }
   }
 }

@@ -3,7 +3,10 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 2rem;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px; /* Prilagodite prema potrebi */
   }
   
   .profile-image-container {
@@ -89,14 +92,26 @@
     100% { opacity: 0; }
   }
   
+  .ciljevi-motivacija h3 {
+    margin-top: 0;
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .ciljevi-motivacija p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
   @media (max-width: 600px) {
     .profile-header {
       padding: 1.5rem;
     }
   
-    .profile-image-container {
-      width: 120px;
-      height: 120px;
+    .ciljevi-motivacija {
+      max-width: 100%;
     }
   }
   

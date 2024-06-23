@@ -1,24 +1,27 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CiljeviMotivacijaComponent } from '../ciljevi-motivacija/ciljevi-motivacija.component';
 
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CiljeviMotivacijaComponent],
 })
 export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() slika: string = '';
   @Input() imePrezime: string = '';
   @Input() titula: string = '';
-  @Input() isEditing: boolean = false;
   @Input() isAuthor: boolean = false;
+  @Input() ciljevi!: WritableSignal<string>;
 
   @Output() fileSelected = new EventEmitter<Event>();
   @Output() editToggled = new EventEmitter<void>();
+  @Output() ciljeviChanged = new EventEmitter<string>();
 
-  displayedTitle: string = '';
+  isEditing: WritableSignal<boolean> = signal(false);
+  displayedTitle: WritableSignal<string> = signal('');
   private animationInterval: any;
 
   ngOnInit() {
@@ -34,18 +37,24 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleEdit() {
+    this.isEditing.update(state => !state);
     this.editToggled.emit();
+  }
+
+  updateCiljevi(newCiljevi: string) {
+    this.ciljevi.set(newCiljevi);
+    this.ciljeviChanged.emit(newCiljevi);
   }
 
   private startTitleAnimation() {
     let index = 0;
     this.animationInterval = setInterval(() => {
-      this.displayedTitle = this.titula.substring(0, index + 1);
+      this.displayedTitle.set(this.titula.substring(0, index + 1));
       index = (index + 1) % (this.titula.length + 1);
       if (index === 0) {
         // Dodajemo malu pauzu kada se tekst u potpunosti ispiše
         setTimeout(() => {
-          this.displayedTitle = '';
+          this.displayedTitle.set('');
         }, 1000);
       }
     }, 200); // Prilagodite ovu vrijednost za bržu ili sporiju animaciju

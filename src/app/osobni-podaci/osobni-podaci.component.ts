@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -6,7 +6,7 @@ import { ProfileHeaderComponent } from '../profile-header/profile-header.compone
 
 interface Field {
   icon: string;
-  value: ReturnType<typeof signal<string>>;
+  value: WritableSignal<string>;
   type: 'text' | 'email' | 'tel';
 }
 
@@ -31,6 +31,7 @@ export class OsobniPodaciComponent {
   email = signal('josip.batinic9@gmail.com');
   telefon = signal('099/8580-947');
   isEditing = signal(false);
+  ciljevi: WritableSignal<string> = signal('Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.');
 
   socialLinks = signal<SocialLink[]>([
     { platform: 'linkedin', url: 'https://www.linkedin.com/in/josip-batini%C4%87-236112197/' },
@@ -50,7 +51,7 @@ export class OsobniPodaciComponent {
 
   updateField(field: Field, event: Event) {
     const input = event.target as HTMLInputElement;
-    field.value.apply((value: string) => input.value);
+    field.value.set(input.value);
   }
 
   addSocialLink() {
@@ -69,9 +70,7 @@ export class OsobniPodaciComponent {
   }
 
   toggleEdit() {
-    if (this.isAuthor()) {
-      this.isEditing.update(state => !state);
-    }
+    this.isEditing.update(state => !state);
   }
 
   onFileSelected(event: Event) {
@@ -85,5 +84,9 @@ export class OsobniPodaciComponent {
       };
       reader.readAsDataURL(input.files[0]);
     }
+  }
+
+  updateCiljevi(newCiljevi: string) {
+    this.ciljevi.set(newCiljevi);
   }
 }
