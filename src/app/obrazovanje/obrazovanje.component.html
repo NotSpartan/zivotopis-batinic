@@ -1,6 +1,26 @@
-<div>
-    <h2>Obrazovanje</h2>
-    <div *for="let obrazovanje of obrazovanja()">
-      <div>{{obrazovanje.naziv}} - {{obrazovanje.ustanova}} ({{obrazovanje.godina}}) - {{obrazovanje.mjesto}}</div>
+<div class="education-container">
+  <h2>Education</h2>
+  <div class="education-list">
+    <div *ngFor="let education of educations(); let i = index" class="education-item">
+      <div class="education-header">
+        <span class="year">{{ education.year }}</span>
+        <span class="title">{{ education.title }}</span>
+        <button class="remove-btn" (click)="removeEducation(i)">×</button>
+      </div>
+      <div class="institution">{{ education.institution }}</div>
+      <div class="location">{{ education.location }}</div>
+      <div *ngIf="education.description" class="description">{{ education.description }}</div>
     </div>
   </div>
+
+  <div class="add-education">
+    <h3>Add New Education</h3>
+    <input [(ngModel)]="newEducation.year" placeholder="Year">
+    <input [(ngModel)]="newEducation.title" placeholder="Title">
+    <input [(ngModel)]="newEducation.institution" placeholder="Institution">
+    <input [(ngModel)]="newEducation.location" placeholder="Location">
+    <textarea [(ngModel)]="newEducation.description" placeholder="Description (optional)"></textarea>
+    <button (click)="addEducation()">Add</button>
+  </div>
+</div>
+

@@ -1,0 +1,103 @@
+:host {
+    display: block;
+    width: 100%;
+  }
+
+.education-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+  }
+  
+  .education-list {
+    margin-top: 20px;
+  }
+  
+  .education-item {
+    background-color: #f9f9f9;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .year {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .title {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .institution {
+    font-style: italic;
+    color: #555;
+  }
+  
+  .location {
+    color: #777;
+    font-size: 0.9em;
+  }
+  
+  .description {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .add-education {
+    margin-top: 30px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .add-education h3 {
+    margin-top: 0;
+  }
+  
+  .add-education input,
+  .add-education textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-education button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-education button:hover {
+    background-color: #0056b3;
+  }
+  
