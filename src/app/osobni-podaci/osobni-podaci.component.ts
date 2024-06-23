@@ -1,8 +1,7 @@
-import { Component, signal, computed, inject, WritableSignal } from '@angular/core';
+import { Component, signal, computed, inject, WritableSignal, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
 
 interface Field {
   icon: string;
@@ -20,18 +19,21 @@ interface SocialLink {
   templateUrl: './osobni-podaci.component.html',
   styleUrls: ['./osobni-podaci.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ProfileHeaderComponent],
+  imports: [CommonModule, FormsModule],
 })
 export class OsobniPodaciComponent {
   private authService = inject(AuthService);
 
-  slika = signal('assets/default-profile.jpg');
+  slika = signal('assets/default-profile.png');
   imePrezime = signal('Josip Batinić');
   titula = signal('Software Developer');
   email = signal('josip.batinic9@gmail.com');
   telefon = signal('099/8580-947');
   isEditing = signal(false);
   ciljevi: WritableSignal<string> = signal('Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.');
+
+  @Output() imePrezimeChange = new EventEmitter<string>();
+  @Output() titulaChange = new EventEmitter<string>();
 
   socialLinks = signal<SocialLink[]>([
     { platform: 'linkedin', url: 'https://www.linkedin.com/in/josip-batini%C4%87-236112197/' },
@@ -52,6 +54,12 @@ export class OsobniPodaciComponent {
   updateField(field: Field, event: Event) {
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
+
+    if (field.icon === 'person') {
+      this.imePrezimeChange.emit(this.imePrezime());
+    } else if (field.icon === 'work') {
+      this.titulaChange.emit(this.titula());
+    }
   }
 
   addSocialLink() {

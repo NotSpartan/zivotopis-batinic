@@ -1,13 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CiljeviMotivacijaComponent } from '../ciljevi-motivacija/ciljevi-motivacija.component';
 
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.css'],
   standalone: true,
-  imports: [CommonModule, CiljeviMotivacijaComponent],
+  imports: [CommonModule],
 })
 export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() slika: string = '';
@@ -15,10 +14,7 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() titula: string = '';
   @Input() isAuthor: boolean = false;
   @Input() ciljevi!: WritableSignal<string>;
-
   @Output() fileSelected = new EventEmitter<Event>();
-  @Output() editToggled = new EventEmitter<void>();
-  @Output() ciljeviChanged = new EventEmitter<string>();
 
   isEditing: WritableSignal<boolean> = signal(false);
   displayedTitle: WritableSignal<string> = signal('');
@@ -31,19 +27,20 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.stopTitleAnimation();
   }
+  @Output() slikaChange = new EventEmitter<string>();
 
   onFileSelected(event: Event) {
-    this.fileSelected.emit(event);
-  }
-
-  toggleEdit() {
-    this.isEditing.update(state => !state);
-    this.editToggled.emit();
-  }
-
-  updateCiljevi(newCiljevi: string) {
-    this.ciljevi.set(newCiljevi);
-    this.ciljeviChanged.emit(newCiljevi);
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result) {
+          this.slika = e.target.result as string;
+          this.slikaChange.emit(this.slika);
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 
   private startTitleAnimation() {

@@ -1,15 +1,4 @@
 <div class="profile-card">
-  <app-profile-header
-    [slika]="slika()"
-    [imePrezime]="imePrezime()"
-    [titula]="titula()"
-    [isAuthor]="isAuthor()"
-    [ciljevi]="ciljevi"
-    (fileSelected)="onFileSelected($event)"
-    (editToggled)="toggleEdit()"
-    (ciljeviChanged)="updateCiljevi($event)">
-  </app-profile-header>
-
   <div class="profile-body">
     <div *ngFor="let field of fields()" class="field">
       <i class="material-icons">{{ field.icon }}</i>
