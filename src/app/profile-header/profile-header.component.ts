@@ -42,7 +42,6 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
       reader.readAsDataURL(input.files[0]);
     }
   }
-
   private startTitleAnimation() {
     let index = 0;
     this.animationInterval = setInterval(() => {

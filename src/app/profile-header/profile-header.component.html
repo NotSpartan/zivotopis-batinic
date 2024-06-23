@@ -3,9 +3,8 @@
     <img [src]="slika" class="profile-image">
     <div *ngIf="isAuthor" class="image-overlay">
       <label class="file-upload-label" for="file-upload">
-        <i class="material-icons">add_a_photo</i>
         <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;">
-        <button (click)="fileInput.click()">Promijeni sliku</button>
+        <button (click)="fileInput.click()">Change image</button>
       </label>
     </div>
   </div>
