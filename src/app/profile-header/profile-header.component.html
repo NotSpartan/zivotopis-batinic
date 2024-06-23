@@ -1,10 +1,12 @@
 <div class="profile-header">
   <div class="profile-image-container">
-    <img [src]="slika" alt="Profile Image" class="profile-image">
-    <label *ngIf="isAuthor" class="file-upload-label" for="file-upload">
-      <i class="material-icons">add_a_photo</i>
-      <input id="file-upload" type="file" (change)="onFileSelected($event)" style="display:none;">
-    </label>
+    <img [src]="slika" class="profile-image">
+    <div *ngIf="isAuthor" class="image-overlay">
+      <label class="file-upload-label" for="file-upload">
+        <i class="material-icons">add_a_photo</i>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)" style="display:none;">
+      </label>
+    </div>
   </div>
 
   <div class="profile-info">
@@ -12,17 +14,7 @@
       <h2>{{ imePrezime }}</h2>
       <p class="animated-title">{{ displayedTitle() }}<span class="cursor">|</span></p>
     </div>
-
-    <div class="ciljevi-motivacija-container">
-      <app-ciljevi-motivacija 
-        [ciljevi]="ciljevi()"
-        [isEditing]="isEditing()"
-        (ciljeviChange)="updateCiljevi($event)">
-      </app-ciljevi-motivacija>
-    </div>
   </div>
 
-  <button *ngIf="isAuthor" class="edit-button" (click)="toggleEdit()">
-    {{ isEditing() ? 'Spremi' : 'Uredi' }}
-  </button>
+
 </div>
