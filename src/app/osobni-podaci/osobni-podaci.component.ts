@@ -38,6 +38,7 @@ export class OsobniPodaciComponent {
   socialLinks = signal<SocialLink[]>([
     { platform: 'linkedin', url: 'https://www.linkedin.com/in/josip-batini%C4%87-236112197/' },
     { platform: 'github', url: 'https://github.com/JosipBatinic' },
+    { platform: 'whatsupp', url: 'https://web.whatsapp.com/' },
   ]);
 
   newSocialLink = { platform: '', url: '' };
