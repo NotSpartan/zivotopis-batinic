@@ -1,5 +1,36 @@
-<div>
-  <h2>Motivacija:</h2>
-  <p *ngIf="!isEditing">{{ ciljevi() }}</p>
-  <textarea *ngIf="isEditing" [ngModel]="ciljevi()" (ngModelChange)="updateCiljevi($event)" rows="4"></textarea>
+<div class="motivations-container">
+  <h2>Ciljevi i Motivacija</h2>
+
+  <div class="motivation-slider">
+    <button (click)="previousMotivation()" class="nav-button prev">&lt;</button>
+    <div class="motivation-item" *ngIf="motivations().length > 0" [@fadeInOut]>
+      <p>{{ motivations()[currentIndex()].text }}</p>
+      <div class="motivation-controls">
+        <button (click)="startEditing()" class="icon-button">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button (click)="removeCurrentMotivation()" class="icon-button">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    <button (click)="nextMotivation()" class="nav-button next">&gt;</button>
+  </div>
+
+  <div class="motivation-indicator">
+    {{ currentIndex() + 1 }} / {{ motivations().length }}
+  </div>
+
+  <div class="add-motivation">
+    <textarea [(ngModel)]="newMotivationText" placeholder="Unesite novu motivaciju"></textarea>
+    <button (click)="addMotivation()">Dodaj</button>
+  </div>
+
+  <div *ngIf="editingMotivation" class="edit-motivation">
+    <textarea [(ngModel)]="editingMotivation.text"></textarea>
+    <div class="edit-controls">
+      <button (click)="saveEdit()">Spremi</button>
+      <button (click)="cancelEdit()">Odustani</button>
+    </div>
+  </div>
 </div>
