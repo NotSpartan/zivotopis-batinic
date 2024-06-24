@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 interface Obrazovanje {
   year: string;
@@ -18,7 +19,16 @@ interface Obrazovanje {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class ObrazovanjeComponent {
+export class ObrazovanjeComponent implements OnInit {
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    const savedData = this.dataService.getEducationData();
+    if (savedData.length > 0) {
+      this.educations.set(savedData);
+    }
+  }
   educations = signal<Obrazovanje[]>([
     { year: '2019', title: 'Salesforce Administrator', institution: 'Simplilearn', location: 'Raleigh', description: 'Completed initial level for Salesforce administrator on Simplilearn platform.' },
     { year: '2019', title: 'Computer Programmer for Internet Applications', institution: 'Algebra', location: 'Zagreb' },
@@ -30,12 +40,20 @@ export class ObrazovanjeComponent {
   newEducation: Obrazovanje = { year: '', title: '', institution: '', location: '' };
 
   addEducation() {
-    this.educations.update(educations => [...educations, { ...this.newEducation }]);
+    this.educations.update(educations => {
+      const updatedEducations = [...educations, { ...this.newEducation }];
+      this.dataService.setEducationData(updatedEducations);
+      return updatedEducations;
+    });
     this.newEducation = { year: '', title: '', institution: '', location: '' };
   }
 
   removeEducation(index: number) {
-    this.educations.update(educations => educations.filter((_, i) => i !== index));
+    this.educations.update(educations => {
+      const updatedEducations = educations.filter((_, i) => i !== index);
+      this.dataService.setEducationData(updatedEducations);
+      return updatedEducations;
+    });
   }
 
   onFileSelected(event: Event, education: Obrazovanje) {
@@ -45,7 +63,11 @@ export class ObrazovanjeComponent {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
           education.institutionIcon = e.target.result as string;
-          this.educations.update(educations => [...educations]); // Trigger change detection
+          this.educations.update(educations => {
+            const updatedEducations = [...educations];
+            this.dataService.setEducationData(updatedEducations);
+            return updatedEducations;
+          });
         }
       };
       reader.readAsDataURL(input.files[0]);

@@ -7,6 +7,8 @@ import { ObrazovanjeComponent } from './obrazovanje/obrazovanje.component';
 import { TehnoloskiStackComponent } from './tehnoloski-stack/tehnoloski-stack.component';
 import { VjestineJeziciComponent } from './vjestine-jezici/vjestine-jezici.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { DataService } from './services/data.service';
+
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,8 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
   ]
 })
 export class AppComponent {
-  activeTab = signal('osobni-podaci'); // Dodajte ovu liniju
+  constructor(private dataService: DataService) {}
+  activeTab = signal('osobni-podaci'); 
 
   imePrezime = signal('Josip Batinić');
   titula = signal('Software Developer');
