@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 interface Iskustvo {
   startDate: string;
@@ -20,6 +21,14 @@ interface Iskustvo {
   imports: [CommonModule, FormsModule],
 })
 export class IskustvoComponent {
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    const savedData = this.dataService.getExperienceData();
+    if (savedData.length > 0) {
+      this.experiences.set(savedData);
+    }
+  }
   experiences = signal<Iskustvo[]>([
     {
       startDate: 'December 2017',
@@ -73,12 +82,20 @@ export class IskustvoComponent {
   newResponsibility: string = '';
 
   addExperience() {
-    this.experiences.update(experiences => [...experiences, { ...this.newExperience, responsibilities: [...this.newExperience.responsibilities] }]);
+    this.experiences.update(experiences => {
+      const updatedExperiences = [...experiences, { ...this.newExperience, responsibilities: [...this.newExperience.responsibilities] }];
+      this.dataService.setExperienceData(updatedExperiences);
+      return updatedExperiences;
+    });
     this.newExperience = { startDate: '', endDate: '', position: '', company: '', location: '', responsibilities: [], companyIcon: '' };
   }
 
   removeExperience(index: number) {
-    this.experiences.update(experiences => experiences.filter((_, i) => i !== index));
+    this.experiences.update(experiences => {
+      const updatedExperiences = experiences.filter((_, i) => i !== index);
+      this.dataService.setExperienceData(updatedExperiences);
+      return updatedExperiences;
+    });
   }
 
   addResponsibility() {
@@ -99,7 +116,11 @@ export class IskustvoComponent {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
           experience.companyIcon = e.target.result as string;
-          this.experiences.update(experiences => [...experiences]); // Trigger change detection
+          this.experiences.update(experiences => {
+            const updatedExperiences = [...experiences];
+            this.dataService.setExperienceData(updatedExperiences);
+            return updatedExperiences;
+          });
         }
       };
       reader.readAsDataURL(input.files[0]);
