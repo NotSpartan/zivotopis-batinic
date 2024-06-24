@@ -1,18 +1,24 @@
 <div class="profile-header">
-  <div class="profile-image-container">
-    <img [src]="slika" class="profile-image">
-    <div *ngIf="isAuthor" class="image-overlay">
-      <label class="file-upload-label" for="file-upload">
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;">
-        <button (click)="fileInput.click()">Change image</button>
-      </label>
-    </div>
+  <div class="logo-container">
+    <img src="assets/logo-cv-aplikacije.png" alt="CV Logo" class="app-logo">
   </div>
 
-  <div class="profile-info">
-    <div class="profile-title">
-      <h2>{{ imePrezime }}</h2>
-      <p class="animated-title">{{ displayedTitle() }}<span class="cursor">|</span></p>
+  <div class="profile-content">
+    <div class="profile-image-container">
+      <img [src]="slika" class="profile-image">
+      <div *ngIf="isAuthor" class="image-overlay">
+        <label class="file-upload-label" for="file-upload">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;">
+          <button (click)="fileInput.click()">Change image</button>
+        </label>
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <div class="profile-title">
+        <h2>{{ imePrezime }}</h2>
+        <p class="animated-title">{{ displayedTitle() }}<span class="cursor">|</span></p>
+      </div>
     </div>
   </div>
 </div>
