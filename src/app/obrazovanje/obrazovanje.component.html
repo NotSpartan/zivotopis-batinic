@@ -4,12 +4,23 @@
     <div *ngFor="let education of educations(); let i = index" class="education-item">
       <div class="education-header">
         <span class="year">{{ education.year }}</span>
-        <span class="title">{{ education.title }}</span>
         <button class="remove-btn" (click)="removeEducation(i)">×</button>
       </div>
-      <div class="institution">{{ education.institution }}</div>
-      <div class="location">{{ education.location }}</div>
+      <div class="institution-info">
+        <div *ngIf="education.institutionIcon" class="institution-icon">
+          <img [src]="education.institutionIcon" alt="{{ education.institution }} icon">
+        </div>
+        <div>
+          <span class="title">{{ education.title }}</span>
+          <div class="institution">{{ education.institution }}</div>
+          <div class="location">{{ education.location }}</div>
+        </div>
+      </div>
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
+      <div class="upload-icon">
+        <label for="icon-upload-{{i}}">Upload Institution Icon</label>
+        <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, education)" accept="image/*">
+      </div>
     </div>
   </div>
 
@@ -23,4 +34,3 @@
     <button (click)="addEducation()">Add</button>
   </div>
 </div>
-

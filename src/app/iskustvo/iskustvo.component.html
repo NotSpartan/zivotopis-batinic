@@ -6,12 +6,23 @@
         <span class="date">{{ experience.startDate }} - {{ experience.endDate }}</span>
         <button class="remove-btn" (click)="removeExperience(i)">×</button>
       </div>
-      <div class="position">{{ experience.position }}</div>
-      <div class="company">{{ experience.company }}</div>
-      <div class="location">{{ experience.location }}</div>
+      <div class="company-info">
+        <div *ngIf="experience.companyIcon" class="company-icon">
+          <img [src]="experience.companyIcon" alt="{{ experience.company }} icon">
+        </div>
+        <div>
+          <div class="position">{{ experience.position }}</div>
+          <div class="company">{{ experience.company }}</div>
+          <div class="location">{{ experience.location }}</div>
+        </div>
+      </div>
       <ul class="responsibilities">
         <li *ngFor="let responsibility of experience.responsibilities">{{ responsibility }}</li>
       </ul>
+      <div class="upload-icon">
+        <label for="icon-upload-{{i}}">Upload Company Icon</label>
+        <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, experience)" accept="image/*">
+      </div>
     </div>
   </div>
 

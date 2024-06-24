@@ -8,6 +8,7 @@ interface Obrazovanje {
   institution: string;
   location: string;
   description?: string;
+  institutionIcon?: string; // New field for institution icon
 }
 
 @Component({
@@ -35,5 +36,19 @@ export class ObrazovanjeComponent {
 
   removeEducation(index: number) {
     this.educations.update(educations => educations.filter((_, i) => i !== index));
+  }
+
+  onFileSelected(event: Event, education: Obrazovanje) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result) {
+          education.institutionIcon = e.target.result as string;
+          this.educations.update(educations => [...educations]); // Trigger change detection
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 }

@@ -9,6 +9,7 @@ interface Iskustvo {
   company: string;
   location: string;
   responsibilities: string[];
+  companyIcon?: string;
 }
 
 @Component({
@@ -66,13 +67,14 @@ export class IskustvoComponent {
     position: '',
     company: '',
     location: '',
-    responsibilities: []
+    responsibilities: [],
+    companyIcon: ''
   };
   newResponsibility: string = '';
 
   addExperience() {
     this.experiences.update(experiences => [...experiences, { ...this.newExperience, responsibilities: [...this.newExperience.responsibilities] }]);
-    this.newExperience = { startDate: '', endDate: '', position: '', company: '', location: '', responsibilities: [] };
+    this.newExperience = { startDate: '', endDate: '', position: '', company: '', location: '', responsibilities: [], companyIcon: '' };
   }
 
   removeExperience(index: number) {
@@ -88,5 +90,19 @@ export class IskustvoComponent {
 
   removeResponsibility(index: number) {
     this.newExperience.responsibilities.splice(index, 1);
+  }
+
+  onFileSelected(event: Event, experience: Iskustvo) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result) {
+          experience.companyIcon = e.target.result as string;
+          this.experiences.update(experiences => [...experiences]); // Trigger change detection
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 }
