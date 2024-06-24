@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
   private educationData: any[] = [];
   private experienceData: any[] = [];
+  private tehnologijeData: any[] = [];
 
   setEducationData(data: any[]) {
     this.educationData = data;
@@ -21,5 +22,13 @@ export class DataService {
 
   getExperienceData() {
     return this.experienceData;
+  }
+
+  getTechnologiesData(): any[] {
+    return this.tehnologijeData;
+  }
+
+  setTechnologiesData(data: any[]): void {
+    this.tehnologijeData = data;
   }
 }

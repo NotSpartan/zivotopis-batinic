@@ -1,9 +1,24 @@
-<div>
-    <h2>Tehnološki Stack</h2>
-    <div *for="let tehnologija of tehnologije()">
-      <div>
-        <img [src]="tehnologija.ikona" alt="{{tehnologija.naziv}} ikona" />
-        {{tehnologija.naziv}}
-      </div>
+<div class="tehnologije-container">
+  <h2>Tehnološki Stack</h2>
+  <div *ngFor="let tehnologija of tehnologije(); let i = index" class="tehnologija-item">
+    <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
+      <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
+    </div>
+    <div class="tehnologija-info">
+      <div class="naziv">{{ tehnologija.naziv }}</div>
+      <div class="razina">Razina: {{ tehnologija.razina }}</div>
+    </div>
+    <button class="remove-btn" (click)="ukloniTehnologiju(i)">×</button>
+    <div class="upload-icon">
+      <label for="icon-upload-{{i}}">Učitaj ikonu</label>
+      <input id="icon-upload-{{i}}" type="file" (change)="odaberiIkonu($event, tehnologija)" accept="image/*">
     </div>
   </div>
+
+  <div class="add-tehnologija">
+    <h3>Dodaj novu tehnologiju</h3>
+    <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije">
+    <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja">
+    <button (click)="dodajTehnologiju()">Dodaj</button>
+  </div>
+</div>

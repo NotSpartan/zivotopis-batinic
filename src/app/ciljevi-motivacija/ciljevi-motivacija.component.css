@@ -62,7 +62,7 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding: 0.5rem;
+  padding:1rem;
 }
 
 .nav-button {
