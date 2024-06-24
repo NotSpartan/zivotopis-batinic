@@ -15,14 +15,13 @@ interface Motivation {
   standalone: true,
   imports: [CommonModule, FormsModule],
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(50px)' }),
-        animate('300ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(-50px)' }))
-      ])
+    trigger('cardSlide', [
+      state('current', style({ transform: 'translateX(0)' })),
+      state('next', style({ transform: 'translateX(-100%)' })),
+      state('prev', style({ transform: 'translateX(100%)' })),
+      transition('current => next', animate('500ms ease-out')),
+      transition('current => prev', animate('500ms ease-out')),
+      transition('next => current, prev => current', animate('500ms ease-out'))
     ])
   ]
 })
@@ -34,32 +33,24 @@ export class CiljeviMotivacijaComponent {
   ]);
 
   currentIndex = signal(0);
-  newMotivationText = '';
+  slideState = signal('current');
   editingMotivation: Motivation | null = null;
+  newMotivationText = '';
 
   nextMotivation() {
-    this.currentIndex.update(index => (index + 1) % this.motivations().length);
+    this.slideState.set('next');
+    setTimeout(() => {
+      this.currentIndex.update(index => (index + 1) % this.motivations().length);
+      this.slideState.set('current');
+    }, 500);
   }
 
   previousMotivation() {
-    this.currentIndex.update(index => (index - 1 + this.motivations().length) % this.motivations().length);
-  }
-
-  addMotivation() {
-    if (this.newMotivationText.trim()) {
-      const newId = Math.max(...this.motivations().map(m => m.id), 0) + 1;
-      this.motivations.update(motivations => [...motivations, { id: newId, text: this.newMotivationText.trim() }]);
-      this.newMotivationText = '';
-      this.currentIndex.set(this.motivations().length - 1);
-    }
-  }
-
-  removeCurrentMotivation() {
-    const currentId = this.motivations()[this.currentIndex()].id;
-    this.motivations.update(motivations => motivations.filter(m => m.id !== currentId));
-    if (this.currentIndex() >= this.motivations().length) {
-      this.currentIndex.update(index => Math.max(0, index - 1));
-    }
+    this.slideState.set('prev');
+    setTimeout(() => {
+      this.currentIndex.update(index => (index - 1 + this.motivations().length) % this.motivations().length);
+      this.slideState.set('current');
+    }, 500);
   }
 
   startEditing() {
@@ -77,5 +68,22 @@ export class CiljeviMotivacijaComponent {
 
   cancelEdit() {
     this.editingMotivation = null;
+  }
+
+  removeCurrentMotivation() {
+    const currentId = this.motivations()[this.currentIndex()].id;
+    this.motivations.update(motivations => motivations.filter(m => m.id !== currentId));
+    if (this.currentIndex() >= this.motivations().length) {
+      this.currentIndex.update(index => Math.max(0, index - 1));
+    }
+  }
+
+  addMotivation() {
+    if (this.newMotivationText.trim()) {
+      const newId = Math.max(...this.motivations().map(m => m.id), 0) + 1;
+      this.motivations.update(motivations => [...motivations, { id: newId, text: this.newMotivationText.trim() }]);
+      this.newMotivationText = '';
+      this.currentIndex.set(this.motivations().length - 1);
+    }
   }
 }
