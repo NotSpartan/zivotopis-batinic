@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { inject } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -10,8 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() slika: string = '';
-  @Input() imePrezime: string = '';
-  @Input() titula: string = '';
+  @Input() imePrezime: WritableSignal<string> = signal('');
+  @Input() titula: WritableSignal<string> = signal('');
   @Input() isAuthor: boolean = false;
   @Input() ciljevi!: WritableSignal<string>;
   @Output() fileSelected = new EventEmitter<Event>();
@@ -20,13 +22,19 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   displayedTitle: WritableSignal<string> = signal('');
   private animationInterval: any;
 
+  private dataService = inject(DataService);
+
   ngOnInit() {
+    const data = this.dataService.getOsobniPodaciData();
+    this.imePrezime.set(data.imePrezime);
+    this.titula.set(data.titula);
     this.startTitleAnimation();
   }
 
   ngOnDestroy() {
     this.stopTitleAnimation();
   }
+
   @Output() slikaChange = new EventEmitter<string>();
 
   onFileSelected(event: Event) {
@@ -42,18 +50,18 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
       reader.readAsDataURL(input.files[0]);
     }
   }
+
   private startTitleAnimation() {
     let index = 0;
     this.animationInterval = setInterval(() => {
-      this.displayedTitle.set(this.titula.substring(0, index + 1));
-      index = (index + 1) % (this.titula.length + 1);
+      this.displayedTitle.set(this.titula().substring(0, index + 1));
+      index = (index + 1) % (this.titula().length + 1);
       if (index === 0) {
-        // Dodajemo malu pauzu kada se tekst u potpunosti ispiše
         setTimeout(() => {
           this.displayedTitle.set('');
         }, 1000);
       }
-    }, 200); // Prilagodite ovu vrijednost za bržu ili sporiju animaciju
+    }, 200);
   }
 
   private stopTitleAnimation() {

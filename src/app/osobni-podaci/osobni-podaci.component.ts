@@ -2,6 +2,7 @@ import { Component, signal, computed, inject, WritableSignal, EventEmitter, Outp
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/data.service';
 
 interface Field {
   icon: string;
@@ -23,6 +24,7 @@ interface SocialLink {
 })
 export class OsobniPodaciComponent {
   private authService = inject(AuthService);
+  private dataService = inject(DataService);
 
   slika = signal('assets/default-profile.png');
   imePrezime = signal('Josip Batinić');
@@ -52,14 +54,37 @@ export class OsobniPodaciComponent {
     { icon: 'phone', value: this.telefon, type: 'tel' },
   ]);
 
+  ngOnInit() {
+    const data = this.dataService.getOsobniPodaciData();
+    this.imePrezime.set(data.imePrezime);
+    this.titula.set(data.titula);
+    this.email.set(data.email);
+    this.telefon.set(data.telefon);
+    this.socialLinks.set(data.socialLinks);
+  }
+
   updateField(field: Field, event: Event) {
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
 
     if (field.icon === 'person') {
       this.imePrezimeChange.emit(this.imePrezime());
+      this.dataService.setOsobniPodaciData({
+        imePrezime: this.imePrezime(),
+        titula: this.titula(),
+        email: this.email(),
+        telefon: this.telefon(),
+        socialLinks: this.socialLinks()
+      });
     } else if (field.icon === 'work') {
       this.titulaChange.emit(this.titula());
+      this.dataService.setOsobniPodaciData({
+        imePrezime: this.imePrezime(),
+        titula: this.titula(),
+        email: this.email(),
+        telefon: this.telefon(),
+        socialLinks: this.socialLinks()
+      });
     }
   }
 
@@ -67,11 +92,25 @@ export class OsobniPodaciComponent {
     if (this.newSocialLink.platform && this.newSocialLink.url) {
       this.socialLinks.update(links => [...links, { ...this.newSocialLink }]);
       this.newSocialLink = { platform: '', url: '' };
+      this.dataService.setOsobniPodaciData({
+        imePrezime: this.imePrezime(),
+        titula: this.titula(),
+        email: this.email(),
+        telefon: this.telefon(),
+        socialLinks: this.socialLinks()
+      });
     }
   }
 
   removeSocialLink(index: number) {
     this.socialLinks.update(links => links.filter((_, i) => i !== index));
+    this.dataService.setOsobniPodaciData({
+      imePrezime: this.imePrezime(),
+      titula: this.titula(),
+      email: this.email(),
+      telefon: this.telefon(),
+      socialLinks: this.socialLinks()
+    });
   }
 
   getIconPath(platform: string): string {

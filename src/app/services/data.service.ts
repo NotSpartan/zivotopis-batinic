@@ -20,6 +20,14 @@ export class DataService {
   private vjestineData: Vjestina[] = [];
   private certifikatiData: Certifikat[] = [];
 
+  private osobniPodaciData: any = {
+    imePrezime: '',
+    titula: '',
+    email: '',
+    telefon: '',
+    socialLinks: []
+  };
+
   setEducationData(data: any[]) {
     this.educationData = data;
   }
@@ -58,5 +66,13 @@ export class DataService {
 
   setCertifikatiData(data: Certifikat[]): void {
     this.certifikatiData = data;
+  }
+
+  setOsobniPodaciData(data: any) {
+    this.osobniPodaciData = data;
+  }
+
+  getOsobniPodaciData() {
+    return this.osobniPodaciData;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OsobniPodaciComponent } from './osobni-podaci/osobni-podaci.component';
 import { CiljeviMotivacijaComponent } from './ciljevi-motivacija/ciljevi-motivacija.component';
@@ -8,7 +8,6 @@ import { TehnoloskiStackComponent } from './tehnoloski-stack/tehnoloski-stack.co
 import { VjestineJeziciComponent } from './vjestine-jezici/vjestine-jezici.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { DataService } from './services/data.service';
-
 
 @Component({
   selector: 'app-root',
@@ -28,28 +27,26 @@ import { DataService } from './services/data.service';
 })
 export class AppComponent {
   constructor(private dataService: DataService) {}
-  activeTab = signal('osobni-podaci'); 
+  activeTab = signal('osobni-podaci');
 
-  imePrezime = signal('Josip Batinić');
-  titula = signal('Software Developer');
+  imePrezime: WritableSignal<string> = signal('Josip Batinić');
+  titula: WritableSignal<string> = signal('Software Developer');
   slika = signal('assets/default-profile.png');
   isAuthor = signal(true);
 
-updateSlika(novaSlika: string) {
-  this.slika.set(novaSlika);
-}
+  updateSlika(novaSlika: string) {
+    this.slika.set(novaSlika);
+  }
 
-setActiveTab(tab: string) {
-  this.activeTab.set(tab);
-}
+  setActiveTab(tab: string) {
+    this.activeTab.set(tab);
+  }
 
-updateImePrezime(newImePrezime: string) {
-  this.imePrezime.set(newImePrezime);
-}
+  updateImePrezime(newImePrezime: string) {
+    this.imePrezime.set(newImePrezime);
+  }
 
-updateTitula(newTitula: string) {
-  this.titula.set(newTitula);
-}
-
-
+  updateTitula(newTitula: string) {
+    this.titula.set(newTitula);
+  }
 }
