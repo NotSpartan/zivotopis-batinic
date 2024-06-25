@@ -67,8 +67,8 @@ export class OsobniPodaciComponent {
   updateField(field: Field, event: Event) {
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
-
-    if (field.icon === 'person') {
+  
+    if (field.icon === 'osoba') {
       this.imePrezimeChange.emit(this.imePrezime());
       this.dataService.setOsobniPodaciData({
         imePrezime: this.imePrezime(),
@@ -77,7 +77,7 @@ export class OsobniPodaciComponent {
         telefon: this.telefon(),
         socialLinks: this.socialLinks()
       });
-    } else if (field.icon === 'work') {
+    } else if (field.icon === 'zanimanje') {
       this.titulaChange.emit(this.titula());
       this.dataService.setOsobniPodaciData({
         imePrezime: this.imePrezime(),

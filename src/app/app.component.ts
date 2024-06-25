@@ -31,7 +31,13 @@ export class AppComponent {
   titula: WritableSignal<string> = signal('Software Developer');
   slika = signal('assets/default-profile.png');
   isAuthor = signal(true);
-
+  
+  ngOnInit() {
+    const data = this.dataService.getOsobniPodaciData();
+    this.imePrezime.set(data.imePrezime);
+    this.titula.set(data.titula);
+    this.slika.set(data.slika || 'assets/default-profile.png');
+  }
   updateSlika(novaSlika: string) {
     this.slika.set(novaSlika);
   }

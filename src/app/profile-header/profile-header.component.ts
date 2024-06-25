@@ -38,6 +38,29 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
 
   @Output() slikaChange = new EventEmitter<string>();
 
+<<<<<<< HEAD
+=======
+  removeImage() {
+    this.slika = 'assets/default-profile.png';
+    this.slikaChange.emit('assets/default-profile.png');
+  }
+
+  updateImePrezime(newImePrezime: string) {
+    this.imePrezime.set(newImePrezime);
+    this.dataService.setOsobniPodaciData({
+      imePrezime: this.imePrezime(),
+      titula: this.titula(),
+    });
+  }
+  
+  updateTitula(newTitula: string) {
+    this.titula.set(newTitula);
+    this.dataService.setOsobniPodaciData({
+      imePrezime: this.imePrezime(),
+      titula: this.titula(),
+    });
+  }
+>>>>>>> da151d7... povezano stanje profile header komponente i osobni podatci - za ime i prezime te titulu
   onFileSelected(event: Event) {
     const input = (event.target as HTMLInputElement)?.files?.[0];
     if (input) {
