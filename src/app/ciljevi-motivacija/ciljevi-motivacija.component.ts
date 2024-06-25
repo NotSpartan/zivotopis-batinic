@@ -44,15 +44,36 @@ export class CiljeviMotivacijaComponent {
   startEditing(motivation: Motivation) {
     this.editingMotivation = { ...motivation };
   }
+  maxLength = 120;
+  showWarning = signal(false);
+
+  validateInput(text: string): boolean {
+    if (text.length > this.maxLength) {
+      this.showWarning.set(true);
+      setTimeout(() => this.showWarning.set(false), 3000); // Sakrij upozorenje nakon 3 sekunde
+      return false;
+    }
+    return true;
+  }
+
+  addMotivation() {
+    if (this.newMotivationText.trim() && this.validateInput(this.newMotivationText)) {
+      const newId = Math.max(...this.motivations().map(m => m.id), 0) + 1;
+      this.motivations.update(motivations => [...motivations, { id: newId, text: this.newMotivationText.trim() }]);
+      this.newMotivationText = '';
+      this.currentIndex.set(this.motivations().length - 1);
+    }
+  }
 
   saveEdit() {
-    if (this.editingMotivation) {
-      this.motivations.update(motivations => 
+    if (this.editingMotivation && this.validateInput(this.editingMotivation.text)) {
+      this.motivations.update(motivations =>
         motivations.map(m => m.id === this.editingMotivation!.id ? this.editingMotivation! : m)
       );
       this.editingMotivation = null;
     }
   }
+
 
   cancelEdit() {
     this.editingMotivation = null;
@@ -65,12 +86,5 @@ export class CiljeviMotivacijaComponent {
     }
   }
 
-  addMotivation() {
-    if (this.newMotivationText.trim()) {
-      const newId = Math.max(...this.motivations().map(m => m.id), 0) + 1;
-      this.motivations.update(motivations => [...motivations, { id: newId, text: this.newMotivationText.trim() }]);
-      this.newMotivationText = '';
-      this.currentIndex.set(this.motivations().length - 1);
-    }
-  }
+
 }
