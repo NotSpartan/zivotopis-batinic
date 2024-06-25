@@ -1,15 +1,40 @@
-<div>
-    <h2>Vještine i Jezici</h2>
-    <div>
-      <h3>Vještine</h3>
-      <div *for="let vjestina of vjestine()">
-        {{vjestina}}
-      </div>
+<div class="container">
+  <h2>Vještine i Jezici</h2>
+
+  <div class="vjestine">
+    <h3>Vještine</h3>
+    <div *ngFor="let vjestina of vjestine(); let i = index" class="vjestina-item">
+      <div class="naziv">{{ vjestina.naziv }}</div>
+      <div *ngIf="vjestina.razina" class="razina">Razina: {{ vjestina.razina }}</div>
+      <button class="remove-btn" (click)="ukloniVjestinu(i)">×</button>
     </div>
-    <div>
-      <h3>Jezici</h3>
-      <div *for="let jezik of jezici()">
-        {{jezik}}
-      </div>
+
+    <div class="add-item">
+      <h3>Dodaj novu vještinu</h3>
+      <input [(ngModel)]="novaVjestina.naziv" placeholder="Naziv vještine">
+      <input [(ngModel)]="novaVjestina.razina" placeholder="Razina poznavanja (opcionalno)">
+      <button (click)="dodajVjestinu()">Dodaj</button>
     </div>
   </div>
+
+  <div class="certifikati">
+    <h3>Certifikati</h3>
+    <div *ngFor="let certifikat of certifikati(); let i = index" class="certifikat-item">
+      <div class="naziv">{{ certifikat.naziv }}</div>
+      <button class="remove-btn" (click)="ukloniCertifikat(i)">×</button>
+      <div *ngIf="certifikat.datoteka">
+        <a [href]="removeDataPrefix(certifikat.datoteka)" target="_blank" rel="noopener noreferrer">Pogledaj datoteku</a>
+      </div>
+      <div class="upload-icon">
+        <label for="file-upload-{{i}}">Učitaj datoteku</label>
+        <input id="file-upload-{{i}}" type="file" (change)="odaberiDatoteku($event, certifikat)">
+      </div>
+    </div>
+
+    <div class="add-item">
+      <h3>Dodaj novi certifikat</h3>
+      <input [(ngModel)]="noviCertifikat.naziv" placeholder="Naziv certifikata">
+      <button (click)="dodajCertifikat()">Dodaj</button>
+    </div>
+  </div>
+</div>

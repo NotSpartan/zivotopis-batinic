@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
 
+interface Vjestina {
+  naziv: string;
+  razina?: string;
+}
+
+interface Certifikat {
+  naziv: string;
+  datoteka?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,6 +17,8 @@ export class DataService {
   private educationData: any[] = [];
   private experienceData: any[] = [];
   private tehnologijeData: any[] = [];
+  private vjestineData: Vjestina[] = [];
+  private certifikatiData: Certifikat[] = [];
 
   setEducationData(data: any[]) {
     this.educationData = data;
@@ -30,5 +42,21 @@ export class DataService {
 
   setTechnologiesData(data: any[]): void {
     this.tehnologijeData = data;
+  }
+
+  getVjestineData(): Vjestina[] {
+    return this.vjestineData;
+  }
+
+  setVjestineData(data: Vjestina[]): void {
+    this.vjestineData = data;
+  }
+
+  getCertifikatiData(): Certifikat[] {
+    return this.certifikatiData;
+  }
+
+  setCertifikatiData(data: Certifikat[]): void {
+    this.certifikatiData = data;
   }
 }
