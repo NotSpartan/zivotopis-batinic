@@ -14,34 +14,48 @@ h2 {
 }
 
 .motivation-slider {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
   position: relative;
   height: 300px;
+  margin-bottom: 1rem;
 }
 
 .motivation-item-container {
-  flex: 1;
-  overflow: hidden;
   position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
 .motivation-item {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
   background-color: #f9f9f9;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
   padding: 1rem;
+}
+
+.motivation-item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.motivation-item.prev {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.motivation-item.next {
+  opacity: 0;
+  transform: translateX(100%);
 }
 
 .motivation-content {
@@ -63,10 +77,13 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding:1rem;
+  padding: 1rem;
 }
 
 .nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 2rem;
   background: none;
   border: none;
@@ -77,8 +94,16 @@ h2 {
   padding: 0 10px;
 }
 
+.nav-button.prev {
+  left: 10px;
+}
+
+.nav-button.next {
+  right: 10px;
+}
+
 .nav-button:hover {
-  transform: scale(1.2);
+  transform: translateY(-50%) scale(1.2);
 }
 
 .icon-button {

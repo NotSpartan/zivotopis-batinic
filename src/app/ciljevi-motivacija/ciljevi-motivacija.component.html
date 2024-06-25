@@ -1,16 +1,22 @@
 <div class="motivations-container">
+  <h2>Ciljevi i Motivacija</h2>
+  
   <div class="motivation-slider">
     <button (click)="previousMotivation()" class="nav-button prev">&lt;</button>
     <div class="motivation-item-container">
-      <div class="motivation-item" [@cardSlide]="slideState()">
+      <div *ngFor="let motivation of motivations(); let i = index" 
+           class="motivation-item"
+           [class.active]="i === currentIndex()"
+           [class.prev]="i === getPrevIndex()"
+           [class.next]="i === getNextIndex()">
         <div class="motivation-content">
-          <p>{{ motivations()[currentIndex()].text }}</p>
+          <p>{{ motivation.text }}</p>
         </div>
         <div class="motivation-controls">
-          <button (click)="startEditing()" class="icon-button edit-button">
+          <button (click)="startEditing(motivation)" class="icon-button edit-button">
             <i class="fas fa-edit"></i>
           </button>
-          <button (click)="removeCurrentMotivation()" class="icon-button delete-button">
+          <button (click)="removeMotivation(motivation.id)" class="icon-button delete-button">
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
