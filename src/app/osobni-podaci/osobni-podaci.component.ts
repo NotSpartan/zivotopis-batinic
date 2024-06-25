@@ -49,10 +49,10 @@ export class OsobniPodaciComponent {
   isAuthor = computed(() => this.authService.isAuthor());
 
   fields = computed<Field[]>(() => [
-    { icon: 'osoba', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
-    { icon: 'zanimanje', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
-    { icon: 'email', value: this.email, type: 'email', placeholder: 'Email' },
-    { icon: 'mobitel', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
+    { icon: 'Osoba', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
+    { icon: 'Zanimanje', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
+    { icon: 'Mail', value: this.email, type: 'email', placeholder: 'Email' },
+    { icon: 'Mobitel', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
   ]);
 
   ngOnInit() {
@@ -68,7 +68,7 @@ export class OsobniPodaciComponent {
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
   
-    if (field.icon === 'osoba') {
+    if (field.icon === 'Osoba') {
       this.imePrezimeChange.emit(this.imePrezime());
       this.dataService.setOsobniPodaciData({
         imePrezime: this.imePrezime(),
@@ -77,7 +77,7 @@ export class OsobniPodaciComponent {
         telefon: this.telefon(),
         socialLinks: this.socialLinks()
       });
-    } else if (field.icon === 'zanimanje') {
+    } else if (field.icon === 'Zanimanje') {
       this.titulaChange.emit(this.titula());
       this.dataService.setOsobniPodaciData({
         imePrezime: this.imePrezime(),
