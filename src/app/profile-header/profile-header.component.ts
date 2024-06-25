@@ -2,13 +2,14 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, Writ
 import { CommonModule } from '@angular/common';
 import { inject } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() slika: string = '';
@@ -38,8 +39,8 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Output() slikaChange = new EventEmitter<string>();
 
   onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
+    const input = (event.target as HTMLInputElement)?.files?.[0];
+    if (input) {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
@@ -47,8 +48,13 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
           this.slikaChange.emit(this.slika);
         }
       };
-      reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(input);
     }
+  }
+
+  deleteImage() {
+    this.slika = ''; // Postavi sliku na praznu vrijednost
+    this.slikaChange.emit(''); // Emitirati praznu vrijednost za sliku
   }
 
   private startTitleAnimation() {

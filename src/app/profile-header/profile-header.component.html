@@ -7,10 +7,17 @@
     <div class="profile-image-container">
       <img [src]="slika" class="profile-image">
       <div *ngIf="isAuthor" class="image-overlay">
-        <label class="file-upload-label" for="file-upload">
-          <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;">
-          <button (click)="fileInput.click()">Change image</button>
-        </label>
+        <div class="overlay-actions">
+          <label class="upload-btn" for="fileInput">
+            <i class="fa fa-upload"></i>
+            <span>Dodaj sliku</span>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;" id="fileInput">
+          </label>
+          <div class="delete-btn" (click)="deleteImage()">
+            <i class="fa fa-times"></i>
+            <span>Obriši</span>
+          </div>
+        </div>
       </div>
     </div>
 
