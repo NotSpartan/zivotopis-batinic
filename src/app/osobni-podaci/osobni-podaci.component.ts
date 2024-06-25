@@ -8,6 +8,7 @@ interface Field {
   icon: string;
   value: WritableSignal<string>;
   type: 'text' | 'email' | 'tel';
+  placeholder: string; 
 }
 
 interface SocialLink {
@@ -48,10 +49,10 @@ export class OsobniPodaciComponent {
   isAuthor = computed(() => this.authService.isAuthor());
 
   fields = computed<Field[]>(() => [
-    { icon: 'person', value: this.imePrezime, type: 'text' },
-    { icon: 'work', value: this.titula, type: 'text' },
-    { icon: 'email', value: this.email, type: 'email' },
-    { icon: 'phone', value: this.telefon, type: 'tel' },
+    { icon: 'osoba', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
+    { icon: 'zanimanje', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
+    { icon: 'email', value: this.email, type: 'email', placeholder: 'Email' },
+    { icon: 'mobitel', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
   ]);
 
   ngOnInit() {

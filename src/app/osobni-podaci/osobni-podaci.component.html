@@ -7,7 +7,7 @@
           <span>{{ field.value() }}</span>
         </ng-container>
         <ng-template #editMode>
-          <input [type]="field.type" [value]="field.value()" (input)="updateField(field, $event)">
+          <input [type]="field.type" [value]="field.value()" (input)="updateField(field, $event)" [placeholder]="field.placeholder">
         </ng-template>
       </div>
     </div>
@@ -27,14 +27,14 @@
           <ng-template #editLinks>
             <div *ngFor="let link of socialLinks(); let i = index" class="link-edit">
               <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
-              <input [(ngModel)]="link.platform" placeholder="Platform">
+              <input [(ngModel)]="link.platform" placeholder="Platforma">
               <input [(ngModel)]="link.url" placeholder="URL">
               <button (click)="removeSocialLink(i)">Remove</button>
             </div>
             <div class="link-add">
-              <input [(ngModel)]="newSocialLink.platform" placeholder="New Platform">
-              <input [(ngModel)]="newSocialLink.url" placeholder="New URL">
-              <button (click)="addSocialLink()">Add</button>
+              <input [(ngModel)]="newSocialLink.platform" placeholder="Nova platforma">
+              <input [(ngModel)]="newSocialLink.url" placeholder="Novi URL">
+              <button (click)="addSocialLink()">Dodaj</button>
             </div>
           </ng-template>
         </div>
