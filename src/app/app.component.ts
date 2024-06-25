@@ -5,7 +5,6 @@ import { CiljeviMotivacijaComponent } from './ciljevi-motivacija/ciljevi-motivac
 import { IskustvoComponent } from './iskustvo/iskustvo.component';
 import { ObrazovanjeComponent } from './obrazovanje/obrazovanje.component';
 import { TehnoloskiStackComponent } from './tehnoloski-stack/tehnoloski-stack.component';
-import { VjestineJeziciComponent } from './vjestine-jezici/vjestine-jezici.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { DataService } from './services/data.service';
 
@@ -21,7 +20,6 @@ import { DataService } from './services/data.service';
     IskustvoComponent,
     ObrazovanjeComponent,
     TehnoloskiStackComponent,
-    VjestineJeziciComponent,
     ProfileHeaderComponent
   ]
 })

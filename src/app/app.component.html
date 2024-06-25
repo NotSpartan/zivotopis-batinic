@@ -14,7 +14,6 @@
       <li><a (click)="setActiveTab('iskustvo')" [class.active]="activeTab() === 'iskustvo'">Iskustvo</a></li>
       <li><a (click)="setActiveTab('obrazovanje')" [class.active]="activeTab() === 'obrazovanje'">Obrazovanje</a></li>
       <li><a (click)="setActiveTab('tehnoloski-stack')" [class.active]="activeTab() === 'tehnoloski-stack'">Kompetencije</a></li>
-      <li><a (click)="setActiveTab('vjestine-jezici')" [class.active]="activeTab() === 'vjestine-jezici'">Vještine i Certifikati</a></li>
     </ul>
   </nav>
 
@@ -28,7 +27,6 @@
       <app-iskustvo *ngSwitchCase="'iskustvo'"></app-iskustvo>
       <app-obrazovanje *ngSwitchCase="'obrazovanje'"></app-obrazovanje>
       <app-tehnoloski-stack *ngSwitchCase="'tehnoloski-stack'"></app-tehnoloski-stack>
-      <app-vjestine-jezici *ngSwitchCase="'vjestine-jezici'"></app-vjestine-jezici>
     </ng-container>
   </div>
 </div>

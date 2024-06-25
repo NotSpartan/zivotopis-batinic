@@ -5,12 +5,12 @@
 }
 
 .content-container {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .horizontal-nav {
   background-color: #333;
   padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   font-family: 'Montserrat', sans-serif;

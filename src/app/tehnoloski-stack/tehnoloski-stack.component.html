@@ -1,5 +1,4 @@
 <div class="tehnologije-container">
-  <h2>Tehnološki Stack</h2>
   <div *ngFor="let tehnologija of tehnologije(); let i = index" class="tehnologija-item">
     <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
       <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
@@ -16,7 +15,7 @@
   </div>
 
   <div class="add-tehnologija">
-    <h3>Dodaj novu tehnologiju</h3>
+    <h3>Dodaj kompentenciju</h3>
     <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije">
     <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja">
     <button (click)="dodajTehnologiju()">Dodaj</button>
