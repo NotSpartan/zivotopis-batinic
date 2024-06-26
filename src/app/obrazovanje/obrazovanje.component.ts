@@ -1,4 +1,4 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -9,7 +9,7 @@ interface Obrazovanje {
   institution: string;
   location: string;
   description?: string;
-  institutionIcon?: string; // New field for institution icon
+  institutionIcon?: string;
 }
 
 @Component({
@@ -19,8 +19,7 @@ interface Obrazovanje {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class ObrazovanjeComponent implements OnInit {
-
+export class ObrazovanjeComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
@@ -29,6 +28,7 @@ export class ObrazovanjeComponent implements OnInit {
       this.educations.set(savedData);
     }
   }
+
   educations = signal<Obrazovanje[]>([
     { year: '2019', title: 'Salesforce Administrator', institution: 'Simplilearn', location: 'Raleigh', description: 'Completed initial level for Salesforce administrator on Simplilearn platform.' },
     { year: '2019', title: 'Computer Programmer for Internet Applications', institution: 'Algebra', location: 'Zagreb' },
@@ -72,5 +72,9 @@ export class ObrazovanjeComponent implements OnInit {
       };
       reader.readAsDataURL(input.files[0]);
     }
+  }
+
+  formatYearToHrv(year: string): string {
+    return `${year}.`;
   }
 }

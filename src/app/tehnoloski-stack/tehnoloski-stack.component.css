@@ -3,18 +3,6 @@
   width: 100%;
 }
 
-.subtitle {
-  color: #555;
-  font-size: 1.4rem;
-  font-weight: 500;
-  font-family: 'Roboto', sans-serif;
-  text-align: left;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #007bff;
-}
-
 .tehnologije-container {
   background-color: #ffffff;
   border-radius: 10px;
@@ -22,14 +10,21 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.tehnologije-list {
-  margin-top: 1rem;
+.subtitle {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #667eea;
+  letter-spacing: 0.5px;
 }
 
-h2 {
-  color: #333;
-  border-bottom: 2px solid #333;
-  padding-bottom: 5px;
+.tehnologije-list {
+  margin-top: 1rem;
 }
 
 .tehnologija-item {
@@ -37,17 +32,29 @@ h2 {
   border-left: 4px solid #007bff;
   padding: 15px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tehnologija-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tehnologija-info {
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
 .tehnologija-ikona {
-  width: 50px;
-  height: 50px;
+  width: 70px;  /* Povećano sa 50px */
+  height: 70px; /* Povećano sa 50px */
   margin-right: 15px;
   overflow: hidden;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .tehnologija-ikona img {
@@ -56,18 +63,16 @@ h2 {
   object-fit: cover;
 }
 
-.tehnologija-info {
-  flex-grow: 1;
-}
-
 .naziv {
   font-size: 1.2em;
   color: #333;
+  display: block;
   margin-bottom: 5px;
 }
 
 .razina {
   color: #555;
+  font-size: 0.9em;
 }
 
 .remove-btn {
@@ -76,17 +81,45 @@ h2 {
   color: #ff4444;
   font-size: 1.2em;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .upload-icon {
   margin-top: 10px;
 }
 
-.upload-icon label {
-  background-color: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 4px;
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem;  /* Smanjeno sa 0.4rem 0.8rem */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;  /* Smanjeno sa 15px */
+  font-size: 0.7rem;  /* Smanjeno sa 0.8rem */
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.upload-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
+}
+
+.upload-button i {
+  margin-right: 3px;
+  font-size: 0.8rem;
 }
 
 .upload-icon input[type="file"] {
@@ -102,25 +135,83 @@ h2 {
 
 .add-tehnologija h3 {
   margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
 }
 
-.add-tehnologija input {
-  width: 100%;
-  padding: 10px;
+.tehnologija-input {
+  width: calc(100% - 20px);
+  padding: 0.75rem;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.add-tehnologija button {
-  background-color: #007bff;
+.tehnologija-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.action-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.add-tehnologija button:hover {
-  background-color: #0056b3;
+.action-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+@media (max-width: 600px) {
+  .tehnologije-container {
+    padding: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .tehnologija-item {
+    padding: 10px;
+  }
+
+  .tehnologija-ikona {
+    width: 60px;  /* Malo smanjeno za mobilne uređaje */
+    height: 60px;
+  }
+
+  .action-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .upload-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
 }

@@ -1,153 +1,224 @@
 :host {
-    display: block;
-    width: 100%;
-  }
+  display: block;
+  width: 100%;
+}
 
-  .subtitle {
-    color: #555;
-    font-size: 1.4rem;
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    text-align: left;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #007bff;
-  }
-
-  .education-container {
+.education-container {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1.5rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #667eea;
+  letter-spacing: 0.5px;
+}
+
+.education-list {
+  margin-top: 1rem;
+}
+
+.education-item {
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.year {
+  font-weight: bold;
+  color: #007bff;
+  font-size: 0.9rem;
+}
+
+.title {
+  font-size: 1.2em;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.institution {
+  font-style: italic;
+  color: #555;
+}
+
+.location {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.institution-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.institution-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.institution-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-icon {
+  margin-top: 15px;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.upload-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+.upload-button i {
+  margin-right: 8px;
+}
+
+.upload-icon input[type="file"] {
+  display: none;
+}
+
+.add-education {
+  margin-top: 30px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.add-education h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.education-input {
+  width: calc(100% - 20px);
+  padding: 0.75rem;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.action-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+@media (max-width: 600px) {
+  .education-container {
+    padding: 1rem;
   }
-  
-  h2 {
-    color: #333;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
+
+  .subtitle {
+    font-size: 1.4rem;
   }
-  
-  .education-list {
-    margin-top: 1rem;
-  }
-  
+
   .education-item {
-    background-color: #f9f9f9;
-    border-left: 4px solid #007bff;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .education-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .year {
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  .institution-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .institution-icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  .institution-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .title {
-    font-size: 1.2em;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .institution {
-    font-style: italic;
-    color: #555;
-  }
-  
-  .location {
-    color: #777;
-    font-size: 0.9em;
-  }
-  
-  .description {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #666;
-  }
-  
-  .remove-btn {
-    background: none;
-    border: none;
-    color: #ff4444;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .upload-icon {
-    margin-top: 10px;
-  }
-  
-  .upload-icon label {
-    background-color: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .upload-icon input[type="file"] {
-    display: none;
-  }
-  
-  .add-education {
-    margin-top: 30px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .add-education h3 {
-    margin-top: 0;
-  }
-  
-  .add-education input,
-  .add-education textarea {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
   }
-  
-  .add-education button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .action-button, .upload-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
-  
-  .add-education button:hover {
-    background-color: #0056b3;
+
+  .year {
+    font-size: 0.8rem;
   }
-  
+}

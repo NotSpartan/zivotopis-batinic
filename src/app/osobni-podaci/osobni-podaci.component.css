@@ -7,19 +7,22 @@
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1.5rem 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .subtitle {
-  color: #555;
-  font-size: 1.4rem;
-  font-weight: 500;
-  font-family: 'Roboto', sans-serif; /* Pretpostavljajući da koristimo Roboto font */
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
   text-align: left;
   margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #007bff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #667eea;
+  letter-spacing: 0.5px;
 }
+
 .profile-body {
   padding: 0.5rem;
 }
@@ -105,49 +108,72 @@
 .link-edit, .link-add {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 10px;
 }
 
 .link-edit input, .link-add input {
   font-family: 'Poppins', sans-serif;
   flex-grow: 1;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.link-edit input:focus, .link-add input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  outline: none;
+}
+
+.edit-button, .link-edit button, .link-add button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.edit-button:hover, .link-edit button:hover, .link-add button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.edit-button:active, .link-edit button:active, .link-add button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+.edit-button i {
+  font-size: 1.2rem;
+}
+
+.edit-button span {
   font-size: 0.9rem;
 }
 
-.link-edit button, .link-add button {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  background-color: #667eea;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.link-add {
+  margin-top: 15px;
 }
 
-.link-edit button:hover, .link-add button:hover {
-  background-color: #5a6eea;
-}
-
-.edit-button {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  background: #667eea;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button:hover {
-  background-color: #5a6eea;
+.link-add button {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
@@ -174,6 +200,11 @@
 
   .field-content span,
   .field-content input {
+    font-size: 0.9rem;
+  }
+
+  .edit-button, .link-edit button, .link-add button {
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
 }

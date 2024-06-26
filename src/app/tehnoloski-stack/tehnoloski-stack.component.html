@@ -1,24 +1,33 @@
 <div class="tehnologije-container">
   <h2 class="subtitle">Razne kompetencije</h2>
-  <div *ngFor="let tehnologija of tehnologije(); let i = index" class="tehnologija-item">
-    <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
-      <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
-    </div>
-    <div class="tehnologija-info">
-      <div class="naziv">{{ tehnologija.naziv }}</div>
-      <div class="razina">Razina: {{ tehnologija.razina }}</div>
-    </div>
-    <button class="remove-btn" (click)="ukloniTehnologiju(i)">×</button>
-    <div class="upload-icon">
-      <label for="icon-upload-{{i}}">Učitaj ikonu</label>
-      <input id="icon-upload-{{i}}" type="file" (change)="odaberiIkonu($event, tehnologija)" accept="image/*">
+  
+  <div class="tehnologije-list">
+    <div *ngFor="let tehnologija of tehnologije(); let i = index" class="tehnologija-item">
+      <div class="tehnologija-header">
+        <div class="tehnologija-info">
+          <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
+            <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
+          </div>
+          <div>
+            <span class="naziv">{{ tehnologija.naziv }}</span>
+            <div class="razina">Razina: {{ tehnologija.razina }}</div>
+          </div>
+        </div>
+        <button class="remove-btn" (click)="ukloniTehnologiju(i)">×</button>
+      </div>
+      <div class="upload-icon">
+        <label [for]="'icon-upload-' + i" class="action-button upload-button">
+          <i class="fas fa-upload"></i> Dodaj ikonu
+        </label>
+        <input [id]="'icon-upload-' + i" type="file" (change)="odaberiIkonu($event, tehnologija)" accept="image/*">
+      </div>
     </div>
   </div>
 
   <div class="add-tehnologija">
-    <h3>Dodaj kompentenciju</h3>
-    <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije">
-    <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja">
-    <button (click)="dodajTehnologiju()">Dodaj</button>
+    <h3>Dodaj kompetenciju</h3>
+    <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije" class="tehnologija-input">
+    <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja" class="tehnologija-input">
+    <button (click)="dodajTehnologiju()" class="action-button">Dodaj</button>
   </div>
 </div>

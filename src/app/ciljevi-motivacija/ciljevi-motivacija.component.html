@@ -29,18 +29,18 @@
   </div>
 
   <div *ngIf="editingMotivation" class="edit-motivation">
-    <textarea [(ngModel)]="editingMotivation.text" maxlength="120"></textarea>
+    <textarea [(ngModel)]="editingMotivation.text" maxlength="120" class="motivation-textarea"></textarea>
     <div class="char-count">{{editingMotivation.text.length}} / {{maxLength}}</div>
     <div class="edit-controls">
-      <button (click)="saveEdit()">Spremi</button>
-      <button (click)="cancelEdit()">Odustani</button>
+      <button (click)="saveEdit()" class="action-button">Spremi</button>
+      <button (click)="cancelEdit()" class="action-button">Odustani</button>
     </div>
   </div>
 
   <div class="add-motivation">
-    <textarea [(ngModel)]="newMotivationText" placeholder="Unesite novu motivaciju" maxlength="120"></textarea>
+    <textarea [(ngModel)]="newMotivationText" placeholder="Unesite novu motivaciju" maxlength="120" class="motivation-textarea"></textarea>
     <div class="char-count">{{newMotivationText.length}} / {{maxLength}}</div>
-    <button (click)="addMotivation()">Dodaj</button>
+    <button (click)="addMotivation()" class="action-button">Dodaj</button>
   </div>
 
   <div *ngIf="showWarning()" class="warning-message">

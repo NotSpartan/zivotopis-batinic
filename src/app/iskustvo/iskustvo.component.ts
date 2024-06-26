@@ -29,10 +29,11 @@ export class IskustvoComponent {
       this.experiences.set(savedData);
     }
   }
+
   experiences = signal<Iskustvo[]>([
     {
-      startDate: 'December 2017',
-      endDate: 'February 2019',
+      startDate: '12.2017',
+      endDate: '02.2019',
       position: 'Krupije',
       company: 'Hrvatska lutrija',
       location: 'Zagreb',
@@ -44,8 +45,8 @@ export class IskustvoComponent {
       ]
     },
     {
-      startDate: 'January 2016',
-      endDate: 'January 2017',
+      startDate: '01.2016',
+      endDate: '01.2017',
       position: 'Viši stručni suradnik za protokol',
       company: 'Zagrebačka županija',
       location: 'Zagreb',
@@ -57,8 +58,8 @@ export class IskustvoComponent {
       ]
     },
     {
-      startDate: 'May 2014',
-      endDate: 'April 2015',
+      startDate: '05.2014',
+      endDate: '04.2015',
       position: 'Zamjenik poslovođe',
       company: 'OREMAR d.o.o.',
       location: 'Zagreb',
@@ -125,5 +126,15 @@ export class IskustvoComponent {
       };
       reader.readAsDataURL(input.files[0]);
     }
+  }
+
+  formatDateToHrv(dateString: string): string {
+    const [month, year] = dateString.split('.');
+    const monthNames = [
+      'Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj',
+      'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'
+    ];
+    const monthIndex = parseInt(month, 10) - 1;
+    return `${monthNames[monthIndex]} ${year}.`;
   }
 }

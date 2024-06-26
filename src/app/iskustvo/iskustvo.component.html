@@ -1,9 +1,13 @@
 <div class="experience-container">
   <h2 class="subtitle">Radno iskustvo</h2>
+  
   <div class="experience-list">
     <div *ngFor="let experience of experiences(); let i = index" class="experience-item">
       <div class="experience-header">
-        <span class="date">{{ experience.startDate }} - {{ experience.endDate }}</span>
+        <span class="date">
+          {{ formatDateToHrv(experience.startDate) }} - 
+          {{ experience.endDate ? formatDateToHrv(experience.endDate) : 'Trenutno' }}
+        </span>
         <button class="remove-btn" (click)="removeExperience(i)">×</button>
       </div>
       <div class="company-info">
@@ -20,22 +24,24 @@
         <li *ngFor="let responsibility of experience.responsibilities">{{ responsibility }}</li>
       </ul>
       <div class="upload-icon">
-        <label for="icon-upload-{{i}}">Upload Company Icon</label>
+        <label for="icon-upload-{{i}}" class="action-button upload-button">
+          <i class="fas fa-upload"></i> Dodaj logo tvrtke
+        </label>
         <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, experience)" accept="image/*">
       </div>
     </div>
   </div>
 
   <div class="add-experience">
-    <h3>Add New Experience</h3>
-    <input [(ngModel)]="newExperience.startDate" placeholder="Start Date">
-    <input [(ngModel)]="newExperience.endDate" placeholder="End Date">
-    <input [(ngModel)]="newExperience.position" placeholder="Position">
-    <input [(ngModel)]="newExperience.company" placeholder="Company">
-    <input [(ngModel)]="newExperience.location" placeholder="Location">
+    <h3>Dodaj novo iskustvo</h3>
+    <input [(ngModel)]="newExperience.startDate" placeholder="Početni datum (MM.GGGG)" class="experience-input">
+    <input [(ngModel)]="newExperience.endDate" placeholder="Završni datum (MM.GGGG ili prazno za trenutno)" class="experience-input">
+    <input [(ngModel)]="newExperience.position" placeholder="Pozicija" class="experience-input">
+    <input [(ngModel)]="newExperience.company" placeholder="Tvrtka" class="experience-input">
+    <input [(ngModel)]="newExperience.location" placeholder="Lokacija" class="experience-input">
     <div class="add-responsibility">
-      <input [(ngModel)]="newResponsibility" placeholder="Add Responsibility">
-      <button (click)="addResponsibility()">Add</button>
+      <input [(ngModel)]="newResponsibility" placeholder="Dodaj odgovornost" class="experience-input">
+      <button (click)="addResponsibility()" class="action-button">Dodaj</button>
     </div>
     <ul class="new-responsibilities">
       <li *ngFor="let responsibility of newExperience.responsibilities; let i = index">
@@ -43,6 +49,6 @@
         <button class="remove-btn" (click)="removeResponsibility(i)">×</button>
       </li>
     </ul>
-    <button (click)="addExperience()">Add Experience</button>
+    <button (click)="addExperience()" class="action-button">Dodaj iskustvo</button>
   </div>
 </div>

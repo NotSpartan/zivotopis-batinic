@@ -1,9 +1,10 @@
 <div class="education-container">
   <h2 class="subtitle">Obrazovanje i edukacije</h2>
+  
   <div class="education-list">
     <div *ngFor="let education of educations(); let i = index" class="education-item">
       <div class="education-header">
-        <span class="year">{{ education.year }}</span>
+        <span class="year">{{ formatYearToHrv(education.year) }}</span>
         <button class="remove-btn" (click)="removeEducation(i)">×</button>
       </div>
       <div class="institution-info">
@@ -18,19 +19,21 @@
       </div>
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
       <div class="upload-icon">
-        <label for="icon-upload-{{i}}">Upload Institution Icon</label>
+        <label for="icon-upload-{{i}}" class="action-button upload-button">
+          <i class="fas fa-upload"></i> Dodaj logo institucije
+        </label>
         <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, education)" accept="image/*">
       </div>
     </div>
   </div>
 
   <div class="add-education">
-    <h3>Add New Education</h3>
-    <input [(ngModel)]="newEducation.year" placeholder="Year">
-    <input [(ngModel)]="newEducation.title" placeholder="Title">
-    <input [(ngModel)]="newEducation.institution" placeholder="Institution">
-    <input [(ngModel)]="newEducation.location" placeholder="Location">
-    <textarea [(ngModel)]="newEducation.description" placeholder="Description (optional)"></textarea>
-    <button (click)="addEducation()">Add</button>
+    <h3>Dodaj novo obrazovanje</h3>
+    <input [(ngModel)]="newEducation.year" placeholder="Godina (GGGG)" class="education-input">
+    <input [(ngModel)]="newEducation.title" placeholder="Titula" class="education-input">
+    <input [(ngModel)]="newEducation.institution" placeholder="Institucija" class="education-input">
+    <input [(ngModel)]="newEducation.location" placeholder="Lokacija" class="education-input">
+    <textarea [(ngModel)]="newEducation.description" placeholder="Opis (opcionalno)" class="education-input"></textarea>
+    <button (click)="addEducation()" class="action-button">Dodaj obrazovanje</button>
   </div>
 </div>

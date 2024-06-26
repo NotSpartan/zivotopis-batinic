@@ -1,12 +1,12 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 interface Tehnologija {
   naziv: string;
-  ikona?: string;
   razina: string;
+  ikona?: string;
 }
 
 @Component({
@@ -16,7 +16,7 @@ interface Tehnologija {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class TehnoloskiStackComponent implements OnInit {
+export class TehnoloskiStackComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
@@ -26,7 +26,13 @@ export class TehnoloskiStackComponent implements OnInit {
     }
   }
 
-  tehnologije = signal<Tehnologija[]>([]);
+  tehnologije = signal<Tehnologija[]>([
+    { naziv: 'JavaScript', razina: 'Napredna' },
+    { naziv: 'TypeScript', razina: 'Srednja' },
+    { naziv: 'Angular', razina: 'Napredna' },
+    { naziv: 'React', razina: 'Osnovna' },
+    { naziv: 'Node.js', razina: 'Srednja' }
+  ]);
 
   novaTehnoloija: Tehnologija = {
     naziv: '',
@@ -34,12 +40,14 @@ export class TehnoloskiStackComponent implements OnInit {
   };
 
   dodajTehnologiju() {
-    this.tehnologije.update((tehnologije) => {
-      const updatedTehnologije = [...tehnologije, { ...this.novaTehnoloija }];
-      this.dataService.setTechnologiesData(updatedTehnologije);
-      return updatedTehnologije;
-    });
-    this.novaTehnoloija = { naziv: '', razina: '' };
+    if (this.novaTehnoloija.naziv && this.novaTehnoloija.razina) {
+      this.tehnologije.update((tehnologije) => {
+        const updatedTehnologije = [...tehnologije, { ...this.novaTehnoloija }];
+        this.dataService.setTechnologiesData(updatedTehnologije);
+        return updatedTehnologije;
+      });
+      this.novaTehnoloija = { naziv: '', razina: '' };
+    }
   }
 
   ukloniTehnologiju(index: number) {
@@ -57,7 +65,11 @@ export class TehnoloskiStackComponent implements OnInit {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
           tehnologija.ikona = e.target.result as string;
-          this.tehnologije.update((tehnologije) => [...tehnologije]);
+          this.tehnologije.update((tehnologije) => {
+            const updatedTehnologije = [...tehnologije];
+            this.dataService.setTechnologiesData(updatedTehnologije);
+            return updatedTehnologije;
+          });
         }
       };
       reader.readAsDataURL(input.files[0]);

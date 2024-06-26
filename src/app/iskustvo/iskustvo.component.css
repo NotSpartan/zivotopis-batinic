@@ -1,179 +1,252 @@
 :host {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
+}
+
+.experience-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #667eea;
+  letter-spacing: 0.5px;
+}
+
+.experience-list {
+  margin-top: 1rem;
+}
+
+.experience-item {
+  background-color: #f9f9f9;
+  border-left: 4px solid #28a745;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-weight: bold;
+  color: #28a745;
+  font-size: 0.9rem;
+}
+
+.position {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.company {
+  font-style: italic;
+  color: #555;
+}
+
+.location {
+  color: #777;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.responsibilities {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.responsibilities li {
+  margin-bottom: 5px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.company-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.company-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-icon {
+  margin-top: 15px;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.upload-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+.upload-button i {
+  margin-right: 8px;
+}
+
+.upload-icon input[type="file"] {
+  display: none;
+}
+
+.add-experience {
+  margin-top: 30px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.add-experience h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.experience-input {
+  width: calc(100% - 20px);
+  padding: 0.75rem;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.add-responsibility {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.add-responsibility input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.new-responsibilities {
+  list-style-type: none;
+  padding: 0;
+}
+
+.new-responsibilities li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+@media (max-width: 600px) {
+  .experience-container {
+    padding: 1rem;
   }
 
   .subtitle {
-    color: #555;
     font-size: 1.4rem;
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    text-align: left;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #007bff;
   }
-  
-  .experience-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #333;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-  }
-  
-  .experience-list {
-    margin-top: 1rem;
-  }
-  
+
   .experience-item {
-    background-color: #f9f9f9;
-    border-left: 4px solid #28a745;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .date {
-    font-weight: bold;
-    color: #28a745;
-  }
-  
-  .position {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .company {
-    font-style: italic;
-    color: #555;
-  }
-  
-  .location {
-    color: #777;
-    font-size: 0.9em;
-    margin-bottom: 10px;
-  }
-  
-  .responsibilities {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  
-  .responsibilities li {
-    margin-bottom: 5px;
-  }
-  
-  .remove-btn {
-    background: none;
-    border: none;
-    color: #ff4444;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  .company-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .company-icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  .company-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .upload-icon {
-    margin-top: 10px;
-  }
-  
-  .upload-icon label {
-    background-color: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .upload-icon input[type="file"] {
-    display: none;
-  }
-  .add-experience {
-    margin-top: 30px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .add-experience h3 {
-    margin-top: 0;
-  }
-  
-  .add-experience input,
-  .add-experience textarea {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
   }
-  
-  .add-responsibility {
-    display: flex;
-    margin-bottom: 10px;
+
+  .action-button, .upload-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
-  
-  .add-responsibility input {
-    flex-grow: 1;
-    margin-right: 10px;
+
+  .date {
+    font-size: 0.8rem;
   }
-  
-  .new-responsibilities {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .new-responsibilities li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e9ecef;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-  }
-  
-  .add-experience button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-experience button:hover {
-    background-color: #218838;
-  }
-  
+}
