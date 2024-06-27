@@ -10,6 +10,12 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.tehnologije-container.pdf-mode {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 1rem 0;
+}
+
 .subtitle {
   color: #333;
   font-size: 1.6rem;
@@ -34,6 +40,13 @@
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: relative;
+}
+
+.pdf-mode .tehnologija-item {
+  background-color: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 10px 0;
 }
 
 .tehnologija-header {
@@ -230,6 +243,13 @@
   margin-top: 1rem;
 }
 
+.pdf-mode .tehnologija-controls,
+.pdf-mode .upload-icon,
+.pdf-mode .add-tehnologija,
+.pdf-mode .edit-tehnologija {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .tehnologije-container {
     padding: 1rem;
@@ -256,5 +276,18 @@
   .upload-button {
     padding: 0.25rem 0.5rem;
     font-size: 0.65rem;
+  }
+
+  .naziv {
+    font-size: 1.1em;
+  }
+
+  .razina {
+    font-size: 0.8em;
+  }
+
+  .tehnologija-controls {
+    position: static;
+    margin-top: 10px;
   }
 }

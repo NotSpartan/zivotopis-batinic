@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, computed } from '@angular/core';
+import { Component, Input, Output, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -24,58 +24,9 @@ interface Iskustvo {
 export class IskustvoComponent {
   @Input() isGeneratingPDF = false;
 
-  constructor(private dataService: DataService) {}
+  private dataService = inject(DataService);
 
-  ngOnInit() {
-    const savedData = this.dataService.getExperienceData();
-    if (savedData.length > 0) {
-      this.experiences.set(savedData);
-    }
-  }
-
-  experiences = signal<Iskustvo[]>([
-    {
-      id: 1,
-      startDate: '12.2017',
-      endDate: '02.2019',
-      position: 'Krupije',
-      company: 'Hrvatska lutrija',
-      location: 'Zagreb',
-      responsibilities: [
-        'Vođenje žive igre na French Roullet, Blackjack i Carribien poker stolovima.',
-        'Primjenjivanje propisanih pravila i protokola prilikom isplate dobitaka igračima.',
-        'Organizacija free-roll poker turnira.',
-        'Vođenje evidencije o dnevnom utršku aktivnih stolova.'
-      ]
-    },
-    {
-      id: 2,
-      startDate: '01.2016',
-      endDate: '01.2017',
-      position: 'Viši stručni suradnik za protokol',
-      company: 'Zagrebačka županija',
-      location: 'Zagreb',
-      responsibilities: [
-        'Pisanje i objavljivanje vijesti, najava, priopćenja i poziva za medije za službenu web stranicu Zagrebačke županije.',
-        'Administracija službene CMS, WordPress i Facebook stranice Zagrebačke županije.',
-        'Praćenje posjete gostiju službenih stranica korištenjem Google Analytics alata.',
-        'Pisanje govora i organizacija protokola župana Zagrebačke županije.'
-      ]
-    },
-    {
-      id: 3,
-      startDate: '05.2014',
-      endDate: '04.2015',
-      position: 'Zamjenik poslovođe',
-      company: 'OREMAR d.o.o.',
-      location: 'Zagreb',
-      responsibilities: [
-        'Prijem i prodaja robe širokog asortimana, te naftnih derivata.',
-        'Rad s kupcima i trgovačkim agentima.',
-        'Održavanje službenih prostorija.'
-      ]
-    }
-  ]);
+  experiences = signal<Iskustvo[]>([]);
 
   sortedExperiences = computed(() => 
     this.experiences().slice().sort((a, b) => {
@@ -98,7 +49,15 @@ export class IskustvoComponent {
   newResponsibility: string = '';
   editingExperience: Iskustvo | null = null;
 
+  ngOnInit() {
+    const savedData = this.dataService.getExperienceData();
+    if (savedData.length > 0) {
+      this.experiences.set(savedData);
+    }
+  }
+
   addExperience() {
+    if (this.isGeneratingPDF) return;
     if (this.newExperience.startDate && this.newExperience.position && this.newExperience.company && this.newExperience.location) {
       const newId = Math.max(...this.experiences().map(e => e.id), 0) + 1;
       this.experiences.update(experiences => {
@@ -112,6 +71,7 @@ export class IskustvoComponent {
   }
 
   removeExperience(id: number) {
+    if (this.isGeneratingPDF) return;
     this.experiences.update(experiences => {
       const updatedExperiences = experiences.filter(e => e.id !== id);
       this.dataService.setExperienceData(updatedExperiences);
@@ -120,10 +80,12 @@ export class IskustvoComponent {
   }
 
   startEditing(experience: Iskustvo) {
+    if (this.isGeneratingPDF) return;
     this.editingExperience = { ...experience, responsibilities: [...experience.responsibilities] };
   }
 
   saveEdit() {
+    if (this.isGeneratingPDF) return;
     if (this.editingExperience) {
       this.experiences.update(experiences => {
         const updatedExperiences = experiences.map(e => 
@@ -137,10 +99,12 @@ export class IskustvoComponent {
   }
 
   cancelEdit() {
+    if (this.isGeneratingPDF) return;
     this.editingExperience = null;
   }
 
   addResponsibility() {
+    if (this.isGeneratingPDF) return;
     if (this.newResponsibility.trim()) {
       if (this.editingExperience) {
         this.editingExperience.responsibilities.push(this.newResponsibility.trim());
@@ -152,6 +116,7 @@ export class IskustvoComponent {
   }
 
   removeResponsibility(index: number) {
+    if (this.isGeneratingPDF) return;
     if (this.editingExperience) {
       this.editingExperience.responsibilities.splice(index, 1);
     } else {
@@ -160,6 +125,7 @@ export class IskustvoComponent {
   }
 
   onFileSelected(event: Event, experience: Iskustvo) {
+    if (this.isGeneratingPDF) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();

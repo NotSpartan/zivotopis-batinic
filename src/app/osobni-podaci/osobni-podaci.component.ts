@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
+
 interface Field {
   icon: string;
   value: WritableSignal<string>;
@@ -22,7 +23,7 @@ interface SocialLink {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-  export class OsobniPodaciComponent {
+export class OsobniPodaciComponent {
   @Input() isGeneratingPDF = false;
 
   private authService = inject(AuthService);
@@ -42,7 +43,7 @@ interface SocialLink {
   socialLinks = signal<SocialLink[]>([
     { platform: 'linkedin', url: 'https://www.linkedin.com/in/josip-batini%C4%87-236112197/' },
     { platform: 'github', url: 'https://github.com/JosipBatinic' },
-    { platform: 'whatsupp', url: 'https://web.whatsapp.com/' },
+    { platform: 'whatsapp', url: 'https://web.whatsapp.com/' },
   ]);
 
   newSocialLink = { platform: '', url: '' };
@@ -50,10 +51,10 @@ interface SocialLink {
   isAuthor = computed(() => this.authService.isAuthor());
 
   fields = computed<Field[]>(() => [
-    { icon: 'Osoba', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
-    { icon: 'Zanimanje', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
-    { icon: 'Mail', value: this.email, type: 'email', placeholder: 'Email' },
-    { icon: 'Mobitel', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
+    { icon: 'person', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
+    { icon: 'work', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
+    { icon: 'email', value: this.email, type: 'email', placeholder: 'Email' },
+    { icon: 'phone', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
   ]);
 
   ngOnInit() {
@@ -66,53 +67,35 @@ interface SocialLink {
   }
 
   updateField(field: Field, event: Event) {
+    if (this.isGeneratingPDF) return;
+    
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
   
-    if (field.icon === 'Osoba') {
+    if (field.icon === 'person') {
       this.imePrezimeChange.emit(this.imePrezime());
-      this.dataService.setOsobniPodaciData({
-        imePrezime: this.imePrezime(),
-        titula: this.titula(),
-        email: this.email(),
-        telefon: this.telefon(),
-        socialLinks: this.socialLinks()
-      });
-    } else if (field.icon === 'Zanimanje') {
+      this.updateDataService();
+    } else if (field.icon === 'work') {
       this.titulaChange.emit(this.titula());
-      this.dataService.setOsobniPodaciData({
-        imePrezime: this.imePrezime(),
-        titula: this.titula(),
-        email: this.email(),
-        telefon: this.telefon(),
-        socialLinks: this.socialLinks()
-      });
+      this.updateDataService();
     }
   }
 
   addSocialLink() {
+    if (this.isGeneratingPDF) return;
+    
     if (this.newSocialLink.platform && this.newSocialLink.url) {
       this.socialLinks.update(links => [...links, { ...this.newSocialLink }]);
       this.newSocialLink = { platform: '', url: '' };
-      this.dataService.setOsobniPodaciData({
-        imePrezime: this.imePrezime(),
-        titula: this.titula(),
-        email: this.email(),
-        telefon: this.telefon(),
-        socialLinks: this.socialLinks()
-      });
+      this.updateDataService();
     }
   }
 
   removeSocialLink(index: number) {
+    if (this.isGeneratingPDF) return;
+    
     this.socialLinks.update(links => links.filter((_, i) => i !== index));
-    this.dataService.setOsobniPodaciData({
-      imePrezime: this.imePrezime(),
-      titula: this.titula(),
-      email: this.email(),
-      telefon: this.telefon(),
-      socialLinks: this.socialLinks()
-    });
+    this.updateDataService();
   }
 
   getIconPath(platform: string): string {
@@ -120,23 +103,25 @@ interface SocialLink {
   }
 
   toggleEdit() {
+    if (this.isGeneratingPDF) return;
+    
     this.isEditing.update(state => !state);
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        if (e.target?.result) {
-          this.slika.set(e.target.result as string);
-        }
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
+  updateCiljevi(newCiljevi: string) {
+    if (this.isGeneratingPDF) return;
+    
+    this.ciljevi.set(newCiljevi);
+    this.updateDataService();
   }
 
-  updateCiljevi(newCiljevi: string) {
-    this.ciljevi.set(newCiljevi);
+  private updateDataService() {
+    this.dataService.setOsobniPodaciData({
+      imePrezime: this.imePrezime(),
+      titula: this.titula(),
+      email: this.email(),
+      telefon: this.telefon(),
+      socialLinks: this.socialLinks()
+    });
   }
 }

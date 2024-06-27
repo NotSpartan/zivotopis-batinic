@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, computed } from '@angular/core';
+import { Component, Input, Output, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -22,22 +22,10 @@ interface Obrazovanje {
 })
 export class ObrazovanjeComponent {
   @Input() isGeneratingPDF = false;
-  constructor(private dataService: DataService) {}
+  
+  private dataService = inject(DataService);
 
-  ngOnInit() {
-    const savedData = this.dataService.getEducationData();
-    if (savedData.length > 0) {
-      this.educations.set(savedData);
-    }
-  }
-
-  educations = signal<Obrazovanje[]>([
-    { id: 1, year: '2019', title: 'Salesforce Administrator', institution: 'Simplilearn', location: 'Raleigh', description: 'Completed initial level for Salesforce administrator on Simplilearn platform.' },
-    { id: 2, year: '2019', title: 'Computer Programmer for Internet Applications', institution: 'Algebra', location: 'Zagreb' },
-    { id: 3, year: '2016', title: 'Senior Expert Associate', institution: 'Ministry of Public Administration', location: 'Zagreb', description: 'Passed state professional exam for senior expert associate.' },
-    { id: 4, year: '2012', title: 'Master of Education in History', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed teaching track of graduate study in history. Defended thesis "Brotherhood of the Croatian Dragon".' },
-    { id: 5, year: '2009', title: 'Bachelor of Communication Science', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed undergraduate study in communication science, agency-press track.' }
-  ]);
+  educations = signal<Obrazovanje[]>([]);
 
   sortedEducations = computed(() => 
     this.educations().slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))
@@ -46,7 +34,15 @@ export class ObrazovanjeComponent {
   newEducation: Obrazovanje = { id: 0, year: '', title: '', institution: '', location: '' };
   editingEducation: Obrazovanje | null = null;
 
+  ngOnInit() {
+    const savedData = this.dataService.getEducationData();
+    if (savedData.length > 0) {
+      this.educations.set(savedData);
+    }
+  }
+
   addEducation() {
+    if (this.isGeneratingPDF) return;
     if (this.newEducation.year && this.newEducation.title && this.newEducation.institution && this.newEducation.location) {
       const newId = Math.max(...this.educations().map(e => e.id), 0) + 1;
       this.educations.update(educations => {
@@ -59,6 +55,7 @@ export class ObrazovanjeComponent {
   }
 
   removeEducation(id: number) {
+    if (this.isGeneratingPDF) return;
     this.educations.update(educations => {
       const updatedEducations = educations.filter(e => e.id !== id);
       this.dataService.setEducationData(updatedEducations);
@@ -67,10 +64,12 @@ export class ObrazovanjeComponent {
   }
 
   startEditing(education: Obrazovanje) {
+    if (this.isGeneratingPDF) return;
     this.editingEducation = { ...education };
   }
 
   saveEdit() {
+    if (this.isGeneratingPDF) return;
     if (this.editingEducation) {
       this.educations.update(educations => {
         const updatedEducations = educations.map(e => 
@@ -84,10 +83,12 @@ export class ObrazovanjeComponent {
   }
 
   cancelEdit() {
+    if (this.isGeneratingPDF) return;
     this.editingEducation = null;
   }
 
   onFileSelected(event: Event, education: Obrazovanje) {
+    if (this.isGeneratingPDF) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();

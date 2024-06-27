@@ -10,6 +10,12 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.education-container.pdf-mode {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 1rem 0;
+}
+
 .subtitle {
   color: #333;
   font-size: 1.6rem;
@@ -36,6 +42,13 @@
   position: relative;
 }
 
+.pdf-mode .education-item {
+  background-color: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 10px 0;
+}
+
 .education-header {
   display: flex;
   justify-content: space-between;
@@ -47,6 +60,10 @@
   font-weight: bold;
   color: #007bff;
   font-size: 0.9rem;
+}
+
+.pdf-mode .year {
+  color: #333;
 }
 
 .education-controls {
@@ -241,6 +258,13 @@
   margin-top: 1rem;
 }
 
+.pdf-mode .education-controls,
+.pdf-mode .upload-icon,
+.pdf-mode .add-education,
+.pdf-mode .edit-education {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .education-container {
     padding: 1rem;
@@ -257,35 +281,6 @@
   .institution-icon {
     width: 60px;
     height: 60px;
-  }
-
-  .action-button, .upload-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .year {
-    font-size: 0.8rem;
-  }
-}
-
-
-.action-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
-}
-
-@media (max-width: 600px) {
-  .education-container {
-    padding: 1rem;
-  }
-
-  .subtitle {
-    font-size: 1.4rem;
-  }
-
-  .education-item {
-    padding: 10px;
   }
 
   .action-button, .upload-button {

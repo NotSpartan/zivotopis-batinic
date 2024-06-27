@@ -1,10 +1,10 @@
-<div class="profile-card">
+<div class="profile-card" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Osobni podaci</h2>
   <div class="profile-body">
     <div *ngFor="let field of fields()" class="field">
       <i class="material-icons">{{ field.icon }}</i>
       <div class="field-content">
-        <ng-container *ngIf="!isEditing(); else editMode">
+        <ng-container *ngIf="!isEditing() || isGeneratingPDF; else editMode">
           <span>{{ field.value() }}</span>
         </ng-container>
         <ng-template #editMode>
@@ -14,10 +14,10 @@
     </div>
 
     <div class="field">
-      <i class="material-icons">Links</i>
+      <i class="material-icons">link</i>
       <div class="field-content">
         <div class="links-container">
-          <ng-container *ngIf="!isEditing(); else editLinks">
+          <ng-container *ngIf="!isEditing() || isGeneratingPDF; else editLinks">
             <div *ngFor="let link of socialLinks()" class="social-link">
               <a [href]="link.url" target="_blank" class="icon-link">
                 <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
@@ -30,7 +30,7 @@
               <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
               <input [(ngModel)]="link.platform" placeholder="Platforma">
               <input [(ngModel)]="link.url" placeholder="URL">
-              <button (click)="removeSocialLink(i)">Remove</button>
+              <button (click)="removeSocialLink(i)">Ukloni</button>
             </div>
             <div class="link-add">
               <input [(ngModel)]="newSocialLink.platform" placeholder="Nova platforma">
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <button *ngIf="isAuthor()" (click)="toggleEdit()" class="edit-button">
+  <button *ngIf="isAuthor() && !isGeneratingPDF" (click)="toggleEdit()" class="edit-button">
     {{ isEditing() ? 'Spremi' : 'Uredi' }}
   </button>
 </div>

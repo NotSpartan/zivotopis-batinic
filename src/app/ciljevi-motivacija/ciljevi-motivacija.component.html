@@ -1,6 +1,6 @@
-<div class="motivations-container">
+<div class="motivations-container" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Ciljevi i motivacija</h2>
-  <div class="motivation-slider">
+  <div class="motivation-slider" *ngIf="!isGeneratingPDF">
     <button (click)="previousMotivation()" class="nav-button prev">&lt;</button>
     <div class="motivation-item-container">
       <div *ngFor="let motivation of motivations(); let i = index" 
@@ -11,7 +11,7 @@
         <div class="motivation-content">
           <p>{{ motivation.text }}</p>
         </div>
-        <div class="motivation-controls">
+        <div class="motivation-controls" *ngIf="!isGeneratingPDF">
           <button (click)="startEditing(motivation)" class="icon-button edit-button">
             <i class="fas fa-edit"></i>
           </button>
@@ -24,11 +24,17 @@
     <button (click)="nextMotivation()" class="nav-button next">&gt;</button>
   </div>
 
-  <div class="motivation-indicator">
+  <div class="motivation-list" *ngIf="isGeneratingPDF">
+    <div *ngFor="let motivation of motivations()" class="motivation-item pdf">
+      <p>{{ motivation.text }}</p>
+    </div>
+  </div>
+
+  <div class="motivation-indicator" *ngIf="!isGeneratingPDF">
     {{ currentIndex() + 1 }} / {{ motivations().length }}
   </div>
 
-  <div *ngIf="editingMotivation" class="edit-motivation">
+  <div *ngIf="editingMotivation && !isGeneratingPDF" class="edit-motivation">
     <textarea [(ngModel)]="editingMotivation.text" maxlength="120" class="motivation-textarea"></textarea>
     <div class="char-count">{{editingMotivation.text.length}} / {{maxLength}}</div>
     <div class="edit-controls">
@@ -37,7 +43,7 @@
     </div>
   </div>
 
-  <div class="add-motivation">
+  <div class="add-motivation" *ngIf="!isGeneratingPDF">
     <textarea [(ngModel)]="newMotivationText" placeholder="Unesite novu motivaciju" maxlength="120" class="motivation-textarea"></textarea>
     <div class="char-count">{{newMotivationText.length}} / {{maxLength}}</div>
     <button (click)="addMotivation()" class="action-button">Dodaj</button>

@@ -1,4 +1,4 @@
-<div class="experience-container">
+<div class="experience-container" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Radno iskustvo</h2>
   
   <div class="experience-list">
@@ -8,7 +8,7 @@
           {{ formatDateToHrv(experience.startDate) }} - 
           {{ experience.endDate ? formatDateToHrv(experience.endDate) : 'Trenutno' }}
         </span>
-        <div class="experience-controls">
+        <div class="experience-controls" *ngIf="!isGeneratingPDF">
           <button (click)="startEditing(experience)" class="icon-button edit-button">
             <i class="fas fa-edit"></i>
           </button>
@@ -30,7 +30,7 @@
       <ul class="responsibilities">
         <li *ngFor="let responsibility of experience.responsibilities">{{ responsibility }}</li>
       </ul>
-      <div class="upload-icon">
+      <div class="upload-icon" *ngIf="!isGeneratingPDF">
         <label [for]="'icon-upload-' + experience.id" class="action-button upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
         </label>
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div *ngIf="editingExperience" class="edit-experience">
+  <div *ngIf="editingExperience && !isGeneratingPDF" class="edit-experience">
     <input [(ngModel)]="editingExperience.startDate" placeholder="Početni datum (MM.GGGG)" class="experience-input">
     <input [(ngModel)]="editingExperience.endDate" placeholder="Završni datum (MM.GGGG ili prazno za trenutno)" class="experience-input">
     <input [(ngModel)]="editingExperience.position" placeholder="Pozicija" class="experience-input">
@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  <div class="add-experience">
+  <div class="add-experience" *ngIf="!isGeneratingPDF">
     <h3>Dodaj novo iskustvo</h3>
     <input [(ngModel)]="newExperience.startDate" placeholder="Početni datum (MM.GGGG)" class="experience-input">
     <input [(ngModel)]="newExperience.endDate" placeholder="Završni datum (MM.GGGG ili prazno za trenutno)" class="experience-input">

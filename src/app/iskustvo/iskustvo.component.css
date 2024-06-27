@@ -10,6 +10,12 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.experience-container.pdf-mode {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 1rem 0;
+}
+
 .subtitle {
   color: #333;
   font-size: 1.6rem;
@@ -36,6 +42,13 @@
   position: relative;
 }
 
+.pdf-mode .experience-item {
+  background-color: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 10px 0;
+}
+
 .experience-header {
   display: flex;
   justify-content: space-between;
@@ -47,6 +60,10 @@
   font-weight: bold;
   color: #28a745;
   font-size: 0.9rem;
+}
+
+.pdf-mode .date {
+  color: #333;
 }
 
 .experience-controls {
@@ -277,6 +294,13 @@
   cursor: pointer;
 }
 
+.pdf-mode .experience-controls,
+.pdf-mode .upload-icon,
+.pdf-mode .add-experience,
+.pdf-mode .edit-experience {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .experience-container {
     padding: 1rem;
@@ -304,3 +328,7 @@
     font-size: 0.8rem;
   }
 }
+
+
+
+

@@ -1,4 +1,4 @@
-<div class="tehnologije-container">
+<div class="tehnologije-container" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Razne kompetencije</h2>
   
   <div class="tehnologije-list">
@@ -13,7 +13,7 @@
             <div class="razina">Razina: {{ tehnologija.razina }}</div>
           </div>
         </div>
-        <div class="tehnologija-controls">
+        <div class="tehnologija-controls" *ngIf="!isGeneratingPDF">
           <button (click)="startEditing(tehnologija)" class="icon-button edit-button">
             <i class="fas fa-edit"></i>
           </button>
@@ -22,7 +22,7 @@
           </button>
         </div>
       </div>
-      <div class="upload-icon">
+      <div class="upload-icon" *ngIf="!isGeneratingPDF">
         <label [for]="'icon-upload-' + tehnologija.id" class="action-button upload-button">
           <i class="fas fa-upload"></i> Dodaj ikonu
         </label>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div *ngIf="editingTehnologija" class="edit-tehnologija">
+  <div *ngIf="editingTehnologija && !isGeneratingPDF" class="edit-tehnologija">
     <input [(ngModel)]="editingTehnologija.naziv" placeholder="Naziv tehnologije" class="tehnologija-input">
     <input [(ngModel)]="editingTehnologija.razina" placeholder="Razina poznavanja" class="tehnologija-input">
     <div class="edit-controls">
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="add-tehnologija">
+  <div class="add-tehnologija" *ngIf="!isGeneratingPDF">
     <h3>Dodaj kompetenciju</h3>
     <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije" class="tehnologija-input">
     <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja" class="tehnologija-input">

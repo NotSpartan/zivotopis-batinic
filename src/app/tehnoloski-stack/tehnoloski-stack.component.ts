@@ -1,4 +1,4 @@
-import {  Component, Input, Output,  signal } from '@angular/core';
+import { Component, Input, Output, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -19,22 +19,10 @@ interface Tehnologija {
 })
 export class TehnoloskiStackComponent {
   @Input() isGeneratingPDF = false;
-  constructor(private dataService: DataService) {}
+  
+  private dataService = inject(DataService);
 
-  ngOnInit() {
-    const savedData = this.dataService.getTechnologiesData();
-    if (savedData.length > 0) {
-      this.tehnologije.set(savedData);
-    }
-  }
-
-  tehnologije = signal<Tehnologija[]>([
-    { id: 1, naziv: 'JavaScript', razina: 'Napredna' },
-    { id: 2, naziv: 'TypeScript', razina: 'Srednja' },
-    { id: 3, naziv: 'Angular', razina: 'Napredna' },
-    { id: 4, naziv: 'React', razina: 'Osnovna' },
-    { id: 5, naziv: 'Node.js', razina: 'Srednja' }
-  ]);
+  tehnologije = signal<Tehnologija[]>([]);
 
   novaTehnoloija: Tehnologija = {
     id: 0,
@@ -44,7 +32,15 @@ export class TehnoloskiStackComponent {
 
   editingTehnologija: Tehnologija | null = null;
 
+  ngOnInit() {
+    const savedData = this.dataService.getTechnologiesData();
+    if (savedData.length > 0) {
+      this.tehnologije.set(savedData);
+    }
+  }
+
   dodajTehnologiju() {
+    if (this.isGeneratingPDF) return;
     if (this.novaTehnoloija.naziv && this.novaTehnoloija.razina) {
       const newId = Math.max(...this.tehnologije().map(t => t.id), 0) + 1;
       this.tehnologije.update((tehnologije) => {
@@ -57,6 +53,7 @@ export class TehnoloskiStackComponent {
   }
 
   ukloniTehnologiju(id: number) {
+    if (this.isGeneratingPDF) return;
     this.tehnologije.update((tehnologije) => {
       const updatedTehnologije = tehnologije.filter(t => t.id !== id);
       this.dataService.setTechnologiesData(updatedTehnologije);
@@ -65,10 +62,12 @@ export class TehnoloskiStackComponent {
   }
 
   startEditing(tehnologija: Tehnologija) {
+    if (this.isGeneratingPDF) return;
     this.editingTehnologija = { ...tehnologija };
   }
 
   saveEdit() {
+    if (this.isGeneratingPDF) return;
     if (this.editingTehnologija) {
       this.tehnologije.update((tehnologije) => {
         const updatedTehnologije = tehnologije.map(t => 
@@ -82,10 +81,12 @@ export class TehnoloskiStackComponent {
   }
 
   cancelEdit() {
+    if (this.isGeneratingPDF) return;
     this.editingTehnologija = null;
   }
 
   odaberiIkonu(event: Event, tehnologija: Tehnologija) {
+    if (this.isGeneratingPDF) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();

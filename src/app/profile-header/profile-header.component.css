@@ -16,6 +16,12 @@
   position: relative;
 }
 
+.profile-header.pdf-mode {
+  background: none;
+  padding: 1rem;
+  min-height: auto;
+}
+
 .logo-container {
   position: absolute;
   top: 1rem;
@@ -56,6 +62,13 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.pdf-mode .profile-image-container {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #333;
+  box-shadow: none;
+}
+
 .profile-image {
   width: 100%;
   height: 100%;
@@ -64,6 +77,10 @@
   filter: brightness(0.8);
   background-size: cover;
   background-position: center;
+}
+
+.pdf-mode .profile-image {
+  filter: none;
 }
 
 .image-actions {
@@ -97,56 +114,6 @@
   margin-right: 0.3rem;
 }
 
-.clickable {
-  cursor: pointer;
-}
-
-.image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.profile-image-container:hover .image-overlay {
-  opacity: 1;
-}
-
-.overlay-content {
-  color: white;
-  text-align: center;
-  cursor: pointer;
-}
-
-.overlay-content i {
-  font-size: 16px;
-  margin-bottom: 2px;
-}
-
-.overlay-content span {
-  display: block;
-  font-size: 10px;
-}
-
-.file-upload-label {
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.file-upload-label i {
-  font-size: 16px;
-}
-
 .profile-title {
   text-align: center;
 }
@@ -158,12 +125,21 @@
   font-weight: 500;
 }
 
+.pdf-mode .profile-title h2 {
+  color: #333;
+}
+
 .profile-title p {
   margin: 0.5rem 0 0;
   font-size: 1rem;
   opacity: 0.8;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+}
+
+.pdf-mode .profile-title p {
+  color: #666;
+  opacity: 1;
 }
 
 .animated-title {
@@ -176,15 +152,9 @@
 }
 
 @keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @media (max-width: 600px) {

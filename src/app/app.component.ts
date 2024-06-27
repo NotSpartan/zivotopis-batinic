@@ -7,6 +7,9 @@ import { ObrazovanjeComponent } from './obrazovanje/obrazovanje.component';
 import { TehnoloskiStackComponent } from './tehnoloski-stack/tehnoloski-stack.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { DataService } from './services/data.service';
+import { PdfViewComponent } from './pdf-view/pdf-view.component';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +18,7 @@ import { DataService } from './services/data.service';
   standalone: true,
   imports: [
     CommonModule,
+    PdfViewComponent,
     OsobniPodaciComponent,
     CiljeviMotivacijaComponent,
     IskustvoComponent,
@@ -66,5 +70,28 @@ export class AppComponent {
       ...this.dataService.getOsobniPodaciData(),
       titula: newTitula,
     });
+  }
+  
+  async generatePDF() {
+    this.isGeneratingPDF.set(true);
+    
+    // Pričekajte da se DOM ažurira
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  
+    const element = document.querySelector('.pdf-container');
+    if (element) {
+      const canvas = await html2canvas(element as HTMLElement);
+      const imgData = canvas.toDataURL('image/png');
+  
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('zivotopis.pdf');
+    }
+  
+    this.isGeneratingPDF.set(false);
   }
 }
