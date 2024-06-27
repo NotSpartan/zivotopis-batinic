@@ -2,10 +2,17 @@
   <h2 class="subtitle">Obrazovanje i edukacije</h2>
   
   <div class="education-list">
-    <div *ngFor="let education of educations(); let i = index" class="education-item">
+    <div *ngFor="let education of educations()" class="education-item">
       <div class="education-header">
         <span class="year">{{ formatYearToHrv(education.year) }}</span>
-        <button class="remove-btn" (click)="removeEducation(i)">×</button>
+        <div class="education-controls">
+          <button (click)="startEditing(education)" class="icon-button edit-button">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="removeEducation(education.id)" class="icon-button delete-button">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
       </div>
       <div class="institution-info">
         <div *ngIf="education.institutionIcon" class="institution-icon">
@@ -19,11 +26,23 @@
       </div>
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
       <div class="upload-icon">
-        <label for="icon-upload-{{i}}" class="action-button upload-button">
+        <label [for]="'icon-upload-' + education.id" class="action-button upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
         </label>
-        <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, education)" accept="image/*">
+        <input [id]="'icon-upload-' + education.id" type="file" (change)="onFileSelected($event, education)" accept="image/*">
       </div>
+    </div>
+  </div>
+
+  <div *ngIf="editingEducation" class="edit-education">
+    <input [(ngModel)]="editingEducation.year" placeholder="Godina (GGGG)" class="education-input">
+    <input [(ngModel)]="editingEducation.title" placeholder="Titula" class="education-input">
+    <input [(ngModel)]="editingEducation.institution" placeholder="Institucija" class="education-input">
+    <input [(ngModel)]="editingEducation.location" placeholder="Lokacija" class="education-input">
+    <textarea [(ngModel)]="editingEducation.description" placeholder="Opis (opcionalno)" class="education-input"></textarea>
+    <div class="edit-controls">
+      <button (click)="saveEdit()" class="action-button">Spremi</button>
+      <button (click)="cancelEdit()" class="action-button">Odustani</button>
     </div>
   </div>
 

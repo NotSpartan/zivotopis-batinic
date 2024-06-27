@@ -33,6 +33,7 @@
   padding: 15px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .education-header {
@@ -46,6 +47,41 @@
   font-weight: bold;
   color: #007bff;
   font-size: 0.9rem;
+}
+
+.education-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #6c757d;
+  transition: color 0.3s, transform 0.3s;
+  padding: 8px;
+}
+
+.icon-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-button {
+  color: #28a745;
+}
+
+.edit-button:hover {
+  color: #218838;
+}
+
+.delete-button {
+  color: #dc3545;
+}
+
+.delete-button:hover {
+  color: #c82333;
 }
 
 .title {
@@ -69,14 +105,6 @@
   margin-top: 10px;
   font-size: 0.9em;
   color: #666;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  color: #ff4444;
-  font-size: 1.2em;
-  cursor: pointer;
 }
 
 .institution-info {
@@ -145,7 +173,7 @@
   display: none;
 }
 
-.add-education {
+.add-education, .edit-education {
   margin-top: 30px;
   background-color: #f0f0f0;
   padding: 20px;
@@ -200,6 +228,47 @@
   box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
 }
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+}
+
+.edit-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .education-container {
+    padding: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .education-item {
+    padding: 10px;
+  }
+
+  .institution-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .action-button, .upload-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .year {
+    font-size: 0.8rem;
+  }
+}
+
 
 .action-button:active {
   transform: translateY(0);

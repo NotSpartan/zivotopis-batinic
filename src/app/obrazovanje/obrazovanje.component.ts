@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 interface Obrazovanje {
+  id: number;
   year: string;
   title: string;
   institution: string;
@@ -30,30 +31,55 @@ export class ObrazovanjeComponent {
   }
 
   educations = signal<Obrazovanje[]>([
-    { year: '2019', title: 'Salesforce Administrator', institution: 'Simplilearn', location: 'Raleigh', description: 'Completed initial level for Salesforce administrator on Simplilearn platform.' },
-    { year: '2019', title: 'Computer Programmer for Internet Applications', institution: 'Algebra', location: 'Zagreb' },
-    { year: '2016', title: 'Senior Expert Associate', institution: 'Ministry of Public Administration', location: 'Zagreb', description: 'Passed state professional exam for senior expert associate.' },
-    { year: '2012', title: 'Master of Education in History', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed teaching track of graduate study in history. Defended thesis "Brotherhood of the Croatian Dragon".' },
-    { year: '2009', title: 'Bachelor of Communication Science', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed undergraduate study in communication science, agency-press track.' }
+    { id: 1, year: '2019', title: 'Salesforce Administrator', institution: 'Simplilearn', location: 'Raleigh', description: 'Completed initial level for Salesforce administrator on Simplilearn platform.' },
+    { id: 2, year: '2019', title: 'Computer Programmer for Internet Applications', institution: 'Algebra', location: 'Zagreb' },
+    { id: 3, year: '2016', title: 'Senior Expert Associate', institution: 'Ministry of Public Administration', location: 'Zagreb', description: 'Passed state professional exam for senior expert associate.' },
+    { id: 4, year: '2012', title: 'Master of Education in History', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed teaching track of graduate study in history. Defended thesis "Brotherhood of the Croatian Dragon".' },
+    { id: 5, year: '2009', title: 'Bachelor of Communication Science', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed undergraduate study in communication science, agency-press track.' }
   ]);
 
-  newEducation: Obrazovanje = { year: '', title: '', institution: '', location: '' };
+  newEducation: Obrazovanje = { id: 0, year: '', title: '', institution: '', location: '' };
+  editingEducation: Obrazovanje | null = null;
 
   addEducation() {
-    this.educations.update(educations => {
-      const updatedEducations = [...educations, { ...this.newEducation }];
-      this.dataService.setEducationData(updatedEducations);
-      return updatedEducations;
-    });
-    this.newEducation = { year: '', title: '', institution: '', location: '' };
+    if (this.newEducation.year && this.newEducation.title && this.newEducation.institution && this.newEducation.location) {
+      const newId = Math.max(...this.educations().map(e => e.id), 0) + 1;
+      this.educations.update(educations => {
+        const updatedEducations = [...educations, { ...this.newEducation, id: newId }];
+        this.dataService.setEducationData(updatedEducations);
+        return updatedEducations;
+      });
+      this.newEducation = { id: 0, year: '', title: '', institution: '', location: '' };
+    }
   }
 
-  removeEducation(index: number) {
+  removeEducation(id: number) {
     this.educations.update(educations => {
-      const updatedEducations = educations.filter((_, i) => i !== index);
+      const updatedEducations = educations.filter(e => e.id !== id);
       this.dataService.setEducationData(updatedEducations);
       return updatedEducations;
     });
+  }
+
+  startEditing(education: Obrazovanje) {
+    this.editingEducation = { ...education };
+  }
+
+  saveEdit() {
+    if (this.editingEducation) {
+      this.educations.update(educations => {
+        const updatedEducations = educations.map(e => 
+          e.id === this.editingEducation!.id ? this.editingEducation! : e
+        );
+        this.dataService.setEducationData(updatedEducations);
+        return updatedEducations;
+      });
+      this.editingEducation = null;
+    }
+  }
+
+  cancelEdit() {
+    this.editingEducation = null;
   }
 
   onFileSelected(event: Event, education: Obrazovanje) {
