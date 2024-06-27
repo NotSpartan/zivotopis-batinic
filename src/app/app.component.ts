@@ -84,26 +84,25 @@ export class AppComponent {
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
       
-      // Koristimo html2canvas za svaku stranicu
-      const canvas = await html2canvas(element as HTMLElement, {
-        scale: 2,
-        useCORS: true,
-        logging: false
-      });
+      const pageElements = element.querySelectorAll('.pdf-page');
+      for (let i = 0; i < pageElements.length; i++) {
+        const pageElement = pageElements[i] as HTMLElement;
+        const canvas = await html2canvas(pageElement, {
+          scale: 2,
+          useCORS: true,
+          logging: false
+        });
   
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
-      
-      let heightLeft = canvas.height;
-      let position = 0;
+        const imgData = canvas.toDataURL('image/jpeg', 1.0);
+        
+        const imgWidth = pdfWidth;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        
+        if (i > 0) {
+          pdf.addPage();
+        }
   
-      pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, canvas.height * pdfWidth / canvas.width);
-      heightLeft -= pdfHeight;
-  
-      while (heightLeft >= 0) {
-        position = heightLeft - canvas.height;
-        pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, canvas.height * pdfWidth / canvas.width);
-        heightLeft -= pdfHeight;
+        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
       }
   
       pdf.save('zivotopis.pdf');
