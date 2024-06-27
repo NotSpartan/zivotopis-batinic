@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 interface Iskustvo {
+  id: number;
   startDate: string;
   endDate: string;
   position: string;
@@ -32,6 +33,7 @@ export class IskustvoComponent {
 
   experiences = signal<Iskustvo[]>([
     {
+      id: 1,
       startDate: '12.2017',
       endDate: '02.2019',
       position: 'Krupije',
@@ -45,6 +47,7 @@ export class IskustvoComponent {
       ]
     },
     {
+      id: 2,
       startDate: '01.2016',
       endDate: '01.2017',
       position: 'Viši stručni suradnik za protokol',
@@ -58,6 +61,7 @@ export class IskustvoComponent {
       ]
     },
     {
+      id: 3,
       startDate: '05.2014',
       endDate: '04.2015',
       position: 'Zamjenik poslovođe',
@@ -72,6 +76,7 @@ export class IskustvoComponent {
   ]);
 
   newExperience: Iskustvo = {
+    id: 0,
     startDate: '',
     endDate: '',
     position: '',
@@ -81,33 +86,67 @@ export class IskustvoComponent {
     companyIcon: ''
   };
   newResponsibility: string = '';
+  editingExperience: Iskustvo | null = null;
 
   addExperience() {
-    this.experiences.update(experiences => {
-      const updatedExperiences = [...experiences, { ...this.newExperience, responsibilities: [...this.newExperience.responsibilities] }];
-      this.dataService.setExperienceData(updatedExperiences);
-      return updatedExperiences;
-    });
-    this.newExperience = { startDate: '', endDate: '', position: '', company: '', location: '', responsibilities: [], companyIcon: '' };
+    if (this.newExperience.startDate && this.newExperience.position && this.newExperience.company && this.newExperience.location) {
+      const newId = Math.max(...this.experiences().map(e => e.id), 0) + 1;
+      this.experiences.update(experiences => {
+        const updatedExperiences = [...experiences, { ...this.newExperience, id: newId, responsibilities: [...this.newExperience.responsibilities] }];
+        this.dataService.setExperienceData(updatedExperiences);
+        return updatedExperiences;
+      });
+      this.newExperience = { id: 0, startDate: '', endDate: '', position: '', company: '', location: '', responsibilities: [], companyIcon: '' };
+      this.newResponsibility = '';
+    }
   }
 
-  removeExperience(index: number) {
+  removeExperience(id: number) {
     this.experiences.update(experiences => {
-      const updatedExperiences = experiences.filter((_, i) => i !== index);
+      const updatedExperiences = experiences.filter(e => e.id !== id);
       this.dataService.setExperienceData(updatedExperiences);
       return updatedExperiences;
     });
+  }
+
+  startEditing(experience: Iskustvo) {
+    this.editingExperience = { ...experience, responsibilities: [...experience.responsibilities] };
+  }
+
+  saveEdit() {
+    if (this.editingExperience) {
+      this.experiences.update(experiences => {
+        const updatedExperiences = experiences.map(e => 
+          e.id === this.editingExperience!.id ? this.editingExperience! : e
+        );
+        this.dataService.setExperienceData(updatedExperiences);
+        return updatedExperiences;
+      });
+      this.editingExperience = null;
+    }
+  }
+
+  cancelEdit() {
+    this.editingExperience = null;
   }
 
   addResponsibility() {
     if (this.newResponsibility.trim()) {
-      this.newExperience.responsibilities.push(this.newResponsibility.trim());
+      if (this.editingExperience) {
+        this.editingExperience.responsibilities.push(this.newResponsibility.trim());
+      } else {
+        this.newExperience.responsibilities.push(this.newResponsibility.trim());
+      }
       this.newResponsibility = '';
     }
   }
 
   removeResponsibility(index: number) {
-    this.newExperience.responsibilities.splice(index, 1);
+    if (this.editingExperience) {
+      this.editingExperience.responsibilities.splice(index, 1);
+    } else {
+      this.newExperience.responsibilities.splice(index, 1);
+    }
   }
 
   onFileSelected(event: Event, experience: Iskustvo) {
