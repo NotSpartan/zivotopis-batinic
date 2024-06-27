@@ -11,7 +11,7 @@
         <div *ngIf="education.institutionIcon" class="institution-icon">
           <img [src]="education.institutionIcon" alt="{{ education.institution }} icon">
         </div>
-        <div>
+        <div class="institution-details">
           <span class="title">{{ education.title }}</span>
           <div class="institution">{{ education.institution }}</div>
           <div class="location">{{ education.location }}</div>
@@ -20,7 +20,7 @@
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
       <div class="upload-icon">
         <label for="icon-upload-{{i}}" class="action-button upload-button">
-          <i class="fas fa-upload"></i> Dodaj logo institucije
+          <i class="fas fa-upload"></i> Dodaj logo
         </label>
         <input id="icon-upload-{{i}}" type="file" (change)="onFileSelected($event, education)" accept="image/*">
       </div>
