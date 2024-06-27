@@ -1,12 +1,13 @@
 .app-wrapper {
-  max-width: 800px; /* ili koja god širina odgovara vašem header-u */
+  max-width: 800px; 
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.content-container {
-  margin-top: 0px;
+.content-container > * {
+  margin-bottom: 2rem;
 }
+
 .horizontal-nav {
   background-color: #333;
   padding: 10px 0;

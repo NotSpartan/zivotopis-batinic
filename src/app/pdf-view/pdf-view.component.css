@@ -1,7 +1,7 @@
 .pdf-container {
   width: 210mm;
   min-height: 297mm;
-  padding: 10mm;
+  padding: 20mm 15mm;
   margin: 0 auto;
   background: white;
 }
@@ -21,7 +21,7 @@
 }
 
 .pdf-page > * {
-  margin-bottom: 10mm;
+  margin-bottom: 15mm;
 }
 
 .pdf-page > *:last-child {

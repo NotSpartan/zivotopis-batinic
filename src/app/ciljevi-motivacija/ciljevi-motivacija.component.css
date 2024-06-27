@@ -5,9 +5,8 @@
   page-break-inside: avoid;
 }
 
-/* Za PDF mod */
 :host-context(.pdf-page) .pdf-mode {
-  padding: 0;
+  padding: 0.5rem 0;
   margin: 0;
 }
 
