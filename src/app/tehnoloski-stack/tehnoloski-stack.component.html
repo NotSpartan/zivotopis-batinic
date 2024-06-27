@@ -3,24 +3,22 @@
   
   <div class="tehnologije-list">
     <div *ngFor="let tehnologija of tehnologije()" class="tehnologija-item">
-      <div class="tehnologija-header">
-        <div class="tehnologija-info">
-          <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
-            <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
-          </div>
-          <div class="tehnologija-detalji">
-            <span class="naziv">{{ tehnologija.naziv }}</span>
-            <div class="razina">Razina: {{ tehnologija.razina }}</div>
-          </div>
+      <div class="tehnologija-info">
+        <div *ngIf="tehnologija.ikona" class="tehnologija-ikona">
+          <img [src]="tehnologija.ikona" alt="{{ tehnologija.naziv }} ikona">
         </div>
-        <div class="tehnologija-controls" *ngIf="!isGeneratingPDF">
-          <button (click)="startEditing(tehnologija)" class="icon-button edit-button">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button (click)="ukloniTehnologiju(tehnologija.id)" class="icon-button delete-button">
-            <i class="fas fa-trash-alt"></i>
-          </button>
+        <div class="tehnologija-detalji">
+          <span class="naziv">{{ tehnologija.naziv }}</span>
+          <div class="razina">Razina: {{ tehnologija.razina }}</div>
         </div>
+      </div>
+      <div class="tehnologija-controls" *ngIf="!isGeneratingPDF">
+        <button (click)="startEditing(tehnologija)" class="icon-button edit-button">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button (click)="ukloniTehnologiju(tehnologija.id)" class="icon-button delete-button">
+          <i class="fas fa-trash-alt"></i>
+        </button>
       </div>
       <div class="upload-icon" *ngIf="!isGeneratingPDF">
         <label [for]="'icon-upload-' + tehnologija.id" class="action-button upload-button">

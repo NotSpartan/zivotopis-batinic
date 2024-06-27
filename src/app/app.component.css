@@ -11,7 +11,7 @@
 .horizontal-nav {
   background-color: #333;
   padding: 10px 0;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   font-family: 'Montserrat', sans-serif;
@@ -45,23 +45,59 @@
   background-color: #007bff;
   color: #fff;
 }
-  
-  .content-container {
-    padding: 5px;
-    max-width: 1200px;
-    margin: 0 auto;
+
+.content-container {
+  padding: 5px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.generate-pdf-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.generate-pdf-button:hover {
+  background-color: #45a049;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .pdf-container, .pdf-container * {
+    visibility: visible;
+  }
+  .pdf-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-wrapper {
+    padding: 0 10px;
   }
 
-  @media print {
-    body * {
-      visibility: hidden;
-    }
-    .pdf-container, .pdf-container * {
-      visibility: visible;
-    }
-    .pdf-container {
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
+  .horizontal-nav {
+    padding: 5px 0;
   }
+
+  .horizontal-nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}

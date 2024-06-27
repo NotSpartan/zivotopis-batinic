@@ -8,20 +8,6 @@
   page-break-inside: avoid;
 }
 
-/* Za PDF mod */
-:host-context(.pdf-page) .pdf-mode {
-  padding: 0;
-  margin: 0;
-}
-
-.pdf-mode .experience-container {
-  padding: 0.5rem 0;
-}
-
-.pdf-mode .experience-item {
-  margin-bottom: 10px;
-}
-
 .profile-header {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -33,14 +19,16 @@
   justify-content: center;
   min-height: 300px;
   position: relative;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .pdf-mode .profile-header {
   min-height: auto;
-  padding: 2rem 1rem 1rem;
-  margin-top: 1rem;
+  padding: 1.5rem 1rem;
+  background: #f0f0f0;
+  color: #333;
 }
-
 
 .logo-container {
   position: absolute;
@@ -48,7 +36,7 @@
   left: 1rem;
   width: 90px;
   height: 90px;
-  border-radius: 300%;
+  border-radius: 50%;
   overflow: hidden;
   background-color: white;
   display: flex;
@@ -83,17 +71,17 @@
 }
 
 .pdf-mode .profile-image-container {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #333;
 }
+
 .profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
   filter: brightness(0.8);
-  background-size: cover;
-  background-position: center;
 }
 
 .pdf-mode .profile-image {
@@ -118,6 +106,7 @@
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
 .upload-btn:hover,
@@ -127,7 +116,7 @@
 
 .upload-btn i,
 .delete-btn i {
-  font-size: 12px;
+  font-size: 1rem;
   margin-right: 0.3rem;
 }
 
@@ -137,37 +126,29 @@
 
 .profile-title h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .pdf-mode .profile-title h2 {
+  font-size: 1.8rem;
   color: #333;
 }
 
 .profile-title p {
   margin: 0.5rem 0 0;
-  font-size: 1rem;
-  opacity: 0.8;
+  font-size: 1.2rem;
+  opacity: 0.9;
   font-family: 'Poppins', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .pdf-mode .profile-title p {
-  color: #666;
-  opacity: 1;
+  font-size: 1rem;
+  color: #555;
 }
 
-.pdf-mode .profile-header {
-  min-height: auto;
-  padding: 1rem;
-}
-
-.pdf-mode .profile-image-container {
-  width: 100px;
-  height: 100px;
-}
 .animated-title {
   min-height: 1.2em;
   display: inline-block;
@@ -191,11 +172,25 @@
   .logo-container {
     top: 0.5rem;
     left: 0.5rem;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
   }
 
   .app-logo {
-    width: 60px;
+    width: 120%;
+    height: 120%;
+  }
+
+  .profile-image-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-title p {
+    font-size: 1rem;
   }
 }

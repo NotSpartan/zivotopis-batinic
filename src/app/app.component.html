@@ -8,7 +8,6 @@
       [isGeneratingPDF]="isGeneratingPDF()"
       (slikaChange)="updateSlika($event)">
     </app-profile-header>
-
     <nav class="horizontal-nav">
       <ul>
         <li><a (click)="setActiveTab('osobni-podaci')" [class.active]="activeTab() === 'osobni-podaci'">Info</a></li>
@@ -45,10 +44,8 @@
         </app-ciljevi-motivacija>
       </ng-container>
     </div>
-
-    <button (click)="generatePDF()">Generiraj PDF</button>
+    <button (click)="generatePDF()" class="generate-pdf-button">Generiraj PDF</button>
   </ng-container>
-
   <app-pdf-view
     *ngIf="isGeneratingPDF()"
     [slika]="slika()"

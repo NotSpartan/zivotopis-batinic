@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, inject } from '@angular/core';
+import { Component, Input, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';

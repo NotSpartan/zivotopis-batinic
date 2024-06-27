@@ -1,13 +1,14 @@
-.pdf-container {
+.pdf-preview {
   width: 210mm;
   min-height: 297mm;
-  padding: 20mm 15mm;
   margin: 0 auto;
   background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .pdf-content {
-  page-break-inside: auto;
+  padding: 20mm 15mm;
 }
 
 .pdf-page {
@@ -16,23 +17,24 @@
   flex-direction: column;
 }
 
-.pdf-page.first-page > * {
-  margin-bottom: 5mm; 
-}
 .pdf-page:last-child {
   page-break-after: auto;
 }
 
 .pdf-page > * {
-  margin-bottom: 10mm;
-}
-
-.pdf-page > app-profile-header {
-  margin-bottom: 5mm;
+  margin-bottom: 15mm;
 }
 
 .pdf-page > *:last-child {
   margin-bottom: 0;
+}
+
+.pdf-page.first-page > * {
+  margin-bottom: 10mm;
+}
+
+.pdf-page > app-profile-header {
+  margin-bottom: 10mm;
 }
 
 .generate-pdf-button {
@@ -44,8 +46,38 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .generate-pdf-button:hover {
   background-color: #45a049;
+}
+
+@media print {
+  .pdf-preview {
+    box-shadow: none;
+  }
+  
+  .generate-pdf-button {
+    display: none;
+  }
+
+  .pdf-page {
+    page-break-after: always;
+  }
+
+  .pdf-page:last-child {
+    page-break-after: auto;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media screen and (max-width: 210mm) {
+  .pdf-preview {
+    width: 100%;
+  }
 }

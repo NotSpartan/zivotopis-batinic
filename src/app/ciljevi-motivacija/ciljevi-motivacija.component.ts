@@ -73,9 +73,7 @@ export class CiljeviMotivacijaComponent {
       this.currentIndex.set(this.motivations().length - 1);
       this.updateDataService();
     }
-  }
-
-  saveEdit() {
+  }  saveEdit() {
     if (this.isGeneratingPDF) return;
     if (this.editingMotivation && this.validateInput(this.editingMotivation.text)) {
       this.motivations.update(motivations =>
@@ -104,3 +102,9 @@ export class CiljeviMotivacijaComponent {
     this.dataService.setCiljeviMotivacijaData(this.motivations().map(m => m.text));
   }
 }
+
+
+
+
+
+

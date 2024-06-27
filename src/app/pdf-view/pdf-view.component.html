@@ -1,5 +1,5 @@
-<div #pdfContainer class="pdf-container">
-  <div class="pdf-content">
+<div class="pdf-preview">
+  <div #pdfContainer class="pdf-content">
     <div class="pdf-page first-page">
       <app-profile-header
         [slika]="slika"
@@ -23,4 +23,4 @@
   </div>
 </div>
 
-<button (click)="generatePDF()" class="generate-pdf-button">Generiraj PDF</button>
+<button (click)="generatePDF()" class="generate-pdf-button">Generate and Download PDF</button>
