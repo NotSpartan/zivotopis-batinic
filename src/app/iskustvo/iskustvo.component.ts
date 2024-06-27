@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -74,6 +74,14 @@ export class IskustvoComponent {
       ]
     }
   ]);
+
+  sortedExperiences = computed(() => 
+    this.experiences().slice().sort((a, b) => {
+      const dateA = new Date(a.startDate.split('.').reverse().join('-'));
+      const dateB = new Date(b.startDate.split('.').reverse().join('-'));
+      return dateB.getTime() - dateA.getTime();
+    })
+  );
 
   newExperience: Iskustvo = {
     id: 0,

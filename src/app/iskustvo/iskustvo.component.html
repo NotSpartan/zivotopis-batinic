@@ -2,7 +2,7 @@
   <h2 class="subtitle">Radno iskustvo</h2>
   
   <div class="experience-list">
-    <div *ngFor="let experience of experiences()" class="experience-item">
+    <div *ngFor="let experience of sortedExperiences()" class="experience-item">
       <div class="experience-header">
         <span class="date">
           {{ formatDateToHrv(experience.startDate) }} - 

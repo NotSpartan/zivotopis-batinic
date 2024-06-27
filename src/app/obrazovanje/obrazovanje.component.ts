@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -37,6 +37,10 @@ export class ObrazovanjeComponent {
     { id: 4, year: '2012', title: 'Master of Education in History', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed teaching track of graduate study in history. Defended thesis "Brotherhood of the Croatian Dragon".' },
     { id: 5, year: '2009', title: 'Bachelor of Communication Science', institution: 'Croatian Studies', location: 'Zagreb', description: 'Completed undergraduate study in communication science, agency-press track.' }
   ]);
+
+  sortedEducations = computed(() => 
+    this.educations().slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))
+  );
 
   newEducation: Obrazovanje = { id: 0, year: '', title: '', institution: '', location: '' };
   editingEducation: Obrazovanje | null = null;

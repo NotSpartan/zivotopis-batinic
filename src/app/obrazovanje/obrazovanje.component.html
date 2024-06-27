@@ -2,7 +2,7 @@
   <h2 class="subtitle">Obrazovanje i edukacije</h2>
   
   <div class="education-list">
-    <div *ngFor="let education of educations()" class="education-item">
+    <div *ngFor="let education of sortedEducations()" class="education-item">
       <div class="education-header">
         <span class="year">{{ formatYearToHrv(education.year) }}</span>
         <div class="education-controls">
