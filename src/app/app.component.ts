@@ -72,5 +72,11 @@ export class AppComponent {
 
   generatePDF() {
     this.isGeneratingPDF.set(true);
+    document.body.classList.add('pdf-mode');
+  }
+
+  onPdfGenerated() {
+    this.isGeneratingPDF.set(false);
+    document.body.classList.remove('pdf-mode');
   }
 }

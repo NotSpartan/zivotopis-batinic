@@ -5,6 +5,12 @@
   page-break-inside: avoid;
 }
 
+:host-context(.pdf-mode) {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
 .motivations-container {
   background-color: #f9f9f9;
   border-radius: 10px;

@@ -1,4 +1,4 @@
-import { Component, Input, signal, WritableSignal, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, signal, WritableSignal, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OsobniPodaciComponent } from '../osobni-podaci/osobni-podaci.component';
 import { CiljeviMotivacijaComponent } from '../ciljevi-motivacija/ciljevi-motivacija.component';
@@ -37,6 +37,7 @@ export class PdfViewComponent {
   _titula: WritableSignal<string> = signal('');
 
   @ViewChild('pdfContainer') pdfContainer!: ElementRef;
+  @Output() pdfGenerated = new EventEmitter<void>();
 
   async generatePDF() {
     const element = this.pdfContainer.nativeElement;
@@ -44,7 +45,7 @@ export class PdfViewComponent {
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     const margin = 10; // 10mm margin
-
+  
     const pageElements = element.querySelectorAll('.pdf-page');
     for (let i = 0; i < pageElements.length; i++) {
       const pageElement = pageElements[i] as HTMLElement;
@@ -54,26 +55,25 @@ export class PdfViewComponent {
         if (img.complete) return Promise.resolve();
         return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
       }));
-
+  
       // Postavi vidljivost elementa
       pageElement.style.display = 'block';
       
       const canvas = await html2canvas(pageElement, {
         scale: 2,
         useCORS: true,
-        logging: true, // Uključi logging za debugiranje
         allowTaint: true,
-        foreignObjectRendering: false, // Isključi foreignObjectRendering
+        foreignObjectRendering: false,
         onclone: (clonedDoc) => {
           const clonedElement = clonedDoc.querySelector('.pdf-page') as HTMLElement;
           if (clonedElement) {
-            clonedElement.style.width = `${pageWidth}mm`;
-            clonedElement.style.height = 'auto';
-            clonedElement.style.position = 'relative';
+            clonedElement.style.width = `${pageWidth - 2 * margin}mm`;
+            clonedElement.style.padding = `${margin}mm`;
+            clonedElement.style.backgroundColor = '#f0f0f0';
           }
         }
       });
-
+  
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
       
       const imgWidth = pageWidth - 2 * margin;
@@ -82,11 +82,12 @@ export class PdfViewComponent {
       if (i > 0) {
         pdf.addPage();
       }
-
+  
       pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
       pageElement.style.display = '';
     }
-
+  
     pdf.save('zivotopis.pdf');
+    this.pdfGenerated.emit();
   }
 }

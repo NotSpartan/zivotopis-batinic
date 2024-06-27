@@ -21,5 +21,10 @@ body {
     text-align: center;
   }
   .pdf-mode * {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .pdf-mode .pdf-content > * {
+    padding: 0.5rem; /* Dodano za povećanje paddinga oko sadržaja */
+    background-color: #f0f0f0; /* Dodano za sivkasti prostor */
+    border-radius: 5px; /* Opciono, za zaobljene rubove */
   }
