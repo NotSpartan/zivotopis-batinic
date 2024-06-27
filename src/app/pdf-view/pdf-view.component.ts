@@ -41,28 +41,50 @@ export class PdfViewComponent {
   async generatePDF() {
     const element = this.pdfContainer.nativeElement;
     const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 10; // 10mm margin
+
     const pageElements = element.querySelectorAll('.pdf-page');
     for (let i = 0; i < pageElements.length; i++) {
       const pageElement = pageElements[i] as HTMLElement;
+      
+      // Čekaj da se sve slike učitaju
+      await Promise.all(Array.from(pageElement.querySelectorAll('img')).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+      }));
+
+      // Postavi vidljivost elementa
+      pageElement.style.display = 'block';
+      
       const canvas = await html2canvas(pageElement, {
-        scale: 1.2,
+        scale: 2,
         useCORS: true,
-        logging: false
+        logging: true, // Uključi logging za debugiranje
+        allowTaint: true,
+        foreignObjectRendering: false, // Isključi foreignObjectRendering
+        onclone: (clonedDoc) => {
+          const clonedElement = clonedDoc.querySelector('.pdf-page') as HTMLElement;
+          if (clonedElement) {
+            clonedElement.style.width = `${pageWidth}mm`;
+            clonedElement.style.height = 'auto';
+            clonedElement.style.position = 'relative';
+          }
+        }
       });
 
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
       
-      const imgWidth = pdfWidth;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const imgWidth = pageWidth - 2 * margin;
+      const imgHeight = Math.min((canvas.height * imgWidth) / canvas.width, pageHeight - 2 * margin);
       
       if (i > 0) {
         pdf.addPage();
       }
 
-      pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+      pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
+      pageElement.style.display = '';
     }
 
     pdf.save('zivotopis.pdf');
