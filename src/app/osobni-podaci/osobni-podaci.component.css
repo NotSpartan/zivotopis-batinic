@@ -3,6 +3,24 @@
   width: 100%;
 }
 
+:host-context(.pdf-page) {
+  display: block;
+  page-break-inside: avoid;
+}
+
+/* Za PDF mod */
+:host-context(.pdf-page) .pdf-mode {
+  padding: 0;
+  margin: 0;
+}
+
+.pdf-mode .experience-container {
+  padding: 0.5rem 0;
+}
+
+.pdf-mode .experience-item {
+  margin-bottom: 10px;
+}
 .profile-card {
   background-color: #ffffff;
   border-radius: 10px;

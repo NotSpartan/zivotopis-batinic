@@ -3,6 +3,25 @@
   width: 100%;
 }
 
+:host-context(.pdf-page) {
+  display: block;
+  page-break-inside: avoid;
+}
+
+/* Za PDF mod */
+:host-context(.pdf-page) .pdf-mode {
+  padding: 0;
+  margin: 0;
+}
+
+.pdf-mode .experience-container {
+  padding: 0.5rem 0;
+}
+
+.pdf-mode .experience-item {
+  margin-bottom: 10px;
+}
+
 .profile-header {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -142,6 +161,15 @@
   opacity: 1;
 }
 
+.pdf-mode .profile-header {
+  min-height: auto;
+  padding: 1rem;
+}
+
+.pdf-mode .profile-image-container {
+  width: 100px;
+  height: 100px;
+}
 .animated-title {
   min-height: 1.2em;
   display: inline-block;

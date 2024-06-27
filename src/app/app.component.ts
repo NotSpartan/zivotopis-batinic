@@ -88,7 +88,7 @@ export class AppComponent {
       for (let i = 0; i < pageElements.length; i++) {
         const pageElement = pageElements[i] as HTMLElement;
         const canvas = await html2canvas(pageElement, {
-          scale: 2,
+          scale: 1.5,  
           useCORS: true,
           logging: false
         });

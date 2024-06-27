@@ -1,10 +1,9 @@
 .pdf-container {
   width: 210mm;
   min-height: 297mm;
-  padding: 20mm;
-  margin: 10mm auto;
+  padding: 10mm;
+  margin: 0 auto;
   background: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .pdf-content {
@@ -13,25 +12,18 @@
 
 .pdf-page {
   page-break-after: always;
-  margin-bottom: 20mm;
+  display: flex;
+  flex-direction: column;
 }
 
 .pdf-page:last-child {
   page-break-after: auto;
 }
 
-  @page {
-    size: A4;
-    margin: 0;
-  }
-  
-  @media print {
-    .pdf-container {
-      width: 210mm;
-      height: 297mm;
-      margin: 0;
-      padding: 0;
-      page-break-after: always;
-    }
-  }
-  
+.pdf-page > * {
+  margin-bottom: 10mm;
+}
+
+.pdf-page > *:last-child {
+  margin-bottom: 0;
+}

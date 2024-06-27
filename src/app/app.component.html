@@ -12,13 +12,13 @@
     <nav class="horizontal-nav">
       <ul>
         <li><a (click)="setActiveTab('osobni-podaci')" [class.active]="activeTab() === 'osobni-podaci'">Info</a></li>
-        <li><a (click)="setActiveTab('ciljevi-motivacija')" [class.active]="activeTab() === 'ciljevi-motivacija'">Motivacija</a></li>
         <li><a (click)="setActiveTab('iskustvo')" [class.active]="activeTab() === 'iskustvo'">Iskustvo</a></li>
         <li><a (click)="setActiveTab('obrazovanje')" [class.active]="activeTab() === 'obrazovanje'">Obrazovanje</a></li>
         <li><a (click)="setActiveTab('tehnoloski-stack')" [class.active]="activeTab() === 'tehnoloski-stack'">Kompetencije</a></li>
+        <li><a (click)="setActiveTab('ciljevi-motivacija')" [class.active]="activeTab() === 'ciljevi-motivacija'">Motivacija</a></li>
       </ul>
     </nav>
-
+    
     <div class="content-container">
       <ng-container [ngSwitch]="activeTab()">
         <app-osobni-podaci 
@@ -27,10 +27,6 @@
           (imePrezimeChange)="updateImePrezime($event)"
           (titulaChange)="updateTitula($event)">
         </app-osobni-podaci>
-        <app-ciljevi-motivacija 
-          *ngSwitchCase="'ciljevi-motivacija'"
-          [isGeneratingPDF]="isGeneratingPDF()">
-        </app-ciljevi-motivacija>
         <app-iskustvo 
           *ngSwitchCase="'iskustvo'"
           [isGeneratingPDF]="isGeneratingPDF()">
@@ -43,6 +39,10 @@
           *ngSwitchCase="'tehnoloski-stack'"
           [isGeneratingPDF]="isGeneratingPDF()">
         </app-tehnoloski-stack>
+        <app-ciljevi-motivacija 
+          *ngSwitchCase="'ciljevi-motivacija'"
+          [isGeneratingPDF]="isGeneratingPDF()">
+        </app-ciljevi-motivacija>
       </ng-container>
     </div>
 

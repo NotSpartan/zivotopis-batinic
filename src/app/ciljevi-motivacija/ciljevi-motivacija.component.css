@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
+:host-context(.pdf-page) {
+  display: block;
+  page-break-inside: avoid;
+}
+
+/* Za PDF mod */
+:host-context(.pdf-page) .pdf-mode {
+  padding: 0;
+  margin: 0;
+}
+
+.pdf-mode .experience-container {
+  padding: 0.5rem 0;
+}
+
+.pdf-mode .experience-item {
+  margin-bottom: 10px;
+}
 .motivations-container {
   background-color: #f9f9f9;
   border-radius: 10px;
