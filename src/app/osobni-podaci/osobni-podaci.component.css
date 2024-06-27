@@ -9,12 +9,20 @@
 }
 
 :host-context(.pdf-page) .pdf-mode {
-  padding: 0.5rem 0;
-  margin: 0;
+  padding: 0.25rem 0;
 }
 
 .pdf-mode .experience-container {
   padding: 0.5rem 0;
+}
+
+.profile-body.pdf-mode .field {
+  margin-bottom: 0.25rem;
+}
+
+.pdf-mode .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
 }
 
 .pdf-mode .experience-item {
@@ -29,7 +37,7 @@
 
 .profile-card.pdf-mode {
   box-shadow: none;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .subtitle {

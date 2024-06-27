@@ -1,6 +1,6 @@
 <div class="profile-card" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Osobni podaci</h2>
-  <div class="profile-body">
+  <div class="profile-body" [class.pdf-mode]="isGeneratingPDF">
     <div *ngFor="let field of fields()" class="field">
       <i class="material-icons">{{ field.icon }}</i>
       <div class="field-content">

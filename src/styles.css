@@ -20,3 +20,6 @@ body {
     padding: 20px;
     text-align: center;
   }
+  .pdf-mode * {
+    margin-bottom: 0.5rem;
+  }

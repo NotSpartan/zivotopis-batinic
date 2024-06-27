@@ -16,14 +16,36 @@
   flex-direction: column;
 }
 
+.pdf-page.first-page > * {
+  margin-bottom: 5mm; 
+}
 .pdf-page:last-child {
   page-break-after: auto;
 }
 
 .pdf-page > * {
-  margin-bottom: 15mm;
+  margin-bottom: 10mm;
+}
+
+.pdf-page > app-profile-header {
+  margin-bottom: 5mm;
 }
 
 .pdf-page > *:last-child {
   margin-bottom: 0;
+}
+
+.generate-pdf-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.generate-pdf-button:hover {
+  background-color: #45a049;
 }
