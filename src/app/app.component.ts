@@ -80,15 +80,32 @@ export class AppComponent {
   
     const element = document.querySelector('.pdf-container');
     if (element) {
-      const canvas = await html2canvas(element as HTMLElement);
-      const imgData = canvas.toDataURL('image/png');
-  
       const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      // Koristimo html2canvas za svaku stranicu
+      const canvas = await html2canvas(element as HTMLElement, {
+        scale: 2,
+        useCORS: true,
+        logging: false
+      });
   
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      
+      let heightLeft = canvas.height;
+      let position = 0;
+  
+      pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, canvas.height * pdfWidth / canvas.width);
+      heightLeft -= pdfHeight;
+  
+      while (heightLeft >= 0) {
+        position = heightLeft - canvas.height;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, canvas.height * pdfWidth / canvas.width);
+        heightLeft -= pdfHeight;
+      }
+  
       pdf.save('zivotopis.pdf');
     }
   
