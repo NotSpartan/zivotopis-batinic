@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, Input, Output, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -22,6 +22,8 @@ interface Iskustvo {
   imports: [CommonModule, FormsModule],
 })
 export class IskustvoComponent {
+  @Input() isGeneratingPDF = false;
+
   constructor(private dataService: DataService) {}
 
   ngOnInit() {

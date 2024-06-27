@@ -6,7 +6,7 @@
   <div class="profile-content">
     <div class="profile-image-container">
       <img [src]="slika" class="profile-image">
-      <div *ngIf="isAuthor" class="image-overlay">
+      <div *ngIf="isAuthor && !isGeneratingPDF" class="image-overlay">
         <div class="overlay-actions">
           <label class="upload-btn" for="fileInput">
             <i class="fa fa-upload"></i>
@@ -15,7 +15,7 @@
           </label>
           <div class="delete-btn" (click)="deleteImage()">
             <i class="fa fa-times"></i>
-            <span>Obrišii</span>
+            <span>Obriši</span>
           </div>
         </div>
       </div>
@@ -28,4 +28,6 @@
       </div>
     </div>
   </div>
+
+  <button class="generate-pdf-button" (click)="generatePDF()">Generiraj PDF</button>
 </div>

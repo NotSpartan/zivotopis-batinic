@@ -33,7 +33,10 @@
   "node_modules/@fontsource/roboto/500.css"
 
             ],
-            "scripts": []
+            "scripts":  [
+              "node_modules/html2canvas/dist/html2canvas.min.js",
+              "node_modules/jspdf/dist/jspdf.min.js"
+            ]
           },
           "configurations": {
             "production": {

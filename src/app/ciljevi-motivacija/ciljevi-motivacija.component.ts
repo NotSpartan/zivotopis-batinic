@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,6 +15,7 @@ interface Motivation {
   imports: [CommonModule, FormsModule]
 })
 export class CiljeviMotivacijaComponent {
+  @Input() isGeneratingPDF = false;
   motivations = signal<Motivation[]>([
     { id: 1, text: 'Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.' },
     { id: 2, text: 'Želim raditi u dinamičnom okruženju koje potiče inovacije i kreativnost.' },

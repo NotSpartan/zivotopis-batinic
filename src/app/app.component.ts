@@ -1,4 +1,4 @@
-import { Component, WritableSignal, signal } from '@angular/core';
+import { Component, WritableSignal, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OsobniPodaciComponent } from './osobni-podaci/osobni-podaci.component';
 import { CiljeviMotivacijaComponent } from './ciljevi-motivacija/ciljevi-motivacija.component';
@@ -24,22 +24,28 @@ import { DataService } from './services/data.service';
   ]
 })
 export class AppComponent {
-  constructor(private dataService: DataService) {}
+  private dataService = inject(DataService);
+  
   activeTab = signal('osobni-podaci');
-
   imePrezime: WritableSignal<string> = signal('Josip Batinić');
   titula: WritableSignal<string> = signal('Software Developer');
   slika = signal('assets/default-profile.png');
   isAuthor = signal(true);
+  isGeneratingPDF = signal(false);
   
   ngOnInit() {
     const data = this.dataService.getOsobniPodaciData();
-    this.imePrezime.set(data.imePrezime);
-    this.titula.set(data.titula);
+    this.imePrezime.set(data.imePrezime || 'Josip Batinić');
+    this.titula.set(data.titula || 'Software Developer');
     this.slika.set(data.slika || 'assets/default-profile.png');
   }
+
   updateSlika(novaSlika: string) {
     this.slika.set(novaSlika);
+    this.dataService.setOsobniPodaciData({
+      ...this.dataService.getOsobniPodaciData(),
+      slika: novaSlika,
+    });
   }
 
   setActiveTab(tab: string) {
@@ -48,9 +54,17 @@ export class AppComponent {
 
   updateImePrezime(newImePrezime: string) {
     this.imePrezime.set(newImePrezime);
+    this.dataService.setOsobniPodaciData({
+      ...this.dataService.getOsobniPodaciData(),
+      imePrezime: newImePrezime,
+    });
   }
 
   updateTitula(newTitula: string) {
     this.titula.set(newTitula);
+    this.dataService.setOsobniPodaciData({
+      ...this.dataService.getOsobniPodaciData(),
+      titula: newTitula,
+    });
   }
 }

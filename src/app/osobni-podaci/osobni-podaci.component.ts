@@ -1,9 +1,8 @@
-import { Component, signal, computed, inject, WritableSignal, EventEmitter, Output } from '@angular/core';
+import { Component, Input, Output, signal, computed, inject, WritableSignal, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
-
 interface Field {
   icon: string;
   value: WritableSignal<string>;
@@ -23,7 +22,9 @@ interface SocialLink {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class OsobniPodaciComponent {
+  export class OsobniPodaciComponent {
+  @Input() isGeneratingPDF = false;
+
   private authService = inject(AuthService);
   private dataService = inject(DataService);
 

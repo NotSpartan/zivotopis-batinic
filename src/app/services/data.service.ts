@@ -19,13 +19,15 @@ export class DataService {
   private tehnologijeData: any[] = [];
   private vjestineData: Vjestina[] = [];
   private certifikatiData: Certifikat[] = [];
+  private ciljeviMotivacijaData: string[] = [];
 
   private osobniPodaciData: any = {
     imePrezime: '',
     titula: '',
     email: '',
     telefon: '',
-    socialLinks: []
+    socialLinks: [],
+    slika: ''
   };
 
   setEducationData(data: any[]) {
@@ -69,10 +71,18 @@ export class DataService {
   }
 
   setOsobniPodaciData(data: any) {
-    this.osobniPodaciData = data;
+    this.osobniPodaciData = { ...this.osobniPodaciData, ...data };
   }
 
   getOsobniPodaciData() {
     return this.osobniPodaciData;
+  }
+
+  setCiljeviMotivacijaData(data: string[]) {
+    this.ciljeviMotivacijaData = data;
+  }
+
+  getCiljeviMotivacijaData() {
+    return this.ciljeviMotivacijaData;
   }
 }

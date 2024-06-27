@@ -4,10 +4,11 @@
     [imePrezime]="imePrezime"
     [titula]="titula"
     [isAuthor]="isAuthor()"
+    [isGeneratingPDF]="isGeneratingPDF()"
     (slikaChange)="updateSlika($event)">
   </app-profile-header>
 
-  <nav class="horizontal-nav">
+  <nav class="horizontal-nav" *ngIf="!isGeneratingPDF()">
     <ul>
       <li><a (click)="setActiveTab('osobni-podaci')" [class.active]="activeTab() === 'osobni-podaci'">Info</a></li>
       <li><a (click)="setActiveTab('ciljevi-motivacija')" [class.active]="activeTab() === 'ciljevi-motivacija'">Motivacija</a></li>
@@ -19,14 +20,28 @@
 
   <div class="content-container">
     <ng-container [ngSwitch]="activeTab()">
-      <app-osobni-podaci *ngSwitchCase="'osobni-podaci'"
+      <app-osobni-podaci 
+        *ngSwitchCase="'osobni-podaci'"
+        [isGeneratingPDF]="isGeneratingPDF()"
         (imePrezimeChange)="updateImePrezime($event)"
         (titulaChange)="updateTitula($event)">
       </app-osobni-podaci>
-      <app-ciljevi-motivacija *ngSwitchCase="'ciljevi-motivacija'"></app-ciljevi-motivacija>
-      <app-iskustvo *ngSwitchCase="'iskustvo'"></app-iskustvo>
-      <app-obrazovanje *ngSwitchCase="'obrazovanje'"></app-obrazovanje>
-      <app-tehnoloski-stack *ngSwitchCase="'tehnoloski-stack'"></app-tehnoloski-stack>
+      <app-ciljevi-motivacija 
+        *ngSwitchCase="'ciljevi-motivacija'"
+        [isGeneratingPDF]="isGeneratingPDF()">
+      </app-ciljevi-motivacija>
+      <app-iskustvo 
+        *ngSwitchCase="'iskustvo'"
+        [isGeneratingPDF]="isGeneratingPDF()">
+      </app-iskustvo>
+      <app-obrazovanje 
+        *ngSwitchCase="'obrazovanje'"
+        [isGeneratingPDF]="isGeneratingPDF()">
+      </app-obrazovanje>
+      <app-tehnoloski-stack 
+        *ngSwitchCase="'tehnoloski-stack'"
+        [isGeneratingPDF]="isGeneratingPDF()">
+      </app-tehnoloski-stack>
     </ng-container>
   </div>
 </div>

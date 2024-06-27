@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import {  Component, Input, Output,  signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -18,6 +18,7 @@ interface Tehnologija {
   imports: [CommonModule, FormsModule],
 })
 export class TehnoloskiStackComponent {
+  @Input() isGeneratingPDF = false;
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
