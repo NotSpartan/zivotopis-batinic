@@ -16,6 +16,13 @@
             "outputPath": "dist/zivotopis-batinic",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "html2canvas",
+              "jspdf"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -29,14 +36,10 @@
             ],
             "styles": [
               "src/styles.css",
-                "node_modules/@fontsource/roboto/400.css",
-  "node_modules/@fontsource/roboto/500.css"
-
+              "node_modules/@fontsource/roboto/400.css",
+              "node_modules/@fontsource/roboto/500.css"
             ],
-            "scripts":  [
-              "node_modules/html2canvas/dist/html2canvas.min.js",
-              "node_modules/jspdf/dist/jspdf.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -94,9 +97,8 @@
             ],
             "styles": [
               "src/styles.css",
-                "node_modules/@fontsource/roboto/400.css",
-  "node_modules/@fontsource/roboto/500.css"
-
+              "node_modules/@fontsource/roboto/400.css",
+              "node_modules/@fontsource/roboto/500.css"
             ],
             "scripts": []
           }
