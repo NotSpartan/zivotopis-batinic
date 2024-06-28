@@ -31,7 +31,7 @@
         <li *ngFor="let responsibility of experience.responsibilities">{{ responsibility }}</li>
       </ul>
       <div class="upload-icon" *ngIf="!isGeneratingPDF">
-        <label [for]="'icon-upload-' + experience.id" class="action-button upload-button">
+        <label [for]="'icon-upload-' + experience.id" class="upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
         </label>
         <input [id]="'icon-upload-' + experience.id" type="file" (change)="onFileSelected($event, experience)" accept="image/*">

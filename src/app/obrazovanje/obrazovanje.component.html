@@ -26,7 +26,7 @@
       </div>
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
       <div class="upload-icon" *ngIf="!isGeneratingPDF">
-        <label [for]="'icon-upload-' + education.id" class="action-button upload-button">
+        <label [for]="'icon-upload-' + education.id" class="upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
         </label>
         <input [id]="'icon-upload-' + education.id" type="file" (change)="onFileSelected($event, education)" accept="image/*">
