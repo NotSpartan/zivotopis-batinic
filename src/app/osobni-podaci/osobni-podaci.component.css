@@ -3,33 +3,34 @@
   width: 100%;
 }
 
+:host-context(.pdf-mode) {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
 :host-context(.pdf-page) {
   display: block;
   page-break-inside: avoid;
 }
 
 :host-context(.pdf-page) .pdf-mode {
-  padding: 0.5rem 0;
-  margin: 0;
+  padding: 0.25rem 0;
 }
 
-.pdf-mode .experience-container {
-  padding: 0.5rem 0;
-}
-
-.pdf-mode .experience-item {
-  margin-bottom: 10px;
-}
 .profile-card {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1.5rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .profile-card.pdf-mode {
   box-shadow: none;
-  padding: 1rem;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
 }
 
 .subtitle {
@@ -45,8 +46,17 @@
   letter-spacing: 0.5px;
 }
 
+.pdf-mode .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
 .profile-body {
   padding: 0.5rem;
+}
+
+.profile-body.pdf-mode .field {
+  margin-bottom: 0.25rem;
 }
 
 .field {
@@ -149,62 +159,43 @@
   outline: none;
 }
 
-.edit-button, .link-edit button, .link-add button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.edit-button:hover, .link-edit button:hover, .link-add button:hover {
+.edit-button:hover, .remove-link-btn:hover, .add-link-btn:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
   box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
 }
 
-.edit-button:active, .link-edit button:active, .link-add button:active {
+.edit-button:active, .remove-link-btn:active, .add-link-btn:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
 }
 
-.edit-button i {
-  font-size: 1.2rem;
+.remove-link-btn, .add-link-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
 }
 
-.edit-button span {
-  font-size: 0.9rem;
+.remove-link-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
+}
+
+.remove-link-btn:hover {
+  background: linear-gradient(135deg, #ff5e5e 0%, #e64b4c 100%);
 }
 
 .pdf-mode .edit-button,
-.pdf-mode .link-edit button,
-.pdf-mode .link-add button {
+.pdf-mode .remove-link-btn,
+.pdf-mode .add-link-btn {
   display: none;
 }
 
 @media (max-width: 600px) {
   .profile-card {
-    margin: 1rem;
+    padding: 1rem;
   }
 
-  .profile-header {
-    padding: 1.5rem;
-  }
-
-  .profile-body {
-    padding: 1.5rem;
+  .subtitle {
+    font-size: 1.4rem;
   }
 
   .field i {
@@ -216,7 +207,7 @@
     font-size: 0.9rem;
   }
 
-  .edit-button, .link-edit button, .link-add button {
+  .edit-button, .remove-link-btn, .add-link-btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }

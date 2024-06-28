@@ -8,19 +8,11 @@
   page-break-inside: avoid;
 }
 
-/* Za PDF mod */
-:host-context(.pdf-page) {
-  display: block;
-  page-break-inside: avoid;
-}
-
-:host-context(.pdf-page) .pdf-mode {
-  padding: 0.5rem 0;
-  margin: 0;
-}
-
-.pdf-mode .experience-item {
-  margin-bottom: 10px;
+:host-context(.pdf-mode) {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .experience-container {
@@ -28,12 +20,13 @@
   border-radius: 10px;
   padding: 1.5rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .experience-container.pdf-mode {
-  background-color: transparent;
+  background-color: #f0f0f0;
   box-shadow: none;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .subtitle {
@@ -47,6 +40,11 @@
   padding-bottom: 0.75rem;
   border-bottom: 2px solid #667eea;
   letter-spacing: 0.5px;
+}
+
+.pdf-mode .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .experience-list {
@@ -67,6 +65,7 @@
   border-left: none;
   box-shadow: none;
   padding: 10px 0;
+  margin-bottom: 15px;
 }
 
 .experience-header {
@@ -348,7 +347,3 @@
     font-size: 0.8rem;
   }
 }
-
-
-
-

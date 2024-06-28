@@ -1,21 +1,41 @@
-.pdf-container {
+
+:host-context(.pdf-mode) .pdf-content > * {
+  margin-bottom: 0.5rem; /* Smanjeno s defaultnih vrijednosti */
+}
+
+:host-context(.pdf-mode) .pdf-page > * {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.pdf-preview {
   width: 210mm;
   min-height: 297mm;
-  padding: 20mm 15mm;
   margin: 0 auto;
   background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .pdf-content {
-  page-break-inside: auto;
+  padding: 20mm 15mm;
 }
 
 .pdf-page {
   page-break-after: always;
+  page-break-inside: avoid;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 10mm;
+  margin-bottom: 10mm; 
 }
 
+app-tehnoloski-stack {
+  display: block;
+  page-break-inside: avoid;
+}
 .pdf-page:last-child {
   page-break-after: auto;
 }
@@ -26,4 +46,57 @@
 
 .pdf-page > *:last-child {
   margin-bottom: 0;
+}
+
+.pdf-page.first-page > * {
+  margin-bottom: 10mm;
+}
+
+.pdf-page > app-profile-header {
+  margin-bottom: 10mm;
+}
+
+.generate-pdf-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.generate-pdf-button:hover {
+  background-color: #45a049;
+}
+
+@media print {
+  .pdf-preview {
+    box-shadow: none;
+  }
+  
+  .generate-pdf-button {
+    display: none;
+  }
+
+  .pdf-page {
+    page-break-after: always;
+  }
+
+  .pdf-page:last-child {
+    page-break-after: auto;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media screen and (max-width: 210mm) {
+  .pdf-preview {
+    width: 100%;
+  }
 }

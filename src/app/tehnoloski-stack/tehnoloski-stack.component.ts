@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, inject } from '@angular/core';
+import { Component, Input, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -7,6 +7,7 @@ interface Tehnologija {
   id: number;
   naziv: string;
   razina: string;
+  opis?: string;
   ikona?: string;
 }
 
@@ -28,6 +29,7 @@ export class TehnoloskiStackComponent {
     id: 0,
     naziv: '',
     razina: '',
+    opis: ''
   };
 
   editingTehnologija: Tehnologija | null = null;
@@ -63,7 +65,7 @@ export class TehnoloskiStackComponent {
         this.dataService.setTechnologiesData(updatedTehnologije);
         return updatedTehnologije;
       });
-      this.novaTehnoloija = { id: 0, naziv: '', razina: '' };
+      this.novaTehnoloija = { id: 0, naziv: '', razina: '', opis: '' };
     }
   }
 
@@ -100,7 +102,7 @@ export class TehnoloskiStackComponent {
     this.editingTehnologija = null;
   }
 
-  odaberiIkonu(event: Event, tehnologija: Tehnologija) {
+  onFileSelected(event: Event, tehnologija: Tehnologija) {
     if (this.isGeneratingPDF) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {

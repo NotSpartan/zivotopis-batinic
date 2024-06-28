@@ -1,6 +1,6 @@
-<div class="pdf-container">
-  <div class="pdf-content">
-    <div class="pdf-page">
+<div class="pdf-preview">
+  <div #pdfContainer class="pdf-content">
+    <div class="pdf-page first-page">
       <app-profile-header
         [slika]="slika"
         [imePrezime]="_imePrezime"
@@ -15,6 +15,8 @@
     </div>
     <div class="pdf-page">
       <app-obrazovanje [isGeneratingPDF]="true"></app-obrazovanje>
+    </div>
+    <div class="pdf-page">
       <app-tehnoloski-stack [isGeneratingPDF]="true"></app-tehnoloski-stack>
     </div>
     <div class="pdf-page">
@@ -22,3 +24,5 @@
     </div>
   </div>
 </div>
+
+<button (click)="generatePDF()" class="generate-pdf-button">Generate and Download PDF</button>
