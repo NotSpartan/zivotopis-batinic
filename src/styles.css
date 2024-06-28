@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 * {
   box-sizing: border-box;
@@ -38,7 +39,6 @@ h1 {
   margin-bottom: 1rem;
 }
 
-/* Dodatni stilovi za poboljšanje čitljivosti u PDF-u */
 .pdf-mode {
   font-size: 12pt;
   line-height: 1.5;
@@ -63,7 +63,6 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-/* Stilovi za poboljšanje izgleda liste u PDF-u */
 .pdf-mode ul, .pdf-mode ol {
   padding-left: 20px;
   margin-bottom: 0.5rem;
@@ -73,7 +72,6 @@ h1 {
   margin-bottom: 0.25rem;
 }
 
-/* Stilovi za tablice u PDF-u */
 .pdf-mode table {
   width: 100%;
   border-collapse: collapse;
@@ -91,20 +89,17 @@ h1 {
   font-weight: bold;
 }
 
-/* Stilovi za linkove u PDF-u */
 .pdf-mode a {
   color: #0066cc;
   text-decoration: none;
 }
 
-/* Stilovi za gumbe u web aplikaciji */
 button {
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Responzivni dizajn */
 @media (max-width: 600px) {
   body {
     font-size: 14px;

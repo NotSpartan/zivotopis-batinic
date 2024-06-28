@@ -9,8 +9,8 @@
 }
 
 .pdf-preview {
-  width: 210mm;
-  min-height: 297mm;
+  width: 595pt; /* A4 širina u točkama */
+  min-height: 842pt; /* A4 visina u točkama */
   margin: 0 auto;
   background: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -18,7 +18,7 @@
 }
 
 .pdf-content {
-  padding: 20mm 15mm;
+  padding: 40pt 30pt; /* Prilagođeno na točke */
 }
 
 .pdf-page {
@@ -27,13 +27,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 10mm;
-  margin-bottom: 10mm; 
-}
-
-app-tehnoloski-stack {
-  display: block;
-  page-break-inside: avoid;
+  padding: 40pt; /* Prilagođeno na točke */
+  margin-bottom: 40pt; /* Prilagođeno na točke */
 }
 
 .pdf-page:last-child {
@@ -46,14 +41,6 @@ app-tehnoloski-stack {
 
 .pdf-page > *:last-child {
   margin-bottom: 0;
-}
-
-.pdf-page.first-page > * {
-  margin-bottom: 1rem;
-}
-
-.pdf-page > app-profile-header {
-  margin-bottom: 1rem;
 }
 
 .generate-pdf-button {
@@ -83,10 +70,7 @@ app-tehnoloski-stack {
 
   .pdf-page {
     page-break-after: always;
-  }
-
-  .pdf-page:last-child {
-    page-break-after: auto;
+    page-break-inside: avoid;
   }
 }
 
@@ -95,8 +79,95 @@ app-tehnoloski-stack {
   margin: 0;
 }
 
-@media screen and (max-width: 210mm) {
+@media screen and (max-width: 595pt) {
   .pdf-preview {
     width: 100%;
   }
+}
+
+/* Dodatni stilovi za poboljšanje izgleda PDF-a */
+
+.pdf-page {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pdf-page h1, .pdf-page h2, .pdf-page h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.pdf-page p {
+  margin-bottom: 0.5rem;
+}
+
+.pdf-page ul, .pdf-page ol {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding-left: 20pt;
+}
+
+.pdf-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.pdf-page th, .pdf-page td {
+  border: 1pt solid #ddd;
+  padding: 5pt;
+  text-align: left;
+}
+
+.pdf-page th {
+  background-color: #f2f2f2;
+}
+
+/* Stilovi za specifične komponente unutar PDF-a */
+
+.pdf-page .profile-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pdf-page .profile-header img {
+  width: 100pt;
+  height: 100pt;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-page .section-title {
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  border-bottom: 1pt solid #333;
+  padding-bottom: 5pt;
+}
+
+.pdf-page .experience-item, .pdf-page .education-item {
+  margin-bottom: 1rem;
+}
+
+.pdf-page .experience-item h3, .pdf-page .education-item h3 {
+  margin-bottom: 0.25rem;
+}
+
+.pdf-page .skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pdf-page .skill-item {
+  background-color: #f0f0f0;
+  padding: 5pt 10pt;
+  border-radius: 15pt;
+  font-size: 10pt;
+}
+
+/* Osigurajte da nema preloma unutar pojedinih sekcija */
+.pdf-page .section {
+  page-break-inside: avoid;
 }
