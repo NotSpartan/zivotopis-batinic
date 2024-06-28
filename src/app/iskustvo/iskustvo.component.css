@@ -154,8 +154,8 @@
 
 .company-icon {
   width: 100px;  
-  height: 100px; 
-  margin-right: 20px; 
+  height: 100px;
+  margin-right: 20px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -176,36 +176,36 @@
   margin-top: 15px;
 }
 
-.upload-button {
+.experience-container .upload-icon .upload-button {
   display: inline-block;
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-.upload-button:hover {
+.experience-container .upload-icon .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
 }
 
-.upload-button:active {
+.experience-container .upload-icon .upload-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
 }
 
-.upload-button i {
-  margin-right: 8px;
+.experience-container .upload-icon .upload-button i {
+  margin-right: 6px;
 }
 
 .upload-icon input[type="file"] {
@@ -253,6 +253,12 @@
 .add-responsibility input {
   flex-grow: 1;
   margin-right: 10px;
+}
+
+.add-responsibility .action-button {
+  padding: 0.25rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
 }
 
 .new-responsibilities {
@@ -338,9 +344,19 @@
     height: 60px;
   }
 
-  .action-button, .upload-button {
+  .action-button {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
+  }
+
+  .experience-container .upload-icon .upload-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .add-responsibility .action-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
   }
 
   .date {
