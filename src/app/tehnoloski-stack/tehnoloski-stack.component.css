@@ -3,16 +3,16 @@
   width: 100%;
 }
 
+:host-context(.pdf-page) {
+  display: block;
+  page-break-inside: avoid;
+}
+
 :host-context(.pdf-mode) {
   padding: 0.5rem;
   background-color: #f0f0f0;
   border-radius: 5px;
   margin-bottom: 0.5rem;
-}
-
-:host-context(.pdf-page) {
-  display: block;
-  page-break-inside: avoid;
 }
 
 .tehnologije-container {
@@ -55,11 +55,19 @@
 .tehnologija-item {
   width: calc(50% - 7.5px);
   margin-bottom: 15px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #667eea;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .pdf-mode .tehnologija-item {
-  width: 100%;
-  margin-bottom: 10px;
+  background-color: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 10px 0;
+  margin-bottom: 15px;
 }
 
 .tehnologija-header {
@@ -88,10 +96,10 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 8px;
+  padding: 4px;
 }
 
 .icon-button:hover {
@@ -121,9 +129,9 @@
 }
 
 .tehnologija-ikona {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
   overflow: hidden;
   border-radius: 50%;
   flex-shrink: 0;
@@ -140,7 +148,7 @@
 }
 
 .naziv {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #333;
   display: block;
   margin-bottom: 5px;
@@ -149,42 +157,53 @@
 .opis {
   color: #666;
   font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.bullet-points {
+  margin-top: 5px;
+  padding-left: 20px;
+  font-size: 0.9em;
+}
+
+.bullet-points li {
+  margin-bottom: 3px;
 }
 
 .upload-icon {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .upload-button {
   display: inline-block;
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 0.8rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 0.9rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
 }
 
 .upload-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
 }
 
 .upload-button i {
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .upload-icon input[type="file"] {
@@ -224,6 +243,37 @@
   box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
+.add-bullet-point {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.add-bullet-point input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.add-bullet-point .action-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
+}
+
+.new-bullet-points {
+  list-style-type: none;
+  padding: 0;
+}
+
+.new-bullet-points li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
 .action-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -259,6 +309,14 @@
   margin-top: 1rem;
 }
 
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
 .pdf-mode .tehnologija-controls,
 .pdf-mode .upload-icon,
 .pdf-mode .add-tehnologija,
@@ -266,7 +324,11 @@
   display: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .tehnologija-item {
+    width: 100%;
+  }
+
   .tehnologije-container {
     padding: 1rem;
   }
@@ -284,9 +346,19 @@
     height: 50px;
   }
 
-  .action-button, .upload-button {
+  .action-button {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
+  }
+
+  .upload-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .add-bullet-point .action-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
   }
 
   .razina {

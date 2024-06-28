@@ -21,11 +21,14 @@
         <div class="tehnologija-detalji">
           <span class="naziv">{{ tehnologija.naziv }}</span>
           <div *ngIf="tehnologija.opis" class="opis">{{ tehnologija.opis }}</div>
+          <ul class="bullet-points">
+            <li *ngFor="let point of tehnologija.bulletPoints">{{ point }}</li>
+          </ul>
         </div>
       </div>
       <div class="upload-icon" *ngIf="!isGeneratingPDF">
-        <label [for]="'icon-upload-' + tehnologija.id" class="action-button upload-button">
-          <i class="fas fa-upload"></i> Dodaj ikonu
+        <label [for]="'icon-upload-' + tehnologija.id" class="upload-button">
+          <i class="fas fa-upload"></i> Logo
         </label>
         <input [id]="'icon-upload-' + tehnologija.id" type="file" (change)="onFileSelected($event, tehnologija)" accept="image/*">
       </div>
@@ -36,6 +39,16 @@
     <input [(ngModel)]="editingTehnologija.naziv" placeholder="Naziv tehnologije" class="tehnologija-input">
     <input [(ngModel)]="editingTehnologija.razina" placeholder="Razina poznavanja" class="tehnologija-input">
     <textarea [(ngModel)]="editingTehnologija.opis" placeholder="Opis (opcionalno)" class="tehnologija-input"></textarea>
+    <div class="add-bullet-point">
+      <input [(ngModel)]="newBulletPoint" placeholder="Dodaj stavku" class="tehnologija-input">
+      <button (click)="addBulletPoint()" class="action-button">Dodaj</button>
+    </div>
+    <ul class="new-bullet-points">
+      <li *ngFor="let point of editingTehnologija.bulletPoints; let i = index">
+        {{ point }}
+        <button class="remove-btn" (click)="removeBulletPoint(i)">×</button>
+      </li>
+    </ul>
     <div class="edit-controls">
       <button (click)="saveEdit()" class="action-button">Spremi</button>
       <button (click)="cancelEdit()" class="action-button">Odustani</button>
@@ -47,6 +60,16 @@
     <input [(ngModel)]="novaTehnoloija.naziv" placeholder="Naziv tehnologije" class="tehnologija-input">
     <input [(ngModel)]="novaTehnoloija.razina" placeholder="Razina poznavanja" class="tehnologija-input">
     <textarea [(ngModel)]="novaTehnoloija.opis" placeholder="Opis (opcionalno)" class="tehnologija-input"></textarea>
+    <div class="add-bullet-point">
+      <input [(ngModel)]="newBulletPoint" placeholder="Dodaj stavku" class="tehnologija-input">
+      <button (click)="addBulletPoint()" class="action-button">Dodaj</button>
+    </div>
+    <ul class="new-bullet-points">
+      <li *ngFor="let point of novaTehnoloija.bulletPoints; let i = index">
+        {{ point }}
+        <button class="remove-btn" (click)="removeBulletPoint(i)">×</button>
+      </li>
+    </ul>
     <button (click)="dodajTehnologiju()" class="action-button">Dodaj tehnologiju</button>
   </div>
 </div>
