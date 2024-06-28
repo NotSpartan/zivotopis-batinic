@@ -22,12 +22,12 @@ interface Obrazovanje {
 })
 export class ObrazovanjeComponent {
   @Input() isGeneratingPDF = false;
-  
+ 
   private dataService = inject(DataService);
 
   educations = signal<Obrazovanje[]>([]);
 
-  sortedEducations = computed(() => 
+  sortedEducations = computed(() =>
     this.educations().slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))
   );
 
@@ -38,7 +38,33 @@ export class ObrazovanjeComponent {
     const savedData = this.dataService.getEducationData();
     if (savedData.length > 0) {
       this.educations.set(savedData);
+    } else {
+      this.setDefaultEducations();
     }
+  }
+
+  setDefaultEducations() {
+    const defaultEducations: Obrazovanje[] = [
+      {
+        id: 1,
+        year: '2022',
+        title: 'Magistar računarstva',
+        institution: 'Fakultet elektrotehnike i računarstva',
+        location: 'Zagreb, Hrvatska',
+        description: 'Specijalizacija u području umjetne inteligencije i strojnog učenja.',
+        institutionIcon: 'assets/fer-institution-icon.png'
+      },
+      {
+        id: 2,
+        year: '2020',
+        title: 'Prvostupnik računarstva',
+        institution: 'Fakultet elektrotehnike i računarstva',
+        location: 'Zagreb, Hrvatska',
+        description: 'Fokus na programskom inženjerstvu i bazama podataka.',
+        institutionIcon: 'assets/fer-institution-icon.png'
+      }
+    ];
+    this.educations.set(defaultEducations);
   }
 
   addEducation() {
@@ -72,7 +98,7 @@ export class ObrazovanjeComponent {
     if (this.isGeneratingPDF) return;
     if (this.editingEducation) {
       this.educations.update(educations => {
-        const updatedEducations = educations.map(e => 
+        const updatedEducations = educations.map(e =>
           e.id === this.editingEducation!.id ? this.editingEducation! : e
         );
         this.dataService.setEducationData(updatedEducations);

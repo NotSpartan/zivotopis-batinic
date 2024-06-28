@@ -17,7 +17,7 @@ interface Motivation {
 })
 export class CiljeviMotivacijaComponent {
   @Input() isGeneratingPDF = false;
-  
+ 
   private dataService = inject(DataService);
 
   motivations = signal<Motivation[]>([]);
@@ -29,7 +29,21 @@ export class CiljeviMotivacijaComponent {
 
   ngOnInit() {
     const data = this.dataService.getCiljeviMotivacijaData();
-    this.motivations.set(data.map((text, index) => ({ id: index + 1, text })));
+    if (data.length > 0) {
+      this.motivations.set(data.map((text, index) => ({ id: index + 1, text })));
+    } else {
+      this.setDefaultMotivations();
+    }
+  }
+
+  setDefaultMotivations() {
+    const defaultMotivations = [
+      "Težim kontinuiranom učenju i profesionalnom razvoju u području softverskog razvoja.",
+      "Želim raditi na izazovnim projektima koji će proširiti moje tehničke vještine.",
+      "Cilj mi je doprinijeti inovativnim rješenjima koja imaju pozitivan utjecaj na korisnike.",
+      "Motivira me rad u dinamičnom timu gdje mogu dijeliti znanje i učiti od kolega."
+    ];
+    this.motivations.set(defaultMotivations.map((text, index) => ({ id: index + 1, text })));
   }
 
   nextMotivation() {

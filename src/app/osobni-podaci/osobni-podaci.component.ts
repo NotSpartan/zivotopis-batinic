@@ -8,7 +8,8 @@ interface Field {
   icon: string;
   value: WritableSignal<string>;
   type: 'text' | 'email' | 'tel';
-  placeholder: string; 
+  placeholder: string;
+  name: string; // Dodano za lakše referenciranje
 }
 
 interface SocialLink {
@@ -30,40 +31,37 @@ export class OsobniPodaciComponent {
   private dataService = inject(DataService);
 
   slika = signal('assets/default-profile.png');
-  imePrezime = signal('Josip Batinić');
-  titula = signal('Software Developer');
-  email = signal('josip.batinic9@gmail.com');
-  telefon = signal('099/8580-947');
+  imePrezime = signal('');
+  titula = signal('');
+  email = signal('');
+  telefon = signal('');
   isEditing = signal(false);
-  ciljevi: WritableSignal<string> = signal('Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.');
+  ciljevi: WritableSignal<string> = signal('');
 
   @Output() imePrezimeChange = new EventEmitter<string>();
   @Output() titulaChange = new EventEmitter<string>();
 
-  socialLinks = signal<SocialLink[]>([
-    { platform: 'linkedin', url: 'https://www.linkedin.com/in/josip-batini%C4%87-236112197/' },
-    { platform: 'github', url: 'https://github.com/JosipBatinic' },
-    { platform: 'whatsapp', url: 'https://web.whatsapp.com/' },
-  ]);
+  socialLinks = signal<SocialLink[]>([]);
 
   newSocialLink = { platform: '', url: '' };
 
   isAuthor = computed(() => this.authService.isAuthor());
 
   fields = computed<Field[]>(() => [
-    { icon: 'person', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
-    { icon: 'work', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
-    { icon: 'email', value: this.email, type: 'email', placeholder: 'Email' },
-    { icon: 'phone', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
+    { name: 'imePrezime', icon: 'person', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
+    { name: 'titula', icon: 'work', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
+    { name: 'email', icon: 'email', value: this.email, type: 'email', placeholder: 'Email' },
+    { name: 'telefon', icon: 'phone', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
   ]);
 
   ngOnInit() {
     const data = this.dataService.getOsobniPodaciData();
-    this.imePrezime.set(data.imePrezime);
-    this.titula.set(data.titula);
-    this.email.set(data.email);
-    this.telefon.set(data.telefon);
-    this.socialLinks.set(data.socialLinks);
+    this.imePrezime.set(data.imePrezime || this.getDefaultValue('imePrezime'));
+    this.titula.set(data.titula || this.getDefaultValue('titula'));
+    this.email.set(data.email || this.getDefaultValue('email'));
+    this.telefon.set(data.telefon || this.getDefaultValue('telefon'));
+    this.socialLinks.set(data.socialLinks.length > 0 ? data.socialLinks : this.getDefaultSocialLinks());
+    this.ciljevi.set(data.ciljevi || this.getDefaultValue('ciljevi'));
   }
 
   updateField(field: Field, event: Event) {
@@ -72,10 +70,10 @@ export class OsobniPodaciComponent {
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
   
-    if (field.icon === 'person') {
+    if (field.name === 'imePrezime') {
       this.imePrezimeChange.emit(this.imePrezime());
       this.updateDataService();
-    } else if (field.icon === 'work') {
+    } else if (field.name === 'titula') {
       this.titulaChange.emit(this.titula());
       this.updateDataService();
     }
@@ -121,7 +119,28 @@ export class OsobniPodaciComponent {
       titula: this.titula(),
       email: this.email(),
       telefon: this.telefon(),
-      socialLinks: this.socialLinks()
+      socialLinks: this.socialLinks(),
+      ciljevi: this.ciljevi()
     });
+  }
+
+  // Nove metode za zadane vrijednosti
+  getDefaultValue(fieldName: string): string {
+    const defaults: { [key: string]: string } = {
+      imePrezime: 'Ana Horvat',
+      titula: 'Software Developer',
+      email: 'ana.horvat@example.com',
+      telefon: '+385 91 234 5678',
+      ciljevi: 'Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.'
+    };
+    return defaults[fieldName] || '';
+  }
+
+  getDefaultSocialLinks(): SocialLink[] {
+    return [
+      { platform: 'linkedin', url: 'https://www.linkedin.com/in/ana-horvat' },
+      { platform: 'github', url: 'https://github.com/anahorvat' },
+      { platform: 'whatsapp', url: 'https://web.whatsapp.com/' },
+    ];
   }
 }

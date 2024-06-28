@@ -19,7 +19,7 @@ interface Tehnologija {
 })
 export class TehnoloskiStackComponent {
   @Input() isGeneratingPDF = false;
-  
+ 
   private dataService = inject(DataService);
 
   tehnologije = signal<Tehnologija[]>([]);
@@ -36,7 +36,22 @@ export class TehnoloskiStackComponent {
     const savedData = this.dataService.getTechnologiesData();
     if (savedData.length > 0) {
       this.tehnologije.set(savedData);
+    } else {
+      this.setDefaultTehnologije();
     }
+  }
+
+  setDefaultTehnologije() {
+    const defaultTehnologije: Tehnologija[] = [
+      { id: 1, naziv: 'JavaScript', razina: 'Napredno', ikona: 'assets/javascript-icon.png' },
+      { id: 2, naziv: 'TypeScript', razina: 'Srednje', ikona: 'assets/typescript-icon.png' },
+      { id: 3, naziv: 'Angular', razina: 'Napredno', ikona: 'assets/angular-icon.png' },
+      { id: 4, naziv: 'React', razina: 'Osnovno', ikona: 'assets/react-icon.png' },
+      { id: 5, naziv: 'Node.js', razina: 'Srednje', ikona: 'assets/nodejs-icon.png' },
+      { id: 6, naziv: 'SQL', razina: 'Napredno', ikona: 'assets/sql-icon.png' },
+    ];
+    this.tehnologije.set(defaultTehnologije);
+    this.dataService.setTechnologiesData(defaultTehnologije);
   }
 
   dodajTehnologiju() {
@@ -70,7 +85,7 @@ export class TehnoloskiStackComponent {
     if (this.isGeneratingPDF) return;
     if (this.editingTehnologija) {
       this.tehnologije.update((tehnologije) => {
-        const updatedTehnologije = tehnologije.map(t => 
+        const updatedTehnologije = tehnologije.map(t =>
           t.id === this.editingTehnologija!.id ? this.editingTehnologija! : t
         );
         this.dataService.setTechnologiesData(updatedTehnologije);

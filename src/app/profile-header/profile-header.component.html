@@ -5,7 +5,7 @@
 
   <div class="profile-content">
     <div class="profile-image-container">
-      <img [src]="slika" class="profile-image" alt="Profile Image">
+      <img [src]="slika || 'assets/default-profile.jpg'" class="profile-image" alt="Profile Image">
       <div *ngIf="isAuthor && !isGeneratingPDF" class="image-overlay">
         <div class="overlay-actions">
           <label class="upload-btn" for="fileInput">
@@ -23,9 +23,9 @@
 
     <div class="profile-info">
       <div class="profile-title">
-        <h2>{{ imePrezime() }}</h2>
-        <p *ngIf="!isGeneratingPDF" class="animated-title">{{ displayedTitle() }}<span class="cursor">|</span></p>
-        <p *ngIf="isGeneratingPDF">{{ titula() }}</p>
+        <h2>{{ imePrezime() || 'Ana Horvat' }}</h2>
+        <p *ngIf="!isGeneratingPDF" class="animated-title">{{ displayedTitle() || 'Software Developer' }}<span class="cursor">|</span></p>
+        <p *ngIf="isGeneratingPDF">{{ titula() || 'Senior Software Engineer' }}</p>
       </div>
     </div>
   </div>

@@ -28,7 +28,7 @@ export class IskustvoComponent {
 
   experiences = signal<Iskustvo[]>([]);
 
-  sortedExperiences = computed(() => 
+  sortedExperiences = computed(() =>
     this.experiences().slice().sort((a, b) => {
       const dateA = new Date(a.startDate.split('.').reverse().join('-'));
       const dateB = new Date(b.startDate.split('.').reverse().join('-'));
@@ -53,7 +53,43 @@ export class IskustvoComponent {
     const savedData = this.dataService.getExperienceData();
     if (savedData.length > 0) {
       this.experiences.set(savedData);
+    } else {
+      this.setDefaultExperiences();
     }
+  }
+
+  setDefaultExperiences() {
+    const defaultExperiences: Iskustvo[] = [
+      {
+        id: 1,
+        startDate: '01.2022',
+        endDate: 'Trenutno',
+        position: 'Senior Software Developer',
+        company: 'Tech Inovacije d.o.o.',
+        location: 'Zagreb, Hrvatska',
+        responsibilities: [
+          'Razvoj i održavanje web aplikacija koristeći Angular i Node.js',
+          'Implementacija CI/CD procesa',
+          'Mentoriranje junior developera'
+        ],
+        companyIcon: 'assets/default-company-icon2.png'
+      },
+      {
+        id: 2,
+        startDate: '06.2019',
+        endDate: '12.2021',
+        position: 'Full Stack Developer',
+        company: 'Web Solutions d.o.o.',
+        location: 'Split, Hrvatska',
+        responsibilities: [
+          'Razvoj responzivnih web stranica',
+          'Integracija s različitim API-jima',
+          'Optimizacija performansi postojećih aplikacija'
+        ],
+        companyIcon: 'assets/default-company-icon.png'
+      }
+    ];
+    this.experiences.set(defaultExperiences);
   }
 
   addExperience() {
@@ -88,7 +124,7 @@ export class IskustvoComponent {
     if (this.isGeneratingPDF) return;
     if (this.editingExperience) {
       this.experiences.update(experiences => {
-        const updatedExperiences = experiences.map(e => 
+        const updatedExperiences = experiences.map(e =>
           e.id === this.editingExperience!.id ? this.editingExperience! : e
         );
         this.dataService.setExperienceData(updatedExperiences);
