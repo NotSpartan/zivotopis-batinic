@@ -123,4 +123,24 @@ export class OsobniPodaciComponent {
       ciljevi: this.ciljevi()
     });
   }
+
+  // Nove metode za zadane vrijednosti
+  getDefaultValue(fieldName: string): string {
+    const defaults: { [key: string]: string } = {
+      imePrezime: 'Ana Horvat',
+      titula: 'Software Developer',
+      email: 'ana.horvat@example.com',
+      telefon: '+385 91 234 5678',
+      ciljevi: 'Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.'
+    };
+    return defaults[fieldName] || '';
+  }
+
+  getDefaultSocialLinks(): SocialLink[] {
+    return [
+      { platform: 'linkedin', url: 'https://www.linkedin.com/in/ana-horvat' },
+      { platform: 'github', url: 'https://github.com/anahorvat' },
+      { platform: 'whatsapp', url: 'https://web.whatsapp.com/' },
+    ];
+  }
 }
