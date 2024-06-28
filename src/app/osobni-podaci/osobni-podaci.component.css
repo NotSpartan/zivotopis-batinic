@@ -169,41 +169,48 @@
   outline: none;
 }
 
-.btn {
+/* Novi stil za gumbe */
+.btn, .action-button {
+  display: inline-block;
   padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.btn-primary {
-  background-color: #667eea;
-  color: white;
-}
-
-.btn-success {
-  background-color: #48bb78;
-  color: white;
-}
-
-.btn-danger {
-  background-color: #e53e3e;
-  color: white;
-}
-
-.btn:hover {
-  opacity: 0.9;
+.btn:hover, .action-button:hover {
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
 }
 
-.btn:active {
+.btn:active, .action-button:active {
   transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
 }
 
-.pdf-mode .btn {
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}
+
+.pdf-mode .btn, .pdf-mode .action-button {
   display: none;
 }
 
@@ -225,7 +232,7 @@
     font-size: 0.9rem;
   }
 
-  .btn {
+  .btn, .action-button {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
