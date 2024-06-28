@@ -8,15 +8,13 @@
       <img [src]="slika || 'assets/default-profile.jpg'" class="profile-image" alt="Profile Image">
       <div *ngIf="isAuthor && !isGeneratingPDF" class="image-overlay">
         <div class="overlay-actions">
-          <label class="upload-btn" for="fileInput">
+          <label class="action-icon upload-icon" for="fileInput">
             <i class="fa fa-upload"></i>
-            <span>Dodaj sliku</span>
-            <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput style="display: none;" id="fileInput">
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" id="fileInput" style="display: none;">
           </label>
-          <div class="delete-btn" (click)="deleteImage()">
-            <i class="fa fa-times"></i>
-            <span>Obriši</span>
-          </div>
+          <button class="action-icon delete-icon" (click)="deleteImage()">
+            <i class="fa fa-trash"></i>
+          </button>
         </div>
       </div>
     </div>

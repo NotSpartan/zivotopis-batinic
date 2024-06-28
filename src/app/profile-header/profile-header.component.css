@@ -66,14 +66,14 @@
 
 .profile-image-container {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 220px;  /* Povećano sa 200px */
+  height: 220px; /* Povećano sa 200px */
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 4px;
-  border: 4px solid #fff;
+  padding: 5px;  /* Povećano sa 4px */
+  border: 5px solid #fff;  /* Povećano sa 4px */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -95,36 +95,48 @@
   filter: none;
 }
 
-.image-actions {
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.upload-btn,
-.delete-btn {
+.profile-image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-actions {
   display: flex;
-  align-items: center;
+  gap: 10px;
+}
+
+.action-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 0.5rem;
 }
 
-.upload-btn:hover,
-.delete-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+.action-icon:hover {
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.upload-btn i,
-.delete-btn i {
-  font-size: 1rem;
-  margin-right: 0.3rem;
+.action-icon i {
+  font-size: 18px;
+  color: #764ba2;
 }
 
 .profile-title {
@@ -189,8 +201,8 @@
   }
 
   .profile-image-container {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
 
   .profile-title h2 {
@@ -199,5 +211,14 @@
 
   .profile-title p {
     font-size: 1rem;
+  }
+
+  .action-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .action-icon i {
+    font-size: 14px;
   }
 }

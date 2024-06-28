@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, WritableSignal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, signal, WritableSignal, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { inject } from '@angular/core';
 import { DataService } from '../services/data.service';
@@ -18,6 +18,9 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() isAuthor: boolean = false;
   @Input() isGeneratingPDF: boolean = false;
   @Output() fileSelected = new EventEmitter<Event>();
+  @Output() slikaChange = new EventEmitter<string>();
+
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   isEditing: WritableSignal<boolean> = signal(false);
   displayedTitle: WritableSignal<string> = signal('');
@@ -29,6 +32,7 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     const data = this.dataService.getOsobniPodaciData();
     this.imePrezime.set(data.imePrezime);
     this.titula.set(data.titula);
+    this.slika = data.slika || '';
     if (!this.isGeneratingPDF) {
       this.startTitleAnimation();
     }
@@ -38,32 +42,17 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     this.stopTitleAnimation();
   }
 
-  @Output() slikaChange = new EventEmitter<string>();
-
-  removeImage() {
-    if (!this.isGeneratingPDF) {
-      this.slika = 'assets/default-profile.png';
-      this.slikaChange.emit('assets/default-profile.png');
-    }
-  }
-
   updateImePrezime(newImePrezime: string) {
     if (!this.isGeneratingPDF) {
       this.imePrezime.set(newImePrezime);
-      this.dataService.setOsobniPodaciData({
-        ...this.dataService.getOsobniPodaciData(),
-        imePrezime: this.imePrezime(),
-      });
+      this.updateDataService();
     }
   }
 
   updateTitula(newTitula: string) {
     if (!this.isGeneratingPDF) {
       this.titula.set(newTitula);
-      this.dataService.setOsobniPodaciData({
-        ...this.dataService.getOsobniPodaciData(),
-        titula: this.titula(),
-      });
+      this.updateDataService();
     }
   }
 
@@ -76,10 +65,8 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
           if (e.target?.result) {
             this.slika = e.target.result as string;
             this.slikaChange.emit(this.slika);
-            this.dataService.setOsobniPodaciData({
-              ...this.dataService.getOsobniPodaciData(),
-              slika: this.slika,
-            });
+            this.updateDataService();
+            this.resetFileInput();
           }
         };
         reader.readAsDataURL(input);
@@ -91,11 +78,24 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     if (!this.isGeneratingPDF) {
       this.slika = '';
       this.slikaChange.emit('');
-      this.dataService.setOsobniPodaciData({
-        ...this.dataService.getOsobniPodaciData(),
-        slika: '',
-      });
+      this.updateDataService();
+      this.resetFileInput();
     }
+  }
+
+  private resetFileInput() {
+    if (this.fileInput) {
+      this.fileInput.nativeElement.value = '';
+    }
+  }
+
+  private updateDataService() {
+    this.dataService.setOsobniPodaciData({
+      ...this.dataService.getOsobniPodaciData(),
+      imePrezime: this.imePrezime(),
+      titula: this.titula(),
+      slika: this.slika,
+    });
   }
 
   private startTitleAnimation() {
