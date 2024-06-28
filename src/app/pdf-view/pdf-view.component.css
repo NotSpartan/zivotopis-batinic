@@ -1,6 +1,5 @@
-
 :host-context(.pdf-mode) .pdf-content > * {
-  margin-bottom: 0.5rem; /* Smanjeno s defaultnih vrijednosti */
+  margin-bottom: 0.5rem;
 }
 
 :host-context(.pdf-mode) .pdf-page > * {
@@ -36,12 +35,13 @@ app-tehnoloski-stack {
   display: block;
   page-break-inside: avoid;
 }
+
 .pdf-page:last-child {
   page-break-after: auto;
 }
 
 .pdf-page > * {
-  margin-bottom: 15mm;
+  margin-bottom: 1rem;
 }
 
 .pdf-page > *:last-child {
@@ -49,11 +49,11 @@ app-tehnoloski-stack {
 }
 
 .pdf-page.first-page > * {
-  margin-bottom: 10mm;
+  margin-bottom: 1rem;
 }
 
 .pdf-page > app-profile-header {
-  margin-bottom: 10mm;
+  margin-bottom: 1rem;
 }
 
 .generate-pdf-button {

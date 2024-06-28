@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -13,18 +14,119 @@ body {
   background-color: #f4f4f4;
   line-height: 1.6;
 }
-  
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Stilovi za PDF mod */
+.pdf-mode * {
+  margin-bottom: 0.25rem;
+}
+
+.pdf-mode .pdf-content > * {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+/* Dodatni stilovi za poboljšanje čitljivosti u PDF-u */
+.pdf-mode {
+  font-size: 12pt;
+  line-height: 1.5;
+}
+
+.pdf-mode h1 {
+  font-size: 24pt;
+  margin-bottom: 1rem;
+}
+
+.pdf-mode h2 {
+  font-size: 18pt;
+  margin-bottom: 0.75rem;
+}
+
+.pdf-mode h3 {
+  font-size: 14pt;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-mode p {
+  margin-bottom: 0.5rem;
+}
+
+/* Stilovi za poboljšanje izgleda liste u PDF-u */
+.pdf-mode ul, .pdf-mode ol {
+  padding-left: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-mode li {
+  margin-bottom: 0.25rem;
+}
+
+/* Stilovi za tablice u PDF-u */
+.pdf-mode table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.pdf-mode th, .pdf-mode td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.pdf-mode th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Stilovi za linkove u PDF-u */
+.pdf-mode a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+/* Stilovi za gumbe u web aplikaciji */
+button {
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Responzivni dizajn */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
   h1 {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
+    font-size: 24px;
   }
-  .pdf-mode * {
-    margin-bottom: 0.25rem;
+
+  .pdf-mode {
+    font-size: 10pt;
   }
-  .pdf-mode .pdf-content > * {
-    padding: 0.5rem; /* Dodano za povećanje paddinga oko sadržaja */
-    background-color: #f0f0f0; /* Dodano za sivkasti prostor */
-    border-radius: 5px; /* Opciono, za zaobljene rubove */
+
+  .pdf-mode h1 {
+    font-size: 20pt;
   }
+
+  .pdf-mode h2 {
+    font-size: 16pt;
+  }
+
+  .pdf-mode h3 {
+    font-size: 12pt;
+  }
+}

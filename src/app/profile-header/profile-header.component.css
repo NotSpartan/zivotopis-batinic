@@ -4,10 +4,10 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: #f0f0f0;
   border-radius: 5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 :host-context(.pdf-page) {
@@ -32,9 +32,12 @@
 
 .pdf-mode .profile-header {
   min-height: auto;
-  padding: 1.5rem 1rem;
+  padding: 1rem;
   background: #f0f0f0;
   color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .logo-container {
@@ -64,23 +67,30 @@
   align-items: center;
 }
 
+.pdf-mode .profile-content {
+  flex-grow: 1;
+  align-items: flex-start;
+}
+
 .profile-image-container {
   position: relative;
-  width: 220px;  /* Povećano sa 200px */
-  height: 220px; /* Povećano sa 200px */
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 5px;  /* Povećano sa 4px */
-  border: 5px solid #fff;  /* Povećano sa 4px */
+  padding: 5px;
+  border: 5px solid #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .pdf-mode .profile-image-container {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border: 2px solid #333;
+  margin-right: 1rem;
+  margin-bottom: 0;
 }
 
 .profile-image {
@@ -143,6 +153,10 @@
   text-align: center;
 }
 
+.pdf-mode .profile-title {
+  text-align: left;
+}
+
 .profile-title h2 {
   margin: 0;
   font-size: 2rem;
@@ -151,8 +165,9 @@
 }
 
 .pdf-mode .profile-title h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .profile-title p {
@@ -164,8 +179,9 @@
 }
 
 .pdf-mode .profile-title p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #555;
+  font-weight: 500;
 }
 
 .animated-title {

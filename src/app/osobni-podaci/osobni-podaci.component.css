@@ -4,19 +4,15 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: #f0f0f0;
   border-radius: 5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 :host-context(.pdf-page) {
   display: block;
   page-break-inside: avoid;
-}
-
-:host-context(.pdf-page) .pdf-mode {
-  padding: 0.25rem 0;
 }
 
 .profile-card {
@@ -29,8 +25,8 @@
 
 .profile-card.pdf-mode {
   box-shadow: none;
-  padding: 0.5rem;
-  background-color: #f0f0f0;
+  padding: 0;
+  background-color: transparent;
 }
 
 .subtitle {
@@ -58,10 +54,9 @@
   background-color: #e74c3c;
 }
 
-
 .pdf-mode .subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .profile-body {
@@ -182,7 +177,6 @@
   outline: none;
 }
 
-/* Novi stil za gumbe */
 .btn, .action-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;

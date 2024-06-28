@@ -5,7 +5,7 @@
 }
 
 :not(.pdf-mode) .content-container > * {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .pdf-preview {
@@ -20,6 +20,7 @@
     width: 100%;
   }
 }
+
 .horizontal-nav {
   background-color: #333;
   padding: 10px 0;
@@ -112,4 +113,25 @@
     padding: 8px 12px;
     font-size: 14px;
   }
+}
+
+/* stilovi za PDF mod */
+.pdf-mode .content-container > * {
+  margin-bottom: 1rem;
+}
+
+.pdf-mode .pdf-content > * {
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.pdf-mode app-profile-header,
+.pdf-mode app-osobni-podaci,
+.pdf-mode app-iskustvo,
+.pdf-mode app-obrazovanje,
+.pdf-mode app-tehnoloski-stack,
+.pdf-mode app-ciljevi-motivacija {
+  display: block;
+  margin-bottom: 1rem;
 }
