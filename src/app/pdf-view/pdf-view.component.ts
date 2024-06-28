@@ -7,7 +7,7 @@ import { ObrazovanjeComponent } from '../obrazovanje/obrazovanje.component';
 import { TehnoloskiStackComponent } from '../tehnoloski-stack/tehnoloski-stack.component';
 import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
 import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
+import jsPDF  from 'jspdf';
 
 @Component({
   selector: 'app-pdf-view',
