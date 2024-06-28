@@ -22,9 +22,9 @@
 .profile-card {
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .profile-card.pdf-mode {
@@ -39,16 +39,16 @@
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 15px;
+  margin-bottom: 0.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 3px solid #667eea;
   letter-spacing: 0.5px;
 }
 
 .pdf-mode .subtitle {
   font-size: 1.2rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .profile-body {
@@ -67,7 +67,7 @@
 
 .field i {
   color: #667eea;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -78,7 +78,7 @@
 .field-content span,
 .field-content input {
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #333;
 }
 

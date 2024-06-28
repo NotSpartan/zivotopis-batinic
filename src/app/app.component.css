@@ -23,7 +23,7 @@
 .horizontal-nav {
   background-color: #333;
   padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   font-family: 'Montserrat', sans-serif;
@@ -38,7 +38,7 @@
 }
 
 .horizontal-nav li {
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 .horizontal-nav a {

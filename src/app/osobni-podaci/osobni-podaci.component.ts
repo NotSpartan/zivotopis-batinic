@@ -141,6 +141,7 @@ export class OsobniPodaciComponent {
       { platform: 'linkedin', url: 'https://www.linkedin.com/in/ana-horvat' },
       { platform: 'github', url: 'https://github.com/anahorvat' },
       { platform: 'whatsapp', url: 'https://web.whatsapp.com/' },
+      { platform: 'gmail', url: 'https://www.gmail.com/' },
     ];
   }
 }
