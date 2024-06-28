@@ -1,5 +1,5 @@
 <div class="education-container" [class.pdf-mode]="isGeneratingPDF">
-  <h2 class="subtitle">Obrazovanje i edukacije</h2>
+  <h2 class="subtitle">Obrazovanje</h2>
   
   <div class="education-list">
     <div *ngFor="let education of sortedEducations()" class="education-item">
@@ -19,12 +19,15 @@
           <img [src]="education.institutionIcon" alt="{{ education.institution }} icon">
         </div>
         <div class="institution-details">
-          <span class="title">{{ education.title }}</span>
+          <div class="title">{{ education.title }}</div>
           <div class="institution">{{ education.institution }}</div>
           <div class="location">{{ education.location }}</div>
         </div>
       </div>
       <div *ngIf="education.description" class="description">{{ education.description }}</div>
+      <ul class="bullet-points">
+        <li *ngFor="let point of education.bulletPoints">{{ point }}</li>
+      </ul>
       <div class="upload-icon" *ngIf="!isGeneratingPDF">
         <label [for]="'icon-upload-' + education.id" class="upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
@@ -39,7 +42,17 @@
     <input [(ngModel)]="editingEducation.title" placeholder="Titula" class="education-input">
     <input [(ngModel)]="editingEducation.institution" placeholder="Institucija" class="education-input">
     <input [(ngModel)]="editingEducation.location" placeholder="Lokacija" class="education-input">
-    <textarea [(ngModel)]="editingEducation.description" placeholder="Opis (opcionalno)" class="education-input"></textarea>
+    <textarea [(ngModel)]="editingEducation.description" placeholder="Opis" class="education-input"></textarea>
+    <div class="add-bullet-point">
+      <input [(ngModel)]="newBulletPoint" placeholder="Dodaj stavku" class="education-input">
+      <button (click)="addBulletPoint()" class="action-button">Dodaj</button>
+    </div>
+    <ul class="new-bullet-points">
+      <li *ngFor="let point of editingEducation.bulletPoints; let i = index">
+        {{ point }}
+        <button class="remove-btn" (click)="removeBulletPoint(i)">×</button>
+      </li>
+    </ul>
     <div class="edit-controls">
       <button (click)="saveEdit()" class="action-button">Spremi</button>
       <button (click)="cancelEdit()" class="action-button">Odustani</button>
@@ -52,7 +65,17 @@
     <input [(ngModel)]="newEducation.title" placeholder="Titula" class="education-input">
     <input [(ngModel)]="newEducation.institution" placeholder="Institucija" class="education-input">
     <input [(ngModel)]="newEducation.location" placeholder="Lokacija" class="education-input">
-    <textarea [(ngModel)]="newEducation.description" placeholder="Opis (opcionalno)" class="education-input"></textarea>
+    <textarea [(ngModel)]="newEducation.description" placeholder="Opis" class="education-input"></textarea>
+    <div class="add-bullet-point">
+      <input [(ngModel)]="newBulletPoint" placeholder="Dodaj stavku" class="education-input">
+      <button (click)="addBulletPoint()" class="action-button">Dodaj</button>
+    </div>
+    <ul class="new-bullet-points">
+      <li *ngFor="let point of newEducation.bulletPoints; let i = index">
+        {{ point }}
+        <button class="remove-btn" (click)="removeBulletPoint(i)">×</button>
+      </li>
+    </ul>
     <button (click)="addEducation()" class="action-button">Dodaj obrazovanje</button>
   </div>
 </div>

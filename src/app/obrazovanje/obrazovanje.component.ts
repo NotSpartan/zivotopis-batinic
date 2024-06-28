@@ -11,6 +11,7 @@ interface Obrazovanje {
   location: string;
   description?: string;
   institutionIcon?: string;
+  bulletPoints: string[];
 }
 
 @Component({
@@ -31,8 +32,9 @@ export class ObrazovanjeComponent {
     this.educations().slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))
   );
 
-  newEducation: Obrazovanje = { id: 0, year: '', title: '', institution: '', location: '' };
+  newEducation: Obrazovanje = { id: 0, year: '', title: '', institution: '', location: '', bulletPoints: [] };
   editingEducation: Obrazovanje | null = null;
+  newBulletPoint: string = '';
 
   ngOnInit() {
     const savedData = this.dataService.getEducationData();
@@ -52,7 +54,11 @@ export class ObrazovanjeComponent {
         institution: 'Fakultet elektrotehnike i računarstva',
         location: 'Zagreb, Hrvatska',
         description: 'Specijalizacija u području umjetne inteligencije i strojnog učenja.',
-        institutionIcon: 'assets/fer-institution-icon.png'
+        institutionIcon: 'assets/fer-institution-icon.png',
+        bulletPoints: [
+          'Završni rad na temu "Primjena dubokog učenja u obradi prirodnog jezika"',
+          'Sudjelovanje u istraživačkom projektu o računalnom vidu'
+        ]
       },
       {
         id: 2,
@@ -61,7 +67,11 @@ export class ObrazovanjeComponent {
         institution: 'Fakultet elektrotehnike i računarstva',
         location: 'Zagreb, Hrvatska',
         description: 'Fokus na programskom inženjerstvu i bazama podataka.',
-        institutionIcon: 'assets/fer-institution-icon.png'
+        institutionIcon: 'assets/fer-institution-icon.png',
+        bulletPoints: [
+          'Osvojeno 2. mjesto na natjecanju iz programiranja',
+          'Demonstrator na kolegiju Objektno orijentirano programiranje'
+        ]
       }
     ];
     this.educations.set(defaultEducations);
@@ -72,11 +82,12 @@ export class ObrazovanjeComponent {
     if (this.newEducation.year && this.newEducation.title && this.newEducation.institution && this.newEducation.location) {
       const newId = Math.max(...this.educations().map(e => e.id), 0) + 1;
       this.educations.update(educations => {
-        const updatedEducations = [...educations, { ...this.newEducation, id: newId }];
+        const updatedEducations = [...educations, { ...this.newEducation, id: newId, bulletPoints: [...this.newEducation.bulletPoints] }];
         this.dataService.setEducationData(updatedEducations);
         return updatedEducations;
       });
-      this.newEducation = { id: 0, year: '', title: '', institution: '', location: '' };
+      this.newEducation = { id: 0, year: '', title: '', institution: '', location: '', bulletPoints: [] };
+      this.newBulletPoint = '';
     }
   }
 
@@ -91,7 +102,7 @@ export class ObrazovanjeComponent {
 
   startEditing(education: Obrazovanje) {
     if (this.isGeneratingPDF) return;
-    this.editingEducation = { ...education };
+    this.editingEducation = { ...education, bulletPoints: [...education.bulletPoints] };
   }
 
   saveEdit() {
@@ -111,6 +122,27 @@ export class ObrazovanjeComponent {
   cancelEdit() {
     if (this.isGeneratingPDF) return;
     this.editingEducation = null;
+  }
+
+  addBulletPoint() {
+    if (this.isGeneratingPDF) return;
+    if (this.newBulletPoint.trim()) {
+      if (this.editingEducation) {
+        this.editingEducation.bulletPoints.push(this.newBulletPoint.trim());
+      } else {
+        this.newEducation.bulletPoints.push(this.newBulletPoint.trim());
+      }
+      this.newBulletPoint = '';
+    }
+  }
+
+  removeBulletPoint(index: number) {
+    if (this.isGeneratingPDF) return;
+    if (this.editingEducation) {
+      this.editingEducation.bulletPoints.splice(index, 1);
+    } else {
+      this.newEducation.bulletPoints.splice(index, 1);
+    }
   }
 
   onFileSelected(event: Event, education: Obrazovanje) {

@@ -53,7 +53,7 @@
 
 .education-item {
   background-color: #f9f9f9;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #28a745;
   padding: 15px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -77,7 +77,7 @@
 
 .year {
   font-weight: bold;
-  color: #007bff;
+  color: #28a745;
   font-size: 0.9rem;
 }
 
@@ -123,7 +123,6 @@
 .title {
   font-size: 1.2em;
   color: #333;
-  display: block;
   margin-bottom: 5px;
 }
 
@@ -135,12 +134,21 @@
 .location {
   color: #777;
   font-size: 0.9em;
+  margin-bottom: 10px;
 }
 
 .description {
   margin-top: 10px;
-  font-size: 0.9em;
   color: #666;
+}
+
+.bullet-points {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.bullet-points li {
+  margin-bottom: 5px;
 }
 
 .institution-info {
@@ -150,11 +158,11 @@
 }
 
 .institution-icon {
-  width: 100px;
+  width: 100px;  
   height: 100px;
   margin-right: 20px;
-  overflow: hidden;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .institution-icon img {
@@ -191,128 +199,172 @@
 }
 
 .education-container .upload-icon .upload-button:hover {
-background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
-transform: translateY(-2px);
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
 }
 
 .education-container .upload-icon .upload-button:active {
-transform: translateY(0);
-box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
 }
 
 .education-container .upload-icon .upload-button i {
-margin-right: 6px;
+  margin-right: 6px;
 }
 
 .upload-icon input[type="file"] {
-display: none;
+  display: none;
 }
 
 .add-education, .edit-education {
-margin-top: 30px;
-background-color: #f0f0f0;
-padding: 20px;
-border-radius: 5px;
+  margin-top: 30px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .add-education h3 {
-margin-top: 0;
-color: #333;
-font-size: 1.3rem;
-font-weight: 600;
-font-family: 'Montserrat', sans-serif;
-margin-bottom: 1rem;
+  margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
 }
 
 .education-input {
-width: calc(100% - 20px);
-padding: 0.75rem;
-margin-bottom: 10px;
-border: 1px solid #ddd;
-border-radius: 4px;
-font-family: 'Poppins', sans-serif;
-font-size: 1rem;
-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: calc(100% - 20px);
+  padding: 0.75rem;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .education-input:focus {
-outline: none;
-border-color: #667eea;
-box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.add-bullet-point {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.add-bullet-point input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.add-bullet-point .action-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
+}
+
+.new-bullet-points {
+  list-style-type: none;
+  padding: 0;
+}
+
+.new-bullet-points li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
 }
 
 .action-button {
-display: inline-block;
-padding: 0.75rem 1.5rem;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-color: white;
-border: none;
-border-radius: 25px;
-font-size: 1rem;
-font-weight: 600;
-font-family: 'Roboto', sans-serif;
-cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
-text-transform: uppercase;
-letter-spacing: 1px;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .action-button:hover {
-background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
-transform: translateY(-2px);
+  background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
 }
 
 .action-button:active {
-transform: translateY(0);
-box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
 }
 
 .edit-controls {
-display: flex;
-justify-content: flex-end;
-gap: 1rem;
-margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 .pdf-mode .education-controls,
 .pdf-mode .upload-icon,
 .pdf-mode .add-education,
 .pdf-mode .edit-education {
-display: none;
+  display: none;
 }
 
 @media (max-width: 600px) {
-.education-container {
-  padding: 1rem;
-}
+  .education-container {
+    padding: 1rem;
+  }
 
-.subtitle {
-  font-size: 1.4rem;
-}
+  .subtitle {
+    font-size: 1.4rem;
+  }
 
-.education-item {
-  padding: 10px;
-}
+  .education-item {
+    padding: 10px;
+  }
 
-.institution-icon {
-  width: 60px;
-  height: 60px;
-}
+  .institution-icon {
+    width: 60px;
+    height: 60px;
+  }
 
-.action-button {
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
-}
+  .action-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
 
-.education-container .upload-icon .upload-button {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.7rem;
-}
+  .education-container .upload-icon .upload-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
 
-.year {
-  font-size: 0.8rem;
-}
+  .add-bullet-point .action-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .year {
+    font-size: 0.8rem;
+  }
 }
