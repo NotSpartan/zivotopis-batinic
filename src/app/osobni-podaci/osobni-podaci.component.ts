@@ -48,10 +48,10 @@ export class OsobniPodaciComponent {
   isAuthor = computed(() => this.authService.isAuthor());
 
   fields = computed<Field[]>(() => [
-    { name: 'imePrezime', icon: 'Osoba', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
-    { name: 'titula', icon: 'Pozicija', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
-    { name: 'email', icon: 'E-pošta', value: this.email, type: 'email', placeholder: 'Email' },
-    { name: 'telefon', icon: 'Telefon', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
+    { name: 'imePrezime', icon: 'Osoba:', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
+    { name: 'titula', icon: 'Pozicija:', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
+    { name: 'email', icon: 'E-pošta:', value: this.email, type: 'email', placeholder: 'Email' },
+    { name: 'telefon', icon: 'Telefon:', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
   ]);
 
   ngOnInit() {

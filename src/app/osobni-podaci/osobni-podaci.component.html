@@ -13,8 +13,8 @@
       </div>
     </div>
 
-    <div class="field">
-      <i class="material-icons">Links</i>
+    <div class="field links-field">
+      <i class="material-icons">Links:</i>
       <div class="field-content">
         <div class="links-container">
           <ng-container *ngIf="!isEditing() || isGeneratingPDF; else editLinks">
@@ -30,12 +30,12 @@
               <img [src]="getIconPath(link.platform)" [alt]="link.platform" class="link-icon">
               <input [(ngModel)]="link.platform" placeholder="Platforma">
               <input [(ngModel)]="link.url" placeholder="URL">
-              <button (click)="removeSocialLink(i)" class="remove-link-btn">Ukloni</button>
+              <button (click)="removeSocialLink(i)" class="btn btn-danger">Ukloni</button>
             </div>
             <div class="link-add">
               <input [(ngModel)]="newSocialLink.platform" placeholder="Nova platforma">
               <input [(ngModel)]="newSocialLink.url" placeholder="Novi URL">
-              <button (click)="addSocialLink()" class="add-link-btn">Dodaj</button>
+              <button (click)="addSocialLink()" class="btn btn-primary">Dodaj</button>
             </div>
           </ng-template>
         </div>
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <button *ngIf="isAuthor() && !isGeneratingPDF" (click)="toggleEdit()" class="edit-button">
+  <button *ngIf="isAuthor() && !isGeneratingPDF" (click)="toggleEdit()" class="btn" [ngClass]="{'btn-primary': !isEditing(), 'btn-success': isEditing()}">
     {{ isEditing() ? 'Spremi' : 'Uredi' }}
   </button>
 </div>
