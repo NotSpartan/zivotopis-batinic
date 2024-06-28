@@ -50,16 +50,16 @@ export class OsobniPodaciComponent {
   fields = computed<Field[]>(() => [
     { name: 'imePrezime', icon: 'Osoba:', value: this.imePrezime, type: 'text', placeholder: 'Ime i prezime' },
     { name: 'titula', icon: 'Pozicija:', value: this.titula, type: 'text', placeholder: 'Zanimanje' },
-    { name: 'email', icon: 'E-pošta:', value: this.email, type: 'email', placeholder: 'Email' },
     { name: 'telefon', icon: 'Telefon:', value: this.telefon, type: 'tel', placeholder: 'Telefon' },
+    { name: 'email', icon: 'E-pošta:', value: this.email, type: 'email', placeholder: 'Email' },
   ]);
 
   ngOnInit() {
     const data = this.dataService.getOsobniPodaciData();
     this.imePrezime.set(data.imePrezime || this.getDefaultValue('imePrezime'));
     this.titula.set(data.titula || this.getDefaultValue('titula'));
-    this.email.set(data.email || this.getDefaultValue('email'));
     this.telefon.set(data.telefon || this.getDefaultValue('telefon'));
+    this.email.set(data.email || this.getDefaultValue('email'));
     this.socialLinks.set(data.socialLinks.length > 0 ? data.socialLinks : this.getDefaultSocialLinks());
     this.ciljevi.set(data.ciljevi || this.getDefaultValue('ciljevi'));
   }
@@ -117,8 +117,8 @@ export class OsobniPodaciComponent {
     this.dataService.setOsobniPodaciData({
       imePrezime: this.imePrezime(),
       titula: this.titula(),
-      email: this.email(),
       telefon: this.telefon(),
+      email: this.email(),
       socialLinks: this.socialLinks(),
       ciljevi: this.ciljevi()
     });
@@ -129,8 +129,8 @@ export class OsobniPodaciComponent {
     const defaults: { [key: string]: string } = {
       imePrezime: 'Ana Horvat',
       titula: 'Software Developer',
-      email: 'ana.horvat@example.com',
       telefon: '+385 91 234 5678',
+      email: 'ana.horvat@example.com',
       ciljevi: 'Aktivno tražim poslodavca kod kojeg ću moći unaprijediti novostečene vještine.'
     };
     return defaults[fieldName] || '';
