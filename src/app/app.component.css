@@ -1,18 +1,18 @@
 .app-wrapper {
   max-width: 800px; 
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px; /* Smanjili smo padding */
 }
 
 :not(.pdf-mode) .content-container > * {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Smanjili smo margin */
 }
 
 .pdf-preview {
   width: 210mm;
   margin: 0 auto;
   background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Smanjili smo shadow */
 }
 
 @media screen and (max-width: 210mm) {
@@ -23,10 +23,10 @@
 
 .horizontal-nav {
   background-color: #333;
-  padding: 10px 0;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 5px 0; /* Smanjili smo padding */
+  margin-bottom: 3px; /* Smanjili smo margin */
+  border-radius: 3px; /* Smanjili smo border-radius */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Smanjili smo shadow */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -39,18 +39,19 @@
 }
 
 .horizontal-nav li {
-  margin: 0 15px;
+  margin: 0 10px; /* Smanjili smo margin */
 }
 
 .horizontal-nav a {
   text-decoration: none;
   color: #fff;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 5px 10px; /* Smanjili smo padding */
+  border-radius: 3px; /* Smanjili smo border-radius */
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   font-weight: 500;
   font-family: inherit;
+  font-size: 0.9rem; /* Smanjili smo font-size */
 }
 
 .horizontal-nav a:hover,
@@ -60,21 +61,21 @@
 }
 
 .content-container {
-  padding: 5px;
+  padding: 3px; /* Smanjili smo padding */
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .generate-pdf-button {
   display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
+  margin: 10px auto; /* Smanjili smo margin */
+  padding: 8px 16px; /* Smanjili smo padding */
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px; /* Smanjili smo border-radius */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px; /* Smanjili smo font-size */
   transition: background-color 0.3s;
 }
 
@@ -102,27 +103,27 @@
 
 @media (max-width: 600px) {
   .app-wrapper {
-    padding: 0 10px;
+    padding: 0 5px; /* Dodatno smanjili padding za mobilne uređaje */
   }
 
   .horizontal-nav {
-    padding: 5px 0;
+    padding: 3px 0; /* Dodatno smanjili padding za mobilne uređaje */
   }
 
   .horizontal-nav a {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 4px 8px; /* Dodatno smanjili padding za mobilne uređaje */
+    font-size: 0.8rem; /* Dodatno smanjili font-size za mobilne uređaje */
   }
 }
 
 .pdf-mode .content-container > * {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Smanjili smo margin */
 }
 
 .pdf-mode .pdf-content > * {
-  padding: 1rem;
+  padding: 0.5rem; /* Smanjili smo padding */
   background-color: #f0f0f0;
-  border-radius: 5px;
+  border-radius: 3px; /* Smanjili smo border-radius */
 }
 
 .pdf-mode app-profile-header,
@@ -132,5 +133,5 @@
 .pdf-mode app-tehnoloski-stack,
 .pdf-mode app-ciljevi-motivacija {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Smanjili smo margin */
 }

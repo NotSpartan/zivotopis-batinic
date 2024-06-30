@@ -4,10 +4,10 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: #f0f0f0;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
 }
 
 :host-context(.pdf-page) {
@@ -19,20 +19,20 @@
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 2rem;
+  padding: 1rem; /* Smanjili smo padding */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
+  min-height: 200px; /* Smanjili smo min-height */
   position: relative;
-  border-radius: 10px;
-  margin-bottom: 5px;
+  border-radius: 5px;
+  margin-bottom: 3px;
 }
 
 .pdf-mode .profile-header {
   min-height: auto;
-  padding: 1rem;
+  padding: 0.5rem;
   background: #f0f0f0;
   color: #333;
   display: flex;
@@ -42,22 +42,22 @@
 
 .logo-container {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  width: 90px;
-  height: 90px;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 60px; /* Smanjili smo veličinu */
+  height: 60px;
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .app-logo {
-  width: 180%;
-  height: 180%;
+  width: 150%;
+  height: 150%;
   object-fit: contain;
 }
 
@@ -74,22 +74,22 @@
 
 .profile-image-container {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 180px; /* Smanjili smo veličinu */
+  height: 180px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 5px;
-  border: 5px solid #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pdf-mode .profile-image-container {
-  width: 120px;
-  height: 120px;
-  border: 2px solid #333;
-  margin-right: 1rem;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #333;
+  margin-right: 0.5rem;
   margin-bottom: 0;
 }
 
@@ -98,7 +98,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  filter: brightness(0.8);
+  filter: brightness(0.9);
 }
 
 .pdf-mode .profile-image {
@@ -125,12 +125,12 @@
 
 .overlay-actions {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .action-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.8);
   display: flex;
@@ -145,7 +145,7 @@
 }
 
 .action-icon i {
-  font-size: 18px;
+  font-size: 14px;
   color: #764ba2;
 }
 
@@ -159,27 +159,27 @@
 
 .profile-title h2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Smanjili smo font-size */
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
 .pdf-mode .profile-title h2 {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .profile-title p {
-  margin: 0.5rem 0 0;
-  font-size: 1.2rem;
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
   opacity: 0.9;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
 .pdf-mode .profile-title p {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #555;
   font-weight: 500;
 }
@@ -201,14 +201,14 @@
 
 @media (max-width: 600px) {
   .profile-header {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .logo-container {
-    top: 0.5rem;
-    left: 0.5rem;
-    width: 60px;
-    height: 60px;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 40px;
+    height: 40px;
   }
 
   .app-logo {
@@ -217,24 +217,24 @@
   }
 
   .profile-image-container {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
   }
 
   .profile-title h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .profile-title p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .action-icon {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .action-icon i {
-    font-size: 14px;
+    font-size: 12px;
   }
 }

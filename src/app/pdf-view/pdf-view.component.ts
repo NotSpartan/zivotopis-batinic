@@ -48,7 +48,7 @@ export class PdfViewComponent {
     const pdf = new jsPDF('p', 'pt', 'a4');
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-    const margin = 40; // 40pt margin
+    const margin = 20; // Smanjili smo marginu s 40 na 20
 
     try {
       const fontBase64 = await this.loadFont();
@@ -74,17 +74,29 @@ export class PdfViewComponent {
 
   private async generatePDFPages(pdf: jsPDF, element: HTMLElement, pageWidth: number, pageHeight: number, margin: number): Promise<void> {
     const pageElements = element.querySelectorAll('.pdf-page');
+    let yOffset = margin;
+    let currentPage = 1;
+
     for (let i = 0; i < pageElements.length; i++) {
       const pageElement = pageElements[i] as HTMLElement;
-      await this.processPageElement(pdf, pageElement, i, pageWidth, pageHeight, margin);
+      await this.processPageElement(pdf, pageElement, currentPage, pageWidth, pageHeight, margin, yOffset);
+      
+      // Provjera je li potrebna nova stranica
+      if (yOffset + pageElement.offsetHeight > pageHeight - margin) {
+        pdf.addPage();
+        currentPage++;
+        yOffset = margin;
+      } else {
+        yOffset += pageElement.offsetHeight + 10; // Dodajemo mali razmak između komponenti
+      }
     }
   }
 
-  private async processPageElement(pdf: jsPDF, pageElement: HTMLElement, pageIndex: number, pageWidth: number, pageHeight: number, margin: number): Promise<void> {
+  private async processPageElement(pdf: jsPDF, pageElement: HTMLElement, pageIndex: number, pageWidth: number, pageHeight: number, margin: number, yOffset: number): Promise<void> {
     await this.waitForImages(pageElement);
     pageElement.style.display = 'block';
     const canvas = await this.createCanvas(pageElement, pageWidth, pageHeight, margin);
-    this.addImageToPDF(pdf, canvas, pageIndex, pageWidth, pageHeight, margin);
+    this.addImageToPDF(pdf, canvas, pageIndex, pageWidth, pageHeight, margin, yOffset);
     pageElement.style.display = '';
   }
 
@@ -103,16 +115,16 @@ export class PdfViewComponent {
   }
 
   private async createCanvas(element: HTMLElement, pageWidth: number, pageHeight: number, margin: number): Promise<HTMLCanvasElement> {
-    const scale = 2; // Increase scale for better quality
+    const scale = 2; // Povećali smo scale za bolju kvalitetu
     return html2canvas(element, {
       scale: scale,
       useCORS: true,
       allowTaint: true,
       logging: false,
       width: pageWidth - 2 * margin,
-      height: pageHeight - 2 * margin,
+      height: element.offsetHeight,
       x: margin,
-      y: margin,
+      y: 0,
       onclone: (clonedDoc) => {
         this.styleClonedElement(clonedDoc, pageWidth, margin);
       }
@@ -134,18 +146,23 @@ export class PdfViewComponent {
     motivationElements.forEach((el: Element) => {
       const htmlEl = el as HTMLElement;
       htmlEl.style.fontFamily = 'DancingScript, cursive';
-      htmlEl.style.fontSize = '14pt';
-      htmlEl.style.lineHeight = '1.4';
+      htmlEl.style.fontSize = '12pt'; // Smanjili smo font
+      htmlEl.style.lineHeight = '1.2'; // Smanjili smo line-height
       htmlEl.style.color = '#3a3a3a';
     });
   }
 
-  private addImageToPDF(pdf: jsPDF, canvas: HTMLCanvasElement, pageIndex: number, pageWidth: number, pageHeight: number, margin: number): void {
-    if (pageIndex > 0) {
-      pdf.addPage();
-    }
+  private addImageToPDF(pdf: jsPDF, canvas: HTMLCanvasElement, pageIndex: number, pageWidth: number, pageHeight: number, margin: number, yOffset: number): void {
     const imgData = canvas.toDataURL('image/jpeg', 1.0);
-    pdf.addImage(imgData, 'JPEG', margin, margin, pageWidth - 2 * margin, pageHeight - 2 * margin, '', 'FAST');
+    const imgWidth = pageWidth - 2 * margin;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+    
+    if (yOffset + imgHeight > pageHeight - margin) {
+      pdf.addPage();
+      yOffset = margin;
+    }
+    
+    pdf.addImage(imgData, 'JPEG', margin, yOffset, imgWidth, imgHeight, '', 'FAST');
   }
 
   private finalizePDF(pdf: jsPDF): void {

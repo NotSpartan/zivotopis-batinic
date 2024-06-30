@@ -5,41 +5,41 @@
 
 :host-context(.pdf-page) {
   display: block;
-  page-break-inside: avoid;
+  page-break-inside: auto;
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.5rem;
+  padding: 0.25rem;
   background-color: #f0f0f0;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.25rem;
 }
 
 .experience-container {
   background-color: #ffffff;
-  border-radius: 10px;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
 .experience-container.pdf-mode {
   background-color: #f0f0f0;
   box-shadow: none;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
 }
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 15px;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 3px solid #3498db;
-  letter-spacing: 1px;
+  margin-top: 10px;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   position: relative;
 }
@@ -47,28 +47,28 @@
 .subtitle::after {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: -2px;
   left: 0;
-  width: 50px;
-  height: 3px;
+  width: 40px;
+  height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 .experience-list {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .experience-item {
   background-color: #f9f9f9;
-  border-left: 4px solid #28a745;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-left: 3px solid #28a745;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   position: relative;
 }
 
@@ -76,21 +76,21 @@
   background-color: transparent;
   border-left: none;
   box-shadow: none;
-  padding: 10px 0;
-  margin-bottom: 15px;
+  padding: 5px 0;
+  margin-bottom: 8px;
 }
 
 .experience-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .date {
   font-weight: bold;
   color: #28a745;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .pdf-mode .date {
@@ -99,21 +99,21 @@
 
 .experience-controls {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .icon-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 8px;
+  padding: 4px;
 }
 
 .icon-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .edit-button {
@@ -133,9 +133,9 @@
 }
 
 .position {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .company {
@@ -145,29 +145,30 @@
 
 .location {
   color: #777;
-  font-size: 0.9em;
-  margin-bottom: 10px;
+  font-size: 0.8em;
+  margin-bottom: 5px;
 }
 
 .responsibilities {
-  margin-top: 10px;
-  padding-left: 20px;
+  margin-top: 5px;
+  padding-left: 15px;
 }
 
 .responsibilities li {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  font-size: 0.85em;
 }
 
 .company-info {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .company-icon {
-  width: 100px;  
-  height: 100px;
-  margin-right: 20px;
+  width: 60px;  
+  height: 60px;
+  margin-right: 10px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -185,30 +186,30 @@
 }
 
 .upload-icon {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 .experience-container .upload-icon .upload-button {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .experience-container .upload-icon .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
 }
 
 .experience-container .upload-icon .upload-button:active {
@@ -217,7 +218,7 @@
 }
 
 .experience-container .upload-icon .upload-button i {
-  margin-right: 6px;
+  margin-right: 4px;
 }
 
 .upload-icon input[type="file"] {
@@ -225,29 +226,29 @@
 }
 
 .add-experience, .edit-experience {
-  margin-top: 30px;
+  margin-top: 15px;
   background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 3px;
 }
 
 .add-experience h3 {
   margin-top: 0;
   color: #333;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .experience-input {
-  width: calc(100% - 20px);
-  padding: 0.75rem;
-  margin-bottom: 10px;
+  width: calc(100% - 10px);
+  padding: 0.5rem;
+  margin-bottom: 5px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 3px;
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -259,18 +260,18 @@
 
 .add-responsibility {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .add-responsibility input {
   flex-grow: 1;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .add-responsibility .action-button {
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  border-radius: 20px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  border-radius: 15px;
 }
 
 .new-responsibilities {
@@ -283,51 +284,52 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e9ecef;
-  padding: 5px 10px;
-  margin-bottom: 5px;
-  border-radius: 4px;
+  padding: 3px 5px;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  font-size: 0.8rem;
 }
 
 .action-button {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
 }
 
 .action-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
 }
 
 .edit-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .remove-btn {
   background: none;
   border: none;
   color: #ff4444;
-  font-size: 1.2em;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -340,38 +342,38 @@
 
 @media (max-width: 600px) {
   .experience-container {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .subtitle {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .experience-item {
-    padding: 10px;
+    padding: 8px;
   }
 
   .company-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 
   .action-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 
   .experience-container .upload-icon .upload-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.6rem;
   }
 
   .add-responsibility .action-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.6rem;
   }
 
   .date {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }

@@ -47,10 +47,10 @@
     <button (click)="generatePDF()" class="generate-pdf-button">Generiraj PDF</button>
   </ng-container>
   <app-pdf-view
-  *ngIf="isGeneratingPDF()"
-  [slika]="slika()"
-  [imePrezime]="imePrezime()"
-  [titula]="titula()"
-  (pdfGenerated)="onPdfGenerated()">
-</app-pdf-view>
+    *ngIf="isGeneratingPDF()"
+    [slika]="slika()"
+    [imePrezime]="imePrezime()"
+    [titula]="titula()"
+    (pdfGenerated)="onPdfGenerated()">
+  </app-pdf-view>
 </div>
