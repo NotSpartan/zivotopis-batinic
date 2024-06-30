@@ -1,6 +1,7 @@
 <div class="app-wrapper">
   <ng-container *ngIf="!isGeneratingPDF()">
     <app-profile-header
+    class="page-break-inside-avoid"
       [slika]="slika()"
       [imePrezime]="imePrezime"
       [titula]="titula"
@@ -21,20 +22,24 @@
     <div class="content-container">
       <ng-container [ngSwitch]="activeTab()">
         <app-osobni-podaci 
+        class="page-break-after"
           *ngSwitchCase="'osobni-podaci'"
           [isGeneratingPDF]="isGeneratingPDF()"
           (imePrezimeChange)="updateImePrezime($event)"
           (titulaChange)="updateTitula($event)">
         </app-osobni-podaci>
         <app-iskustvo 
+        class="page-break-inside-auto"
           *ngSwitchCase="'iskustvo'"
           [isGeneratingPDF]="isGeneratingPDF()">
         </app-iskustvo>
         <app-obrazovanje 
+        class="page-break-inside-auto"
           *ngSwitchCase="'obrazovanje'"
           [isGeneratingPDF]="isGeneratingPDF()">
         </app-obrazovanje>
         <app-tehnoloski-stack 
+        class="page-break-inside-auto"
           *ngSwitchCase="'tehnoloski-stack'"
           [isGeneratingPDF]="isGeneratingPDF()">
         </app-tehnoloski-stack>

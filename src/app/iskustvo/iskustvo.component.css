@@ -9,37 +9,37 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.25rem;
+  padding: 0.2rem; /* Smanjeno s 0.25rem */
   background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 0.25rem;
+  border-radius: 2px; /* Smanjeno s 3px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .experience-container {
   background-color: #ffffff;
-  border-radius: 5px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  border-radius: 4px; /* Smanjeno s 5px */
+  padding: 0.6rem 0.8rem; /* Smanjeno s 0.75rem 1rem */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Smanjeno s 0 2px 4px */
+  margin-bottom: 8px; /* Smanjeno s 10px */
 }
 
 .experience-container.pdf-mode {
   background-color: #f0f0f0;
   box-shadow: none;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0; /* Smanjeno s 0.25rem 0 */
 }
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smanjeno s 1.4rem */
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 10px;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.5rem;
+  margin-top: 8px; /* Smanjeno s 10px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
+  padding-bottom: 0.4rem; /* Smanjeno s 0.5rem */
   border-bottom: 2px solid #3498db;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
   text-transform: uppercase;
   position: relative;
 }
@@ -49,26 +49,26 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 40px;
+  width: 35px; /* Smanjeno s 40px */
   height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem; /* Smanjeno s 1.1rem */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .experience-list {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .experience-item {
   background-color: #f9f9f9;
-  border-left: 3px solid #28a745;
-  padding: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-left: 2px solid #28a745; /* Smanjeno s 3px */
+  padding: 8px; /* Smanjeno s 10px */
+  margin-bottom: 8px; /* Smanjeno s 10px */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Smanjeno s 0 1px 3px */
   position: relative;
 }
 
@@ -76,21 +76,21 @@
   background-color: transparent;
   border-left: none;
   box-shadow: none;
-  padding: 5px 0;
-  margin-bottom: 8px;
+  padding: 4px 0; /* Smanjeno s 5px 0 */
+  margin-bottom: 6px; /* Smanjeno s 8px */
 }
 
 .experience-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .date {
   font-weight: bold;
   color: #28a745;
-  font-size: 0.8rem;
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
 }
 
 .pdf-mode .date {
@@ -99,17 +99,17 @@
 
 .experience-controls {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .icon-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Smanjeno s 1rem */
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 4px;
+  padding: 3px; /* Smanjeno s 4px */
 }
 
 .icon-button:hover {
@@ -133,9 +133,9 @@
 }
 
 .position {
-  font-size: 1.1em;
+  font-size: 1rem; /* Smanjeno s 1.1em */
   color: #333;
-  margin-bottom: 3px;
+  margin-bottom: 2px; /* Smanjeno s 3px */
 }
 
 .company {
@@ -145,30 +145,30 @@
 
 .location {
   color: #777;
-  font-size: 0.8em;
-  margin-bottom: 5px;
+  font-size: 0.75em; /* Smanjeno s 0.8em */
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .responsibilities {
-  margin-top: 5px;
-  padding-left: 15px;
+  margin-top: 4px; /* Smanjeno s 5px */
+  padding-left: 12px; /* Smanjeno s 15px */
 }
 
 .responsibilities li {
-  margin-bottom: 3px;
-  font-size: 0.85em;
+  margin-bottom: 2px; /* Smanjeno s 3px */
+  font-size: 0.8em; /* Smanjeno s 0.85em */
 }
 
 .company-info {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .company-icon {
-  width: 60px;  
-  height: 60px;
-  margin-right: 10px;
+  width: 50px;  /* Smanjeno s 60px */
+  height: 50px; /* Smanjeno s 60px */
+  margin-right: 8px; /* Smanjeno s 10px */
   border-radius: 50%;
   overflow: hidden;
 }
@@ -186,29 +186,29 @@
 }
 
 .upload-icon {
-  margin-top: 8px;
+  margin-top: 6px; /* Smanjeno s 8px */
 }
 
 .experience-container .upload-icon .upload-button {
   display: inline-block;
-  padding: 0.3rem 0.6rem;
+  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 15px;
-  font-size: 0.7rem;
+  border-radius: 12px; /* Smanjeno s 15px */
+  font-size: 0.65rem; /* Smanjeno s 0.7rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .experience-container .upload-icon .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 2px 4px */
   transform: translateY(-1px);
 }
 
@@ -218,7 +218,7 @@
 }
 
 .experience-container .upload-icon .upload-button i {
-  margin-right: 4px;
+  margin-right: 3px; /* Smanjeno s 4px */
 }
 
 .upload-icon input[type="file"] {
@@ -226,52 +226,52 @@
 }
 
 .add-experience, .edit-experience {
-  margin-top: 15px;
+  margin-top: 12px; /* Smanjeno s 15px */
   background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 3px;
+  padding: 8px; /* Smanjeno s 10px */
+  border-radius: 2px; /* Smanjeno s 3px */
 }
 
 .add-experience h3 {
   margin-top: 0;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Smanjeno s 1.1rem */
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .experience-input {
-  width: calc(100% - 10px);
-  padding: 0.5rem;
-  margin-bottom: 5px;
+  width: calc(100% - 8px); /* Smanjeno s calc(100% - 10px) */
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-bottom: 4px; /* Smanjeno s 5px */
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 2px; /* Smanjeno s 3px */
   font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
 }
 
 .add-responsibility {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .add-responsibility input {
   flex-grow: 1;
-  margin-right: 5px;
+  margin-right: 4px; /* Smanjeno s 5px */
 }
 
 .add-responsibility .action-button {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.7rem;
-  border-radius: 15px;
+  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+  font-size: 0.65rem; /* Smanjeno s 0.7rem */
+  border-radius: 12px; /* Smanjeno s 15px */
 }
 
 .new-responsibilities {
@@ -284,52 +284,52 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e9ecef;
-  padding: 3px 5px;
-  margin-bottom: 3px;
-  border-radius: 3px;
-  font-size: 0.8rem;
+  padding: 2px 4px; /* Smanjeno s 3px 5px */
+  margin-bottom: 2px; /* Smanjeno s 3px */
+  border-radius: 2px; /* Smanjeno s 3px */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
 }
 
 .action-button {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Smanjeno s 0.5rem 1rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 16px; /* Smanjeno s 20px */
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 2px 4px */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 3px 6px */
   transform: translateY(-1px);
 }
 
 .action-button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
 }
 
 .edit-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .remove-btn {
   background: none;
   border: none;
   color: #ff4444;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Smanjeno s 1rem */
   cursor: pointer;
 }
 
@@ -342,38 +342,50 @@
 
 @media (max-width: 600px) {
   .experience-container {
-    padding: 0.5rem;
+    padding: 0.4rem; /* Smanjeno s 0.5rem */
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Smanjeno s 1.2rem */
   }
 
   .experience-item {
-    padding: 8px;
+    padding: 6px; /* Smanjeno s 8px */
   }
 
   .company-icon {
-    width: 50px;
-    height: 50px;
+    width: 45px; /* Smanjeno s 50px */
+    height: 45px; /* Smanjeno s 50px */
   }
 
   .action-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem; /* Smanjeno s 0.4rem 0.8rem */
+    font-size: 0.75rem; /* Smanjeno s 0.8rem */
   }
 
   .experience-container .upload-icon .upload-button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.6rem;
+    padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+    font-size: 0.55rem; /* Smanjeno s 0.6rem */
   }
 
   .add-responsibility .action-button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.6rem;
+    padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+    font-size: 0.55rem; /* Smanjeno s 0.6rem */
   }
 
   .date {
-    font-size: 0.7rem;
+    font-size: 0.65rem; /* Smanjeno s 0.7rem */
+  }
+
+  .position {
+    font-size: 0.95rem; /* Smanjeno s 1rem */
+  }
+
+  .company, .location {
+    font-size: 0.7em; /* Smanjeno s 0.75em */
+  }
+
+  .responsibilities li {
+    font-size: 0.75em; /* Smanjeno s 0.8em */
   }
 }

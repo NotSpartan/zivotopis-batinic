@@ -4,10 +4,10 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 0.5rem;
+  border-radius: 2px; /* Smanjeno s 3px */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 :host-context(.pdf-page) {
@@ -19,20 +19,20 @@
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 1rem; /* Smanjili smo padding */
+  padding: 0.8rem; /* Smanjeno s 1rem */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px; /* Smanjili smo min-height */
+  min-height: 180px; /* Smanjeno s 200px */
   position: relative;
-  border-radius: 5px;
-  margin-bottom: 3px;
+  border-radius: 4px; /* Smanjeno s 5px */
+  margin-bottom: 2px; /* Smanjeno s 3px */
 }
 
 .pdf-mode .profile-header {
   min-height: auto;
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   background: #f0f0f0;
   color: #333;
   display: flex;
@@ -42,22 +42,22 @@
 
 .logo-container {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  width: 60px; /* Smanjili smo veličinu */
-  height: 60px;
+  top: 0.4rem; /* Smanjeno s 0.5rem */
+  left: 0.4rem; /* Smanjeno s 0.5rem */
+  width: 50px; /* Smanjeno s 60px */
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2); /* Smanjeno s 2px 8px */
 }
 
 .app-logo {
-  width: 150%;
-  height: 150%;
+  width: 140%; /* Smanjeno s 150% */
+  height: 140%; /* Smanjeno s 150% */
   object-fit: contain;
 }
 
@@ -74,22 +74,22 @@
 
 .profile-image-container {
   position: relative;
-  width: 180px; /* Smanjili smo veličinu */
-  height: 180px;
+  width: 160px; /* Smanjeno s 180px */
+  height: 160px; /* Smanjeno s 180px */
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 3px;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 2px; /* Smanjeno s 3px */
+  border: 2px solid #fff; /* Smanjeno s 3px */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2); /* Smanjeno s 2px 8px */
 }
 
 .pdf-mode .profile-image-container {
-  width: 100px;
-  height: 100px;
+  width: 90px; /* Smanjeno s 100px */
+  height: 90px; /* Smanjeno s 100px */
   border: 1px solid #333;
-  margin-right: 0.5rem;
+  margin-right: 0.4rem; /* Smanjeno s 0.5rem */
   margin-bottom: 0;
 }
 
@@ -125,12 +125,12 @@
 
 .overlay-actions {
   display: flex;
-  gap: 5px;
+  gap: 4px; /* Smanjeno s 5px */
 }
 
 .action-icon {
-  width: 30px;
-  height: 30px;
+  width: 28px; /* Smanjeno s 30px */
+  height: 28px; /* Smanjeno s 30px */
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.8);
   display: flex;
@@ -145,7 +145,7 @@
 }
 
 .action-icon i {
-  font-size: 14px;
+  font-size: 13px; /* Smanjeno s 14px */
   color: #764ba2;
 }
 
@@ -159,33 +159,33 @@
 
 .profile-title h2 {
   margin: 0;
-  font-size: 1.5rem; /* Smanjili smo font-size */
+  font-size: 1.4rem; /* Smanjeno s 1.5rem */
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
 .pdf-mode .profile-title h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Smanjeno s 1.2rem */
   color: #333;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .profile-title p {
-  margin: 0.25rem 0 0;
-  font-size: 1rem;
+  margin: 0.2rem 0 0; /* Smanjeno s 0.25rem */
+  font-size: 0.95rem; /* Smanjeno s 1rem */
   opacity: 0.9;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
 .pdf-mode .profile-title p {
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   color: #555;
   font-weight: 500;
 }
 
 .animated-title {
-  min-height: 1.2em;
+  min-height: 1.1em; /* Smanjeno s 1.2em */
   display: inline-block;
 }
 
@@ -201,40 +201,40 @@
 
 @media (max-width: 600px) {
   .profile-header {
-    padding: 1rem;
+    padding: 0.8rem; /* Smanjeno s 1rem */
   }
 
   .logo-container {
-    top: 0.25rem;
-    left: 0.25rem;
-    width: 40px;
-    height: 40px;
+    top: 0.2rem; /* Smanjeno s 0.25rem */
+    left: 0.2rem; /* Smanjeno s 0.25rem */
+    width: 35px; /* Smanjeno s 40px */
+    height: 35px; /* Smanjeno s 40px */
   }
 
   .app-logo {
-    width: 120%;
-    height: 120%;
+    width: 110%; /* Smanjeno s 120% */
+    height: 110%; /* Smanjeno s 120% */
   }
 
   .profile-image-container {
-    width: 150px;
-    height: 150px;
+    width: 140px; /* Smanjeno s 150px */
+    height: 140px; /* Smanjeno s 150px */
   }
 
   .profile-title h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Smanjeno s 1.2rem */
   }
 
   .profile-title p {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Smanjeno s 0.9rem */
   }
 
   .action-icon {
-    width: 25px;
-    height: 25px;
+    width: 22px; /* Smanjeno s 25px */
+    height: 22px; /* Smanjeno s 25px */
   }
 
   .action-icon i {
-    font-size: 12px;
+    font-size: 11px; /* Smanjeno s 12px */
   }
 }

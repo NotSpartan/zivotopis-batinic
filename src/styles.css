@@ -13,7 +13,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
-  line-height: 1.6;
+  line-height: 1.5;
+  font-size: 14px; /* Smanjeno s defaultne veličine */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,64 +24,65 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   background-color: #4CAF50;
   color: white;
-  padding: 20px;
+  padding: 15px; /* Smanjeno s 20px */
   text-align: center;
+  font-size: 24px; /* Dodano za konzistentnost */
 }
 
 /* Stilovi za PDF mod */
 .pdf-mode * {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .pdf-mode .pdf-content > * {
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   background-color: #f0f0f0;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  border-radius: 4px; /* Smanjeno s 5px */
+  margin-bottom: 0.8rem; /* Smanjeno s 1rem */
 }
 
 .pdf-mode {
-  font-size: 12pt;
-  line-height: 1.5;
+  font-size: 10pt; /* Smanjeno s 12pt */
+  line-height: 1.4; /* Smanjeno s 1.5 */
 }
 
 .pdf-mode h1 {
-  font-size: 24pt;
-  margin-bottom: 1rem;
+  font-size: 20pt; /* Smanjeno s 24pt */
+  margin-bottom: 0.8rem; /* Smanjeno s 1rem */
 }
 
 .pdf-mode h2 {
-  font-size: 18pt;
-  margin-bottom: 0.75rem;
+  font-size: 16pt; /* Smanjeno s 18pt */
+  margin-bottom: 0.6rem; /* Smanjeno s 0.75rem */
 }
 
 .pdf-mode h3 {
-  font-size: 14pt;
-  margin-bottom: 0.5rem;
+  font-size: 12pt; /* Smanjeno s 14pt */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .pdf-mode p {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .pdf-mode ul, .pdf-mode ol {
-  padding-left: 20px;
-  margin-bottom: 0.5rem;
+  padding-left: 16px; /* Smanjeno s 20px */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .pdf-mode li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .pdf-mode table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem; /* Smanjeno s 1rem */
 }
 
 .pdf-mode th, .pdf-mode td {
   border: 1px solid #ddd;
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   text-align: left;
 }
 
@@ -102,26 +104,27 @@ button {
 
 @media (max-width: 600px) {
   body {
-    font-size: 14px;
+    font-size: 13px; /* Smanjeno s 14px */
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 22px; /* Smanjeno s 24px */
+    padding: 12px; /* Smanjeno s 15px */
   }
 
   .pdf-mode {
-    font-size: 10pt;
+    font-size: 9pt; /* Smanjeno s 10pt */
   }
 
   .pdf-mode h1 {
-    font-size: 20pt;
+    font-size: 18pt; /* Smanjeno s 20pt */
   }
 
   .pdf-mode h2 {
-    font-size: 16pt;
+    font-size: 14pt; /* Smanjeno s 16pt */
   }
 
   .pdf-mode h3 {
-    font-size: 12pt;
+    font-size: 11pt; /* Smanjeno s 12pt */
   }
 }

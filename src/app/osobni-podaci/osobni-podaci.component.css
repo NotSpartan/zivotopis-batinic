@@ -4,10 +4,10 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.5rem;
+  padding: 0.3rem; /* Smanjeno s 0.5rem */
   background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 0.5rem;
+  border-radius: 2px; /* Smanjeno s 3px */
+  margin-bottom: 0.3rem; /* Smanjeno s 0.5rem */
 }
 
 :host-context(.pdf-page) {
@@ -17,10 +17,10 @@
 
 .profile-card {
   background-color: #ffffff;
-  border-radius: 5px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px;
+  border-radius: 4px; /* Smanjeno s 5px */
+  padding: 0.6rem 0.8rem; /* Smanjeno s 0.75rem 1rem */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Smanjeno s 0 2px 4px */
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .profile-card.pdf-mode {
@@ -31,15 +31,15 @@
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smanjeno s 1.4rem */
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 10px;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.5rem;
+  margin-top: 8px; /* Smanjeno s 10px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
+  padding-bottom: 0.4rem; /* Smanjeno s 0.5rem */
   border-bottom: 2px solid #3498db;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
   text-transform: uppercase;
   position: relative;
 }
@@ -49,34 +49,34 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 40px;
+  width: 35px; /* Smanjeno s 40px */
   height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.1rem; /* Smanjeno s 1.2rem */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .profile-body {
-  padding: 0.25rem;
+  padding: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .profile-body.pdf-mode .field {
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem; /* Smanjeno s 0.15rem */
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .field i {
   color: #667eea;
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.1rem; /* Smanjeno s 1.2rem */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .field-content {
@@ -86,22 +86,22 @@
 .field-content span,
 .field-content input {
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem; /* Smanjeno s 1rem */
   color: #333;
 }
 
 .field-content input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 2px; /* Smanjeno s 3px */
   transition: border-color 0.3s ease;
 }
 
 .field-content input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
 }
 
 .links-field {
@@ -110,28 +110,28 @@
 }
 
 .links-field i {
-  margin-right: 0.25rem;
-  margin-top: 0.15rem;
+  margin-right: 0.2rem; /* Smanjeno s 0.25rem */
+  margin-top: 0.1rem; /* Smanjeno s 0.15rem */
 }
 
 .links-container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px; /* Smanjeno s 5px */
 }
 
 .social-link {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px; /* Smanjeno s 5px */
 }
 
 .icon-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 28px; /* Smanjeno s 30px */
+  height: 28px; /* Smanjeno s 30px */
   background-color: #f0f0f0;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -142,14 +142,14 @@
 }
 
 .link-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px; /* Smanjeno s 18px */
+  height: 16px; /* Smanjeno s 18px */
   object-fit: contain;
 }
 
 .link-url {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.8em;
+  font-size: 0.75em; /* Smanjeno s 0.8em */
   color: #666;
   word-break: break-all;
 }
@@ -157,46 +157,46 @@
 .link-edit, .link-add {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 5px;
+  gap: 8px; /* Smanjeno s 10px */
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .link-edit input, .link-add input {
   font-family: 'Poppins', sans-serif;
   flex-grow: 1;
-  padding: 0.5rem;
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   border: 1px solid #ddd;
-  border-radius: 15px;
-  font-size: 0.85rem;
+  border-radius: 12px; /* Smanjeno s 15px */
+  font-size: 0.8rem; /* Smanjeno s 0.85rem */
   transition: all 0.3s ease;
 }
 
 .link-edit input:focus, .link-add input:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
   outline: none;
 }
 
 .btn, .action-button {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Smanjeno s 0.5rem 1rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 16px; /* Smanjeno s 20px */
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 2px 4px */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .btn:hover, .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 4px 6px */
   transform: translateY(-1px);
 }
 
@@ -223,24 +223,24 @@
 
 @media (max-width: 600px) {
   .profile-card {
-    padding: 0.5rem;
+    padding: 0.4rem; /* Smanjeno s 0.5rem */
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Smanjeno s 1.2rem */
   }
 
   .field i {
-    font-size: 1rem;
+    font-size: 0.95rem; /* Smanjeno s 1rem */
   }
 
   .field-content span,
   .field-content input {
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Smanjeno s 0.85rem */
   }
 
   .btn, .action-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem; /* Smanjeno s 0.4rem 0.8rem */
+    font-size: 0.75rem; /* Smanjeno s 0.8rem */
   }
 }

@@ -87,7 +87,7 @@ export class PdfViewComponent {
         currentPage++;
         yOffset = margin;
       } else {
-        yOffset += pageElement.offsetHeight + 10; // Dodajemo mali razmak između komponenti
+        yOffset += pageElement.offsetHeight + 5; // Smanjili smo razmak između komponenti s 10 na 5
       }
     }
   }
@@ -146,7 +146,7 @@ export class PdfViewComponent {
     motivationElements.forEach((el: Element) => {
       const htmlEl = el as HTMLElement;
       htmlEl.style.fontFamily = 'DancingScript, cursive';
-      htmlEl.style.fontSize = '12pt'; // Smanjili smo font
+      htmlEl.style.fontSize = '11pt'; // Smanjili smo font s 12pt na 11pt
       htmlEl.style.lineHeight = '1.2'; // Smanjili smo line-height
       htmlEl.style.color = '#3a3a3a';
     });
@@ -172,6 +172,5 @@ export class PdfViewComponent {
 
   private handleError(error: any): void {
     console.error('Error generating PDF:', error);
-    // Ovdje možete dodati kod za prikazivanje poruke o grešci korisniku
   }
 }

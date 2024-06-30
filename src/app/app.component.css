@@ -1,18 +1,18 @@
 .app-wrapper {
   max-width: 800px; 
   margin: 0 auto;
-  padding: 0 10px; /* Smanjili smo padding */
+  padding: 0 8px; /* Smanjeno s 10px */
 }
 
 :not(.pdf-mode) .content-container > * {
-  margin-bottom: 0.5rem; /* Smanjili smo margin */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .pdf-preview {
   width: 210mm;
   margin: 0 auto;
   background: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Smanjili smo shadow */
+  box-shadow: 0 0 3px rgba(0,0,0,0.1); /* Smanjeno s 5px */
 }
 
 @media screen and (max-width: 210mm) {
@@ -23,10 +23,10 @@
 
 .horizontal-nav {
   background-color: #333;
-  padding: 5px 0; /* Smanjili smo padding */
-  margin-bottom: 3px; /* Smanjili smo margin */
-  border-radius: 3px; /* Smanjili smo border-radius */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Smanjili smo shadow */
+  padding: 4px 0; /* Smanjeno s 5px */
+  margin-bottom: 2px; /* Smanjeno s 3px */
+  border-radius: 2px; /* Smanjeno s 3px */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Smanjeno s 3px */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -39,19 +39,19 @@
 }
 
 .horizontal-nav li {
-  margin: 0 10px; /* Smanjili smo margin */
+  margin: 0 8px; /* Smanjeno s 10px */
 }
 
 .horizontal-nav a {
   text-decoration: none;
   color: #fff;
-  padding: 5px 10px; /* Smanjili smo padding */
-  border-radius: 3px; /* Smanjili smo border-radius */
+  padding: 4px 8px; /* Smanjeno s 5px 10px */
+  border-radius: 2px; /* Smanjeno s 3px */
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   font-weight: 500;
   font-family: inherit;
-  font-size: 0.9rem; /* Smanjili smo font-size */
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
 }
 
 .horizontal-nav a:hover,
@@ -61,21 +61,21 @@
 }
 
 .content-container {
-  padding: 3px; /* Smanjili smo padding */
+  padding: 2px; /* Smanjeno s 3px */
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .generate-pdf-button {
   display: block;
-  margin: 10px auto; /* Smanjili smo margin */
-  padding: 8px 16px; /* Smanjili smo padding */
+  margin: 8px auto; /* Smanjeno s 10px */
+  padding: 6px 12px; /* Smanjeno s 8px 16px */
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 3px; /* Smanjili smo border-radius */
+  border-radius: 2px; /* Smanjeno s 3px */
   cursor: pointer;
-  font-size: 14px; /* Smanjili smo font-size */
+  font-size: 13px; /* Smanjeno s 14px */
   transition: background-color 0.3s;
 }
 
@@ -103,27 +103,27 @@
 
 @media (max-width: 600px) {
   .app-wrapper {
-    padding: 0 5px; /* Dodatno smanjili padding za mobilne uređaje */
+    padding: 0 4px; /* Dodatno smanjeno za mobilne uređaje */
   }
 
   .horizontal-nav {
-    padding: 3px 0; /* Dodatno smanjili padding za mobilne uređaje */
+    padding: 2px 0; /* Dodatno smanjeno za mobilne uređaje */
   }
 
   .horizontal-nav a {
-    padding: 4px 8px; /* Dodatno smanjili padding za mobilne uređaje */
-    font-size: 0.8rem; /* Dodatno smanjili font-size za mobilne uređaje */
+    padding: 3px 6px; /* Dodatno smanjeno za mobilne uređaje */
+    font-size: 0.75rem; /* Dodatno smanjeno za mobilne uređaje */
   }
 }
 
 .pdf-mode .content-container > * {
-  margin-bottom: 0.5rem; /* Smanjili smo margin */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .pdf-mode .pdf-content > * {
-  padding: 0.5rem; /* Smanjili smo padding */
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
   background-color: #f0f0f0;
-  border-radius: 3px; /* Smanjili smo border-radius */
+  border-radius: 2px; /* Smanjeno s 3px */
 }
 
 .pdf-mode app-profile-header,
@@ -133,5 +133,5 @@
 .pdf-mode app-tehnoloski-stack,
 .pdf-mode app-ciljevi-motivacija {
   display: block;
-  margin-bottom: 0.5rem; /* Smanjili smo margin */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }

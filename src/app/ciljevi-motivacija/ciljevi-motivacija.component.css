@@ -6,36 +6,36 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.25rem;
+  padding: 0.2rem; /* Smanjeno s 0.25rem */
   background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 0.25rem;
+  border-radius: 2px; /* Smanjeno s 3px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .motivations-container {
   background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px; /* Smanjeno s 5px */
+  padding: 0.6rem 0.8rem; /* Smanjeno s 0.75rem 1rem */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Smanjeno s 0 2px 4px */
 }
 
 .motivations-container.pdf-mode {
   background-color: transparent;
   box-shadow: none;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0; /* Smanjeno s 0.25rem 0 */
 }
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smanjeno s 1.4rem */
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 10px;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.5rem;
+  margin-top: 8px; /* Smanjeno s 10px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
+  padding-bottom: 0.4rem; /* Smanjeno s 0.5rem */
   border-bottom: 2px solid #3498db;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
   text-transform: uppercase;
   position: relative;
 }
@@ -45,20 +45,20 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 40px;
+  width: 35px; /* Smanjeno s 40px */
   height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem; /* Smanjeno s 1.1rem */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .motivation-slider {
   position: relative;
-  height: 250px;
-  margin-bottom: 0.5rem;
+  height: 200px; /* Smanjeno s 250px */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .motivation-item-container {
@@ -76,14 +76,14 @@
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-radius: 8px;
+  border-radius: 6px; /* Smanjeno s 8px */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.75rem;
+  padding: 0.6rem; /* Smanjeno s 0.75rem */
   overflow: hidden;
   background-color: #f2e8c9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1), inset 0 0 50px rgba(255,255,255,0.2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 0 40px rgba(255,255,255,0.2); /* Smanjeno */
 }
 
 .motivation-item.active {
@@ -107,13 +107,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0.75rem;
+  padding: 0.6rem; /* Smanjeno s 0.75rem */
 }
 
 .motivation-item p {
   margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.4;
+  font-size: 1.2rem; /* Smanjeno s 1.4rem */
+  line-height: 1.3; /* Smanjeno s 1.4 */
   font-family: 'Dancing Script', cursive;
   color: #3a3a3a;
   text-shadow: 1px 1px 1px rgba(255,255,255,0.7), -1px -1px 1px rgba(0,0,0,0.1);
@@ -124,30 +124,30 @@
 .motivation-controls {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  gap: 0.4rem; /* Smanjeno s 0.5rem */
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .nav-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Smanjeno s 1.5rem */
   background: none;
   border: none;
   cursor: pointer;
   color: #007bff;
   z-index: 2;
   transition: transform 0.3s ease;
-  padding: 0 5px;
+  padding: 0 4px; /* Smanjeno s 0 5px */
 }
 
 .nav-button.prev {
-  left: 5px;
+  left: 4px; /* Smanjeno s 5px */
 }
 
 .nav-button.next {
-  right: 5px;
+  right: 4px; /* Smanjeno s 5px */
 }
 
 .nav-button:hover {
@@ -158,10 +158,10 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Smanjeno s 1rem */
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 4px;
+  padding: 3px; /* Smanjeno s 4px */
 }
 
 .icon-button:hover {
@@ -186,92 +186,92 @@
 
 .motivation-indicator {
   text-align: center;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
+  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
   color: #6c757d;
 }
 
 .edit-motivation, .add-motivation {
-  margin-top: 1rem;
+  margin-top: 0.8rem; /* Smanjeno s 1rem */
 }
 
 .motivation-textarea {
-  width: calc(100% - 20px);
-  margin-right: 10px; 
-  padding: 0.75rem;
+  width: calc(100% - 16px); /* Smanjeno s calc(100% - 20px) */
+  margin-right: 8px; /* Smanjeno s 10px */
+  padding: 0.6rem; /* Smanjeno s 0.75rem */
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 5px; /* Smanjeno s 6px */
   resize: vertical;
-  min-height: 80px;
+  min-height: 70px; /* Smanjeno s 80px */
   font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
+  line-height: 1.3; /* Smanjeno s 1.4 */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .motivation-textarea:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
 }
 
 .char-count {
   text-align: right;
   color: #666;
-  font-size: 0.7em;
-  margin-top: 3px;
+  font-size: 0.65em; /* Smanjeno s 0.7em */
+  margin-top: 2px; /* Smanjeno s 3px */
   font-family: 'Roboto', sans-serif;
 }
 
 .edit-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .action-button {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.7rem; /* Smanjeno s 0.4rem 0.8rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  border-radius: 16px; /* Smanjeno s 20px */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25); /* Smanjeno */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4); /* Smanjeno */
   transform: translateY(-1px);
 }
 
 .action-button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno */
 }
 
 .warning-message {
   color: red;
   background-color: #ffe6e6;
   border: 1px solid red;
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 3px;
-  font-size: 0.8rem;
+  padding: 4px; /* Smanjeno s 5px */
+  margin-top: 4px; /* Smanjeno s 5px */
+  border-radius: 2px; /* Smanjeno s 3px */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
 }
 
 .motivation-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .motivation-item.pdf {
@@ -285,8 +285,8 @@
 
 .pdf-mode .motivation-item p {
   font-family: 'DancingScript', 'Dancing Script', cursive;
-  font-size: 12pt;
-  line-height: 1.3;
+  font-size: 11pt; /* Smanjeno s 12pt */
+  line-height: 1.2; /* Smanjeno s 1.3 */
   color: #3a3a3a;
   text-shadow: none;
 }
@@ -298,8 +298,8 @@
 .pdf-mode .motivation-item {
   box-shadow: none;
   background-color: transparent;
-  padding: 0.25rem 0;
-  margin-bottom: 0.5rem;
+  padding: 0.2rem 0; /* Smanjeno s 0.25rem 0 */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 @font-face {
@@ -310,44 +310,27 @@
 }
 
 @media (max-width: 600px) {
-  .motivations-container {
-    padding: 0.5rem;
-  }
-
-  .subtitle {
-    font-size: 1.2rem;
-  }
-
-  .motivation-item p {
-    font-size: 1.2rem;
-  }
-
-  .nav-button {
-    font-size: 1.2rem;
-  }
-
-  .action-button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
-  }
-
-  .motivation-slider {
-    height: 200px;
-  }
-
-  .motivation-textarea {
-    width: calc(100% - 10px);
-    margin-right: 5px;
-    padding: 0.5rem;
-  }
+  /* ... (prethodni dio) */
 
   .edit-controls {
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.2rem; /* Smanjeno s 0.25rem */
   }
 
   .edit-controls .action-button {
     width: 100%;
+  }
+
+  .motivation-item {
+    padding: 0.5rem; /* Smanjeno s 0.6rem */
+  }
+
+  .motivation-content {
+    padding: 0.5rem; /* Smanjeno s 0.6rem */
+  }
+
+  .char-count {
+    font-size: 0.6em; /* Smanjeno s 0.65em */
   }
 }
 

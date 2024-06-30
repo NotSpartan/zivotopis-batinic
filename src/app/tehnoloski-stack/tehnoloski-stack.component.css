@@ -9,36 +9,36 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.25rem;
+  padding: 0.2rem; /* Smanjeno s 0.25rem */
   background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 0.25rem;
+  border-radius: 2px; /* Smanjeno s 3px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .tehnologije-container {
   background-color: #ffffff;
-  border-radius: 5px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px; /* Smanjeno s 5px */
+  padding: 0.6rem 0.8rem; /* Smanjeno s 0.75rem 1rem */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Smanjeno s 0 2px 4px */
 }
 
 .tehnologije-container.pdf-mode {
   background-color: #f0f0f0;
   box-shadow: none;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0; /* Smanjeno s 0.25rem 0 */
 }
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smanjeno s 1.4rem */
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 10px;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.5rem;
+  margin-top: 8px; /* Smanjeno s 10px */
+  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
+  padding-bottom: 0.4rem; /* Smanjeno s 0.5rem */
   border-bottom: 2px solid #3498db;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
   text-transform: uppercase;
   position: relative;
 }
@@ -48,29 +48,29 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 40px;
+  width: 35px; /* Smanjeno s 40px */
   height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem; /* Smanjeno s 1.1rem */
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .tehnologije-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px; /* Smanjeno s 10px */
 }
 
 .tehnologija-item {
-  width: calc(50% - 5px);
-  margin-bottom: 10px;
+  width: calc(50% - 4px); /* Prilagođeno za manji gap */
+  margin-bottom: 8px; /* Smanjeno s 10px */
   background-color: #f9f9f9;
-  border-left: 3px solid #667eea;
-  padding: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-left: 2px solid #667eea; /* Smanjeno s 3px */
+  padding: 8px; /* Smanjeno s 10px */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Smanjeno s 0 1px 3px */
   position: relative;
 }
 
@@ -78,21 +78,21 @@
   background-color: transparent;
   border-left: none;
   box-shadow: none;
-  padding: 5px 0;
-  margin-bottom: 8px;
+  padding: 4px 0; /* Smanjeno s 5px 0 */
+  margin-bottom: 6px; /* Smanjeno s 8px */
 }
 
 .tehnologija-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .razina {
   font-weight: bold;
   color: #007bff;
-  font-size: 0.8rem;
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
 }
 
 .pdf-mode .razina {
@@ -101,17 +101,17 @@
 
 .tehnologija-controls {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.2rem; /* Smanjeno s 0.25rem */
 }
 
 .icon-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 3px;
+  padding: 2px; /* Smanjeno s 3px */
 }
 
 .icon-button:hover {
@@ -137,13 +137,13 @@
 .tehnologija-info {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .tehnologija-ikona {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 35px; /* Smanjeno s 40px */
+  height: 35px; /* Smanjeno s 40px */
+  margin-right: 8px; /* Smanjeno s 10px */
   overflow: hidden;
   border-radius: 50%;
   flex-shrink: 0;
@@ -160,52 +160,52 @@
 }
 
 .naziv {
-  font-size: 1em;
+  font-size: 0.95em; /* Smanjeno s 1em */
   color: #333;
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 2px; /* Smanjeno s 3px */
 }
 
 .opis {
   color: #666;
-  font-size: 0.8em;
-  margin-bottom: 3px;
+  font-size: 0.75em; /* Smanjeno s 0.8em */
+  margin-bottom: 2px; /* Smanjeno s 3px */
 }
 
 .bullet-points {
-  margin-top: 3px;
-  padding-left: 15px;
-  font-size: 0.8em;
+  margin-top: 2px; /* Smanjeno s 3px */
+  padding-left: 12px; /* Smanjeno s 15px */
+  font-size: 0.75em; /* Smanjeno s 0.8em */
 }
 
 .bullet-points li {
-  margin-bottom: 2px;
+  margin-bottom: 1px; /* Smanjeno s 2px */
 }
 
 .upload-icon {
-  margin-top: 5px;
+  margin-top: 4px; /* Smanjeno s 5px */
 }
 
 .upload-button {
   display: inline-block;
-  padding: 0.3rem 0.6rem;
+  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 15px;
-  font-size: 0.7rem;
+  border-radius: 12px; /* Smanjeno s 15px */
+  font-size: 0.65rem; /* Smanjeno s 0.7rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 2px 4px */
   transform: translateY(-1px);
 }
 
@@ -215,7 +215,7 @@
 }
 
 .upload-button i {
-  margin-right: 3px;
+  margin-right: 2px; /* Smanjeno s 3px */
 }
 
 .upload-icon input[type="file"] {
@@ -223,52 +223,52 @@
 }
 
 .add-tehnologija, .edit-tehnologija {
-  margin-top: 15px;
+  margin-top: 12px; /* Smanjeno s 15px */
   background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 3px;
+  padding: 8px; /* Smanjeno s 10px */
+  border-radius: 2px; /* Smanjeno s 3px */
 }
 
 .add-tehnologija h3 {
   margin-top: 0;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Smanjeno s 1.1rem */
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .tehnologija-input {
-  width: calc(100% - 10px);
-  padding: 0.5rem;
-  margin-bottom: 5px;
+  width: calc(100% - 8px); /* Smanjeno s calc(100% - 10px) */
+  padding: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-bottom: 4px; /* Smanjeno s 5px */
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 2px; /* Smanjeno s 3px */
   font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smanjeno s 0.9rem */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tehnologija-input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
 }
 
 .add-bullet-point {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 4px; /* Smanjeno s 5px */
 }
 
 .add-bullet-point input {
   flex-grow: 1;
-  margin-right: 5px;
+  margin-right: 4px; /* Smanjeno s 5px */
 }
 
 .add-bullet-point .action-button {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.7rem;
-  border-radius: 15px;
+  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+  font-size: 0.65rem; /* Smanjeno s 0.7rem */
+  border-radius: 12px; /* Smanjeno s 15px */
 }
 
 .new-bullet-points {
@@ -281,52 +281,52 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e9ecef;
-  padding: 3px 5px;
-  margin-bottom: 3px;
-  border-radius: 3px;
-  font-size: 0.8rem;
+  padding: 2px 4px; /* Smanjeno s 3px 5px */
+  margin-bottom: 2px; /* Smanjeno s 3px */
+  border-radius: 2px; /* Smanjeno s 3px */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
 }
 
 .action-button {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.7rem; /* Smanjeno s 0.4rem 0.8rem */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  border-radius: 14px; /* Smanjeno s 20px */
+  font-size: 0.75rem; /* Smanjeno s 0.8rem */
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 2px 4px */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
 }
 
 .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 3px 6px */
   transform: translateY(-1px);
 }
 
 .action-button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
 }
 
 .edit-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
 }
 
 .remove-btn {
   background: none;
   border: none;
   color: #ff4444;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Smanjeno s 1rem */
   cursor: pointer;
 }
 
@@ -343,38 +343,38 @@
   }
 
   .tehnologije-container {
-    padding: 0.5rem;
+    padding: 0.4rem; /* Smanjeno s 0.5rem */
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Smanjeno s 1.2rem */
   }
 
   .tehnologija-item {
-    padding: 8px;
+    padding: 6px; /* Smanjeno s 8px */
   }
 
   .tehnologija-ikona {
-    width: 35px;
-    height: 35px;
+    width: 30px; /* Smanjeno s 35px */
+    height: 30px; /* Smanjeno s 35px */
   }
 
   .action-button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+    font-size: 0.65rem; /* Smanjeno s 0.7rem */
   }
 
   .upload-button {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem; /* Smanjeno s 0.25rem 0.5rem */
+    font-size: 0.55rem; /* Smanjeno s 0.6rem */
   }
 
   .add-bullet-point .action-button {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem; /* Smanjeno s 0.25rem 0.5rem */
+    font-size: 0.55rem; /* Smanjeno s 0.6rem */
   }
 
   .razina {
-    font-size: 0.7rem;
+    font-size: 0.65rem; /* Smanjeno s 0.7rem */
   }
 }
