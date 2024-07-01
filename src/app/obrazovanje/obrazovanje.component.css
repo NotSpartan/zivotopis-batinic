@@ -9,37 +9,38 @@
 }
 
 :host-context(.pdf-mode) {
-  padding: 0.2rem; /* Smanjeno s 0.25rem */
-  background-color: #f0f0f0;
-  border-radius: 2px; /* Smanjeno s 3px */
-  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
+  padding: 0.2rem;
+  background-color: transparent;
+  border-radius: 2px;
+  margin-bottom: 0.2rem;
 }
 
 .education-container {
   background-color: #ffffff;
-  border-radius: 4px; /* Smanjeno s 5px */
-  padding: 0.6rem 0.8rem; /* Smanjeno s 0.75rem 1rem */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Smanjeno s 0 2px 4px */
-  margin-bottom: 8px; /* Smanjeno s 10px */
+  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
 }
 
 .education-container.pdf-mode {
-  background-color: #f0f0f0;
+  background-color: transparent;
   box-shadow: none;
-  padding: 0.2rem 0; /* Smanjeno s 0.25rem 0 */
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #ddd;
 }
 
 .subtitle {
   color: #2c3e50;
-  font-size: 1.2rem; /* Smanjeno s 1.4rem */
+  font-size: 1.2rem;
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   text-align: left;
-  margin-top: 8px; /* Smanjeno s 10px */
-  margin-bottom: 0.2rem; /* Smanjeno s 0.25rem */
-  padding-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-top: 8px;
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.4rem;
   border-bottom: 2px solid #3498db;
-  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   position: relative;
 }
@@ -49,26 +50,26 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 35px; /* Smanjeno s 40px */
+  width: 35px;
   height: 2px;
   background-color: #e74c3c;
 }
 
 .pdf-mode .subtitle {
-  font-size: 1rem; /* Smanjeno s 1.1rem */
-  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
 }
 
 .education-list {
-  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-top: 0.4rem;
 }
 
 .education-item {
   background-color: #f9f9f9;
-  border-left: 2px solid #28a745; /* Smanjeno s 3px */
-  padding: 8px; /* Smanjeno s 10px */
-  margin-bottom: 8px; /* Smanjeno s 10px */
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Smanjeno s 0 1px 3px */
+  border-left: 2px solid #28a745;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   position: relative;
 }
 
@@ -76,21 +77,21 @@
   background-color: transparent;
   border-left: none;
   box-shadow: none;
-  padding: 4px 0; /* Smanjeno s 5px 0 */
-  margin-bottom: 6px; /* Smanjeno s 8px */
+  padding: 4px 0;
+  margin-bottom: 6px;
 }
 
 .education-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px; /* Smanjeno s 5px */
+  margin-bottom: 4px;
 }
 
 .year {
   font-weight: bold;
   color: #28a745;
-  font-size: 0.75rem; /* Smanjeno s 0.8rem */
+  font-size: 0.75rem;
 }
 
 .pdf-mode .year {
@@ -99,17 +100,17 @@
 
 .education-controls {
   display: flex;
-  gap: 0.2rem; /* Smanjeno s 0.25rem */
+  gap: 0.2rem;
 }
 
 .icon-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem; /* Smanjeno s 1rem */
+  font-size: 0.9rem;
   color: #6c757d;
   transition: color 0.3s, transform 0.3s;
-  padding: 3px; /* Smanjeno s 4px */
+  padding: 3px;
 }
 
 .icon-button:hover {
@@ -133,9 +134,9 @@
 }
 
 .title {
-  font-size: 1rem; /* Smanjeno s 1.1em */
+  font-size: 1rem;
   color: #333;
-  margin-bottom: 2px; /* Smanjeno s 3px */
+  margin-bottom: 2px;
 }
 
 .institution {
@@ -145,36 +146,36 @@
 
 .location {
   color: #777;
-  font-size: 0.75em; /* Smanjeno s 0.8em */
-  margin-bottom: 4px; /* Smanjeno s 5px */
+  font-size: 0.75em;
+  margin-bottom: 4px;
 }
 
 .description {
-  margin-top: 4px; /* Smanjeno s 5px */
+  margin-top: 4px;
   color: #666;
-  font-size: 0.85em; /* Smanjeno s 0.9em */
+  font-size: 0.85em;
 }
 
 .bullet-points {
-  margin-top: 4px; /* Smanjeno s 5px */
-  padding-left: 12px; /* Smanjeno s 15px */
+  margin-top: 4px;
+  padding-left: 12px;
 }
 
 .bullet-points li {
-  margin-bottom: 2px; /* Smanjeno s 3px */
-  font-size: 0.8em; /* Smanjeno s 0.85em */
+  margin-bottom: 2px;
+  font-size: 0.8em;
 }
 
 .institution-info {
   display: flex;
   align-items: center;
-  margin-bottom: 4px; /* Smanjeno s 5px */
+  margin-bottom: 4px;
 }
 
 .institution-icon {
-  width: 50px;  /* Smanjeno s 60px */
-  height: 50px; /* Smanjeno s 60px */
-  margin-right: 8px; /* Smanjeno s 10px */
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -192,29 +193,29 @@
 }
 
 .upload-icon {
-  margin-top: 6px; /* Smanjeno s 8px */
+  margin-top: 6px;
 }
 
 .education-container .upload-icon .upload-button {
   display: inline-block;
-  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
+  padding: 0.25rem 0.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 12px; /* Smanjeno s 15px */
-  font-size: 0.65rem; /* Smanjeno s 0.7rem */
+  border-radius: 12px;
+  font-size: 0.65rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
-  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
+  letter-spacing: 0.4px;
 }
 
 .education-container .upload-icon .upload-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 2px 4px */
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.4);
   transform: translateY(-1px);
 }
 
@@ -224,7 +225,7 @@
 }
 
 .education-container .upload-icon .upload-button i {
-  margin-right: 3px; /* Smanjeno s 4px */
+  margin-right: 3px;
 }
 
 .upload-icon input[type="file"] {
@@ -232,52 +233,52 @@
 }
 
 .add-education, .edit-education {
-  margin-top: 12px; /* Smanjeno s 15px */
+  margin-top: 12px;
   background-color: #f0f0f0;
-  padding: 8px; /* Smanjeno s 10px */
-  border-radius: 2px; /* Smanjeno s 3px */
+  padding: 8px;
+  border-radius: 2px;
 }
 
 .add-education h3 {
   margin-top: 0;
   color: #333;
-  font-size: 1rem; /* Smanjeno s 1.1rem */
+  font-size: 1rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-bottom: 0.4rem;
 }
 
 .education-input {
-  width: calc(100% - 8px); /* Smanjeno s calc(100% - 10px) */
-  padding: 0.4rem; /* Smanjeno s 0.5rem */
-  margin-bottom: 4px; /* Smanjeno s 5px */
+  width: calc(100% - 8px);
+  padding: 0.4rem;
+  margin-bottom: 4px;
   border: 1px solid #ddd;
-  border-radius: 2px; /* Smanjeno s 3px */
+  border-radius: 2px;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem; /* Smanjeno s 0.9rem */
+  font-size: 0.85rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .education-input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2); /* Smanjeno s 2px */
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.2);
 }
 
 .add-bullet-point {
   display: flex;
-  margin-bottom: 4px; /* Smanjeno s 5px */
+  margin-bottom: 4px;
 }
 
 .add-bullet-point input {
   flex-grow: 1;
-  margin-right: 4px; /* Smanjeno s 5px */
+  margin-right: 4px;
 }
 
 .add-bullet-point .action-button {
-  padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
-  font-size: 0.65rem; /* Smanjeno s 0.7rem */
-  border-radius: 12px; /* Smanjeno s 15px */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+  border-radius: 12px;
 }
 
 .new-bullet-points {
@@ -290,52 +291,52 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e9ecef;
-  padding: 2px 4px; /* Smanjeno s 3px 5px */
-  margin-bottom: 2px; /* Smanjeno s 3px */
-  border-radius: 2px; /* Smanjeno s 3px */
-  font-size: 0.75rem; /* Smanjeno s 0.8rem */
+  padding: 2px 4px;
+  margin-bottom: 2px;
+  border-radius: 2px;
+  font-size: 0.75rem;
 }
 
 .action-button {
   display: inline-block;
-  padding: 0.4rem 0.8rem; /* Smanjeno s 0.5rem 1rem */
+  padding: 0.4rem 0.8rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 16px; /* Smanjeno s 20px */
-  font-size: 0.85rem; /* Smanjeno s 0.9rem */
+  border-radius: 16px;
+  font-size: 0.85rem;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 2px 4px */
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.25);
   text-transform: uppercase;
-  letter-spacing: 0.4px; /* Smanjeno s 0.5px */
+  letter-spacing: 0.4px;
 }
 
 .action-button:hover {
   background: linear-gradient(135deg, #5a6eea 0%, #6a3f9d 100%);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4); /* Smanjeno s 0 3px 6px */
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
   transform: translateY(-1px);
 }
 
 .action-button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25); /* Smanjeno s 0 1px 3px */
+  box-shadow: 0 1px 2px rgba(102, 126, 234, 0.25);
 }
 
 .edit-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 0.4rem; /* Smanjeno s 0.5rem */
-  margin-top: 0.4rem; /* Smanjeno s 0.5rem */
+  gap: 0.4rem;
+  margin-top: 0.4rem;
 }
 
 .remove-btn {
   background: none;
   border: none;
   color: #ff4444;
-  font-size: 0.9rem; /* Smanjeno s 1rem */
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -348,38 +349,38 @@
 
 @media (max-width: 600px) {
   .education-container {
-    padding: 0.4rem; /* Smanjeno s 0.5rem */
+    padding: 0.4rem;
   }
 
   .subtitle {
-    font-size: 1.1rem; /* Smanjeno s 1.2rem */
+    font-size: 1.1rem;
   }
 
   .education-item {
-    padding: 6px; /* Smanjeno s 8px */
+    padding: 6px;
   }
 
   .institution-icon {
-    width: 45px; /* Smanjeno s 50px */
-    height: 45px; /* Smanjeno s 50px */
+    width: 45px;
+    height: 45px;
   }
 
   .action-button {
-    padding: 0.3rem 0.6rem; /* Smanjeno s 0.4rem 0.8rem */
-    font-size: 0.75rem; /* Smanjeno s 0.8rem */
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   .education-container .upload-icon .upload-button {
-    padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
-    font-size: 0.55rem; /* Smanjeno s 0.6rem */
+    padding: 0.25rem 0.5rem;
+    font-size: 0.55rem;
   }
 
   .add-bullet-point .action-button {
-    padding: 0.25rem 0.5rem; /* Smanjeno s 0.3rem 0.6rem */
-    font-size: 0.55rem; /* Smanjeno s 0.6rem */
+    padding: 0.25rem 0.5rem;
+    font-size: 0.55rem;
   }
 
   .year {
-    font-size: 0.65rem; /* Smanjeno s 0.7rem */
+    font-size: 0.65rem;
   }
 }

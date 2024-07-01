@@ -48,7 +48,7 @@ export class PdfViewComponent {
     const pdf = new jsPDF('p', 'pt', 'a4');
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-    const margin = 20; // Smanjili smo marginu s 40 na 20
+    const margin = 20;
 
     try {
       const fontBase64 = await this.loadFont();
@@ -81,13 +81,12 @@ export class PdfViewComponent {
       const pageElement = pageElements[i] as HTMLElement;
       await this.processPageElement(pdf, pageElement, currentPage, pageWidth, pageHeight, margin, yOffset);
       
-      // Provjera je li potrebna nova stranica
       if (yOffset + pageElement.offsetHeight > pageHeight - margin) {
         pdf.addPage();
         currentPage++;
         yOffset = margin;
       } else {
-        yOffset += pageElement.offsetHeight + 5; // Smanjili smo razmak između komponenti s 10 na 5
+        yOffset += pageElement.offsetHeight + 5;
       }
     }
   }
@@ -115,7 +114,7 @@ export class PdfViewComponent {
   }
 
   private async createCanvas(element: HTMLElement, pageWidth: number, pageHeight: number, margin: number): Promise<HTMLCanvasElement> {
-    const scale = 2; // Povećali smo scale za bolju kvalitetu
+    const scale = 2;
     return html2canvas(element, {
       scale: scale,
       useCORS: true,
@@ -146,8 +145,8 @@ export class PdfViewComponent {
     motivationElements.forEach((el: Element) => {
       const htmlEl = el as HTMLElement;
       htmlEl.style.fontFamily = 'DancingScript, cursive';
-      htmlEl.style.fontSize = '11pt'; // Smanjili smo font s 12pt na 11pt
-      htmlEl.style.lineHeight = '1.2'; // Smanjili smo line-height
+      htmlEl.style.fontSize = '11pt';
+      htmlEl.style.lineHeight = '1.2';
       htmlEl.style.color = '#3a3a3a';
     });
   }
