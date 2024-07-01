@@ -330,6 +330,13 @@
   font-size: 0.9rem;
   cursor: pointer;
 }
+.pdf-mode .tehnologija-item,
+.pdf-mode .experience-item,
+.pdf-mode .education-item {
+  border-left: 2px solid #28a745;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
 
 .pdf-mode .tehnologija-controls,
 .pdf-mode .upload-icon,

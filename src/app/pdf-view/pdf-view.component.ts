@@ -137,9 +137,17 @@ export class PdfViewComponent {
       clonedElement.style.padding = `${margin}pt`;
       clonedElement.style.backgroundColor = '#ffffff';
     }
+    
+    // Dodajte ove linije
+    const items = clonedDoc.querySelectorAll('.tehnologija-item, .experience-item, .education-item');
+    items.forEach((item: Element) => {
+      (item as HTMLElement).style.borderLeft = '2px solid #28a745';
+      (item as HTMLElement).style.paddingLeft = '8px';
+      (item as HTMLElement).style.marginBottom = '8px';
+    });
+  
     this.styleMotivationElements(clonedDoc);
   }
-
   private styleMotivationElements(clonedDoc: Document): void {
     const motivationElements = clonedDoc.querySelectorAll('.motivation-item p');
     motivationElements.forEach((el: Element) => {
