@@ -43,6 +43,29 @@
   margin-right: 5px;
   vertical-align: middle;
 }
+/* Iskustvo */
+.word-content .iskustvo-section {
+  margin-bottom: 15px;
+}
+
+.word-content .iskustvo-item {
+  margin-bottom: 10px;
+}
+
+.word-content .iskustvo-item h3 {
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
+.word-content .iskustvo-item .date {
+  font-style: italic;
+  color: #666;
+}
+
+.word-content .iskustvo-item ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 /* Header styles */
 .word-content .header {

@@ -18,6 +18,7 @@ import { saveAs } from 'file-saver';
 import { DataService } from '../services/data.service';
 import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
 import { OsobniPodaciComponent } from '../osobni-podaci/osobni-podaci.component';
+import { IskustvoComponent } from '../iskustvo/iskustvo.component';
 
 interface SocialLink {
   platform: string;
@@ -29,7 +30,7 @@ interface SocialLink {
   templateUrl: './word-view.component.html',
   styleUrls: ['./word-view.component.css'],
   standalone: true,
-  imports: [ProfileHeaderComponent, OsobniPodaciComponent]
+  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent]
 })
 export class WordViewComponent implements OnInit {
   @Input() slika: string = '';
@@ -50,13 +51,16 @@ export class WordViewComponent implements OnInit {
     console.log('Generating Word document...');
     const imageParagraph = await this.getImageParagraph();
     const osobniPodaciParagraphs = await this.getOsobniPodaciParagraphs();
-    
+    const iskustvoParagraphs = await this.getIskustvoParagraphs();
+
     const doc = new Document({
       sections: [{
         properties: {},
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
+          ...iskustvoParagraphs,
+
         ],
       }],
     });
@@ -168,6 +172,62 @@ export class WordViewComponent implements OnInit {
       console.error(`Error loading icon for ${platform}:`, error);
       return null;
     }
+  }
+
+    private async getIskustvoParagraphs(): Promise<Paragraph[]> {
+    console.log('Generating iskustvo paragraphs...');
+    const paragraphs: Paragraph[] = [];
+    const iskustvoData = this.dataService.getExperienceData();
+
+    paragraphs.push(
+      new Paragraph({
+        text: "Radno iskustvo",
+        heading: HeadingLevel.HEADING_2,
+        thematicBreak: true,
+      })
+    );
+
+    for (const iskustvo of iskustvoData) {
+      paragraphs.push(
+        new Paragraph({
+          text: `${iskustvo.position} at ${iskustvo.company}`,
+          heading: HeadingLevel.HEADING_3,
+        }),
+        new Paragraph({
+          text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
+          style: 'dateStyle',
+        }),
+        new Paragraph({
+          text: iskustvo.location,
+        })
+      );
+
+      if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
+        paragraphs.push(
+          new Paragraph({
+            text: "Odgovornosti:",
+            bullet: {
+              level: 0,
+            },
+          })
+        );
+
+        for (const responsibility of iskustvo.responsibilities) {
+          paragraphs.push(
+            new Paragraph({
+              text: responsibility,
+              bullet: {
+                level: 1,
+              },
+            })
+          );
+        }
+      }
+
+      paragraphs.push(new Paragraph({})); // Prazan red između iskustava
+    }
+
+    return paragraphs;
   }
 
   private async getOsobniPodaciParagraphs(): Promise<Paragraph[]> {

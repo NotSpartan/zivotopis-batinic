@@ -15,6 +15,38 @@
   margin-bottom: 0.2rem;
 }
 
+:host-context(.word-mode) {
+  display: block;
+  page-break-inside: avoid;
+}
+
+.experience-container.word-mode {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.word-mode .subtitle {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.word-mode .experience-item {
+  background-color: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 4px 0;
+  margin-bottom: 6px;
+}
+
+.word-mode .experience-controls,
+.word-mode .upload-icon,
+.word-mode .add-experience,
+.word-mode .edit-experience {
+  display: none;
+}
+
 .experience-container {
   background-color: #ffffff;
   border-radius: 4px;

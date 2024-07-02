@@ -23,6 +23,7 @@ interface Iskustvo {
 })
 export class IskustvoComponent {
   @Input() isGeneratingPDF = false;
+  @Input() isGeneratingWord = false;
 
   private dataService = inject(DataService);
 
