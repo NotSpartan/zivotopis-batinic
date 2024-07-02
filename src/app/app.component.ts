@@ -8,6 +8,7 @@ import { TehnoloskiStackComponent } from './tehnoloski-stack/tehnoloski-stack.co
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { DataService } from './services/data.service';
 import { PdfViewComponent } from './pdf-view/pdf-view.component';
+import { WordViewComponent } from './word-view/word-view.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { PdfViewComponent } from './pdf-view/pdf-view.component';
   imports: [
     CommonModule,
     PdfViewComponent,
+    WordViewComponent,
     OsobniPodaciComponent,
     CiljeviMotivacijaComponent,
     IskustvoComponent,
@@ -34,6 +36,7 @@ export class AppComponent {
   slika = signal('assets/default-profile.png');
   isAuthor = signal(true);
   isGeneratingPDF = signal(false);
+  isGeneratingWord = signal(false);
 
   ngOnInit() {
     const data = this.dataService.getOsobniPodaciData();
@@ -78,5 +81,15 @@ export class AppComponent {
   onPdfGenerated() {
     this.isGeneratingPDF.set(false);
     document.body.classList.remove('pdf-mode');
+  }
+
+  generateWord() {
+    this.isGeneratingWord.set(true);
+    document.body.classList.add('word-mode');
+  }
+
+  onWordGenerated() {
+    this.isGeneratingWord.set(false);
+    document.body.classList.remove('word-mode');
   }
 }

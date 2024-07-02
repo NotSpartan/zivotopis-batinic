@@ -1,32 +1,32 @@
 .app-wrapper {
-  max-width: 800px; 
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 8px; /* Smanjeno s 10px */
+  padding: 0 8px;
 }
 
-:not(.pdf-mode) .content-container > * {
-  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+:not(.pdf-mode):not(.word-mode) .content-container > * {
+  margin-bottom: 0.4rem;
 }
 
-.pdf-preview {
+.pdf-preview, .word-preview {
   width: 210mm;
   margin: 0 auto;
   background: white;
-  box-shadow: 0 0 3px rgba(0,0,0,0.1); /* Smanjeno s 5px */
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
 }
 
 @media screen and (max-width: 210mm) {
-  .pdf-preview {
+  .pdf-preview, .word-preview {
     width: 100%;
   }
 }
 
 .horizontal-nav {
   background-color: #333;
-  padding: 4px 0; /* Smanjeno s 5px */
-  margin-bottom: 2px; /* Smanjeno s 3px */
-  border-radius: 2px; /* Smanjeno s 3px */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Smanjeno s 3px */
+  padding: 4px 0;
+  margin-bottom: 2px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -39,19 +39,19 @@
 }
 
 .horizontal-nav li {
-  margin: 0 8px; /* Smanjeno s 10px */
+  margin: 0 8px;
 }
 
 .horizontal-nav a {
   text-decoration: none;
   color: #fff;
-  padding: 4px 8px; /* Smanjeno s 5px 10px */
-  border-radius: 2px; /* Smanjeno s 3px */
+  padding: 4px 8px;
+  border-radius: 2px;
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   font-weight: 500;
   font-family: inherit;
-  font-size: 0.85rem; /* Smanjeno s 0.9rem */
+  font-size: 0.85rem;
 }
 
 .horizontal-nav a:hover,
@@ -61,36 +61,49 @@
 }
 
 .content-container {
-  padding: 2px; /* Smanjeno s 3px */
+  padding: 2px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.generate-pdf-button {
-  display: block;
-  margin: 8px auto; /* Smanjeno s 10px */
-  padding: 6px 12px; /* Smanjeno s 8px 16px */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.generate-pdf-button, .generate-word-button {
+  padding: 6px 12px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 2px; /* Smanjeno s 3px */
+  border-radius: 2px;
   cursor: pointer;
-  font-size: 13px; /* Smanjeno s 14px */
+  font-size: 13px;
   transition: background-color 0.3s;
 }
 
-.generate-pdf-button:hover {
+.generate-pdf-button:hover, .generate-word-button:hover {
   background-color: #45a049;
+}
+
+.generate-word-button {
+  background-color: #007bff;
+}
+
+.generate-word-button:hover {
+  background-color: #0056b3;
 }
 
 @media print {
   body * {
     visibility: hidden;
   }
-  .pdf-container, .pdf-container * {
+  .pdf-container, .pdf-container *, .word-container, .word-container * {
     visibility: visible;
   }
-  .pdf-container {
+  .pdf-container, .word-container {
     position: absolute;
     left: 0;
     top: 0;
@@ -103,27 +116,27 @@
 
 @media (max-width: 600px) {
   .app-wrapper {
-    padding: 0 4px; /* Dodatno smanjeno za mobilne uređaje */
+    padding: 0 4px;
   }
 
   .horizontal-nav {
-    padding: 2px 0; /* Dodatno smanjeno za mobilne uređaje */
+    padding: 2px 0;
   }
 
   .horizontal-nav a {
-    padding: 3px 6px; /* Dodatno smanjeno za mobilne uređaje */
-    font-size: 0.75rem; /* Dodatno smanjeno za mobilne uređaje */
+    padding: 3px 6px;
+    font-size: 0.75rem;
   }
 }
 
-.pdf-mode .content-container > * {
-  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+.pdf-mode .content-container > *, .word-mode .content-container > * {
+  margin-bottom: 0.4rem;
 }
 
-.pdf-mode .pdf-content > * {
-  padding: 0.4rem; /* Smanjeno s 0.5rem */
+.pdf-mode .pdf-content > *, .word-mode .word-content > * {
+  padding: 0.4rem;
   background-color: #f0f0f0;
-  border-radius: 2px; /* Smanjeno s 3px */
+  border-radius: 2px;
 }
 
 .pdf-mode app-profile-header,
@@ -131,7 +144,13 @@
 .pdf-mode app-iskustvo,
 .pdf-mode app-obrazovanje,
 .pdf-mode app-tehnoloski-stack,
-.pdf-mode app-ciljevi-motivacija {
+.pdf-mode app-ciljevi-motivacija,
+.word-mode app-profile-header,
+.word-mode app-osobni-podaci,
+.word-mode app-iskustvo,
+.word-mode app-obrazovanje,
+.word-mode app-tehnoloski-stack,
+.word-mode app-ciljevi-motivacija {
   display: block;
-  margin-bottom: 0.4rem; /* Smanjeno s 0.5rem */
+  margin-bottom: 0.4rem;
 }
