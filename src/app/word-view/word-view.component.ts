@@ -20,13 +20,14 @@ import { ProfileHeaderComponent } from '../profile-header/profile-header.compone
 import { OsobniPodaciComponent } from '../osobni-podaci/osobni-podaci.component';
 import { IskustvoComponent } from '../iskustvo/iskustvo.component';
 import { ObrazovanjeComponent } from '../obrazovanje/obrazovanje.component';
+import { TehnoloskiStackComponent } from '../tehnoloski-stack/tehnoloski-stack.component';
 
 @Component({
   selector: 'app-word-view',
   templateUrl: './word-view.component.html',
   styleUrls: ['./word-view.component.css'],
   standalone: true,
-  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent, ObrazovanjeComponent]
+  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent, ObrazovanjeComponent, TehnoloskiStackComponent]
 })
 export class WordViewComponent implements OnInit {
   @Input() slika: string = '';
@@ -49,6 +50,7 @@ export class WordViewComponent implements OnInit {
     const osobniPodaciParagraphs = await this.getOsobniPodaciParagraphs();
     const iskustvoElements = await this.getIskustvoParagraphs();
     const obrazovanjeElements = await this.getObrazovanjeParagraphs();
+    const tehnoloskiStackElements = await this.getTehnoloskiStackParagraphs();
   
     const doc = new Document({
       sections: [{
@@ -60,6 +62,8 @@ export class WordViewComponent implements OnInit {
           ...iskustvoElements,
           new Paragraph({ text: '', spacing: { after: 200 } }),
           ...obrazovanjeElements,
+          new Paragraph({ text: '', spacing: { after: 200 } }),
+          ...tehnoloskiStackElements,
         ],
       }],
     });
@@ -504,5 +508,123 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
     }
 
     return paragraphs;
+  }
+
+  private async getTehnoloskiStackParagraphs(): Promise<(Paragraph | Table)[]> {
+    console.log('Generating tehnoloski stack paragraphs...');
+    const elements: (Paragraph | Table)[] = [];
+    const tehnologijeData = await this.dataService.getTechnologiesData();
+  
+    elements.push(
+      new Paragraph({
+        text: "Tehnološki Stack",
+        heading: HeadingLevel.HEADING_2,
+        thematicBreak: true,
+      })
+    );
+  
+    for (const tehnologija of tehnologijeData) {
+      const tableRows: TableRow[] = [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                await this.getTechnologyIconParagraph(tehnologija.ikona),
+              ],
+              width: {
+                size: 10,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({ text: tehnologija.naziv, bold: true })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: tehnologija.razina,
+                      italics: true
+                    })
+                  ]
+                }),
+              ],
+              width: {
+                size: 90,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
+          ],
+        }),
+      ];
+  
+      const table = new Table({
+        rows: tableRows,
+        width: {
+          size: 100,
+          type: WidthType.PERCENTAGE,
+        },
+        borders: {
+          top: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.NONE },
+        },
+      });
+  
+      elements.push(table);
+  
+      if (tehnologija.opis) {
+        elements.push(
+          new Paragraph({
+            text: tehnologija.opis,
+          })
+        );
+      }
+  
+      if (tehnologija.bulletPoints && tehnologija.bulletPoints.length > 0) {
+        for (const point of tehnologija.bulletPoints) {
+          elements.push(
+            new Paragraph({
+              text: point,
+              bullet: { level: 0 },
+            })
+          );
+        }
+      }
+  
+      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
+    }
+  
+    return elements;
+  }
+
+  private async getTechnologyIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
+    if (iconPath) {
+      try {
+        const response = await fetch(iconPath);
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+        return new Paragraph({
+          children: [
+            new ImageRun({
+              data: arrayBuffer,
+              transformation: {
+                width: 30,
+                height: 30,
+              },
+            }),
+          ],
+        });
+      } catch (error) {
+        console.error('Error loading technology icon:', error);
+      }
+    }
+    return new Paragraph({});
   }
 }
