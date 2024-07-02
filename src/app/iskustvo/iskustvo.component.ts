@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, computed, inject } from '@angular/core';
+import { Component, Input, Output, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -21,7 +21,7 @@ interface Iskustvo {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class IskustvoComponent {
+export class IskustvoComponent implements OnInit {
   @Input() isGeneratingPDF = false;
   @Input() isGeneratingWord = false;
 
@@ -94,7 +94,7 @@ export class IskustvoComponent {
   }
 
   addExperience() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.newExperience.startDate && this.newExperience.position && this.newExperience.company && this.newExperience.location) {
       const newId = Math.max(...this.experiences().map(e => e.id), 0) + 1;
       this.experiences.update(experiences => {
@@ -108,7 +108,7 @@ export class IskustvoComponent {
   }
 
   removeExperience(id: number) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.experiences.update(experiences => {
       const updatedExperiences = experiences.filter(e => e.id !== id);
       this.dataService.setExperienceData(updatedExperiences);
@@ -117,12 +117,12 @@ export class IskustvoComponent {
   }
 
   startEditing(experience: Iskustvo) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.editingExperience = { ...experience, responsibilities: [...experience.responsibilities] };
   }
 
   saveEdit() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.editingExperience) {
       this.experiences.update(experiences => {
         const updatedExperiences = experiences.map(e =>
@@ -136,12 +136,12 @@ export class IskustvoComponent {
   }
 
   cancelEdit() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.editingExperience = null;
   }
 
   addResponsibility() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.newResponsibility.trim()) {
       if (this.editingExperience) {
         this.editingExperience.responsibilities.push(this.newResponsibility.trim());
@@ -153,7 +153,7 @@ export class IskustvoComponent {
   }
 
   removeResponsibility(index: number) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.editingExperience) {
       this.editingExperience.responsibilities.splice(index, 1);
     } else {
@@ -162,7 +162,7 @@ export class IskustvoComponent {
   }
 
   onFileSelected(event: Event, experience: Iskustvo) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();

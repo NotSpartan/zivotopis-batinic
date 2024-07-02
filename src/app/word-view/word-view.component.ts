@@ -1,16 +1,16 @@
 import { Component, Input, Output, EventEmitter, WritableSignal, signal, OnInit } from '@angular/core';
-import { 
-  Document, 
-  Packer, 
-  Paragraph, 
-  TextRun, 
-  ImageRun, 
-  AlignmentType, 
-  HeadingLevel, 
-  Table, 
-  TableRow, 
-  TableCell, 
-  WidthType, 
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  ImageRun,
+  AlignmentType,
+  HeadingLevel,
+  Table,
+  TableRow,
+  TableCell,
+  WidthType,
   BorderStyle,
   VerticalAlign
 } from 'docx';
@@ -51,16 +51,18 @@ export class WordViewComponent implements OnInit {
     console.log('Generating Word document...');
     const imageParagraph = await this.getImageParagraph();
     const osobniPodaciParagraphs = await this.getOsobniPodaciParagraphs();
-    const iskustvoParagraphs = await this.getIskustvoParagraphs();
-
+    const iskustvoElements = await this.getIskustvoParagraphs();
+  
+    console.log('Iskustvo elements:', iskustvoElements); // Dodajte ovu liniju za debugging
+  
     const doc = new Document({
       sections: [{
         properties: {},
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
-          ...iskustvoParagraphs,
-
+          new Paragraph({ text: '', spacing: { after: 100 } }),
+          ...iskustvoElements,
         ],
       }],
     });
@@ -88,7 +90,7 @@ export class WordViewComponent implements OnInit {
                     new TextRun({
                       text: this.imePrezime(),
                       bold: true,
-                      size: 28,
+                      size: 24,
                       color: "FFFFFF",
                     }),
                   ],
@@ -98,7 +100,7 @@ export class WordViewComponent implements OnInit {
                   children: [
                     new TextRun({
                       text: this.titula(),
-                      size: 24,
+                      size: 20,
                       color: "FFFFFF",
                     }),
                   ],
@@ -113,8 +115,8 @@ export class WordViewComponent implements OnInit {
               },
               verticalAlign: VerticalAlign.CENTER,
               margins: {
-                top: 200,
-                bottom: 200,
+                top: 100,
+                bottom: 100,
                 left: 100,
                 right: 100,
               },
@@ -159,6 +161,7 @@ export class WordViewComponent implements OnInit {
     const iconPath = `assets/${platform.toLowerCase()}-icon.png`;
     try {
       const response = await fetch(iconPath);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const blob = await response.blob();
       const arrayBuffer = await blob.arrayBuffer();
       return new ImageRun({
@@ -174,60 +177,142 @@ export class WordViewComponent implements OnInit {
     }
   }
 
-    private async getIskustvoParagraphs(): Promise<Paragraph[]> {
+  private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
     console.log('Generating iskustvo paragraphs...');
-    const paragraphs: Paragraph[] = [];
-    const iskustvoData = this.dataService.getExperienceData();
-
-    paragraphs.push(
+    const elements: (Paragraph | Table)[] = [
+      new Paragraph({ text: '', spacing: { before: 200 } })
+    ];
+    const iskustvoData = await this.dataService.getExperienceData();
+  
+    elements.push(
       new Paragraph({
         text: "Radno iskustvo",
         heading: HeadingLevel.HEADING_2,
         thematicBreak: true,
       })
     );
-
+  
     for (const iskustvo of iskustvoData) {
-      paragraphs.push(
-        new Paragraph({
-          text: `${iskustvo.position} at ${iskustvo.company}`,
-          heading: HeadingLevel.HEADING_3,
+      const tableRows: TableRow[] = [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                await this.getCompanyIconParagraph(iskustvo.companyIcon),
+              ],
+              width: {
+                size: 10,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: iskustvo.position,
+                      bold: true
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: iskustvo.company
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
+                      italics: true
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: iskustvo.location
+                    })
+                  ]
+                }),
+              ],
+              width: {
+                size: 90,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
+          ],
         }),
-        new Paragraph({
-          text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
-          style: 'dateStyle',
-        }),
-        new Paragraph({
-          text: iskustvo.location,
-        })
-      );
-
+      ];
+  
+      const table = new Table({
+        rows: tableRows,
+        width: {
+          size: 100,
+          type: WidthType.PERCENTAGE,
+        },
+      });
+  
+      elements.push(table);
+  
+      // Dodajte odgovornosti ako postoje
       if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
-        paragraphs.push(
+        elements.push(
           new Paragraph({
-            text: "Odgovornosti:",
-            bullet: {
-              level: 0,
-            },
+            children: [
+              new TextRun({
+                text: "Odgovornosti:",
+                bold: true
+              })
+            ],
+            bullet: { level: 0 },
           })
         );
-
+  
         for (const responsibility of iskustvo.responsibilities) {
-          paragraphs.push(
+          elements.push(
             new Paragraph({
-              text: responsibility,
-              bullet: {
-                level: 1,
-              },
+              children: [
+                new TextRun({
+                  text: responsibility
+                })
+              ],
+              bullet: { level: 1 },
             })
           );
         }
       }
-
-      paragraphs.push(new Paragraph({})); // Prazan red između iskustava
+  
+      elements.push(new Paragraph({ text: '', spacing: { after: 200 } })); // Razmak između iskustava
     }
-
-    return paragraphs;
+  
+    return elements;
+  }
+  
+  private async getCompanyIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
+    if (iconPath) {
+      try {
+        const response = await fetch(iconPath);
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+        return new Paragraph({
+          children: [
+            new ImageRun({
+              data: arrayBuffer,
+              transformation: {
+                width: 50,
+                height: 50,
+              },
+            }),
+          ],
+        });
+      } catch (error) {
+        console.error('Error loading company icon:', error);
+      }
+    }
+    return new Paragraph({}); // Vraća prazan paragraf ako nema ikone
   }
 
   private async getOsobniPodaciParagraphs(): Promise<Paragraph[]> {

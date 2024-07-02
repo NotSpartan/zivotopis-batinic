@@ -1,4 +1,4 @@
-import { Component, Input, signal, inject } from '@angular/core';
+import { Component, Input, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -15,7 +15,7 @@ interface Motivation {
   standalone: true,
   imports: [CommonModule, FormsModule]
 })
-export class CiljeviMotivacijaComponent {
+export class CiljeviMotivacijaComponent implements OnInit {
   @Input() isGeneratingPDF = false;
  
   private dataService = inject(DataService);
@@ -30,7 +30,7 @@ export class CiljeviMotivacijaComponent {
   ngOnInit() {
     const data = this.dataService.getCiljeviMotivacijaData();
     if (data.length > 0) {
-      this.motivations.set(data.map((text, index) => ({ id: index + 1, text })));
+      this.motivations.set(data.map((text: string, index: number) => ({ id: index + 1, text })));
     } else {
       this.setDefaultMotivations();
     }
@@ -87,7 +87,9 @@ export class CiljeviMotivacijaComponent {
       this.currentIndex.set(this.motivations().length - 1);
       this.updateDataService();
     }
-  }  saveEdit() {
+  }
+
+  saveEdit() {
     if (this.isGeneratingPDF) return;
     if (this.editingMotivation && this.validateInput(this.editingMotivation.text)) {
       this.motivations.update(motivations =>
@@ -116,9 +118,3 @@ export class CiljeviMotivacijaComponent {
     this.dataService.setCiljeviMotivacijaData(this.motivations().map(m => m.text));
   }
 }
-
-
-
-
-
-
