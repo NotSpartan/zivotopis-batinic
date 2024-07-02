@@ -43,6 +43,16 @@
   margin-right: 5px;
   vertical-align: middle;
 }
+/* Ciljevi motivacije */
+
+.word-content .motivacija {
+  font-family: 'Dancing Script', cursive;
+  font-style: italic;
+  font-size: 12pt;
+  color: #333;
+  margin-bottom: 10px;
+}
+
 /* Obrazovanje */
 .word-content .obrazovanje-section {
   margin-bottom: 15px;

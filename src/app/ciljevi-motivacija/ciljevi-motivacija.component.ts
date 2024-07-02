@@ -17,7 +17,8 @@ interface Motivation {
 })
 export class CiljeviMotivacijaComponent implements OnInit {
   @Input() isGeneratingPDF = false;
- 
+  @Input() isGeneratingWord = false;
+
   private dataService = inject(DataService);
 
   motivations = signal<Motivation[]>([]);

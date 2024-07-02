@@ -21,13 +21,14 @@ import { OsobniPodaciComponent } from '../osobni-podaci/osobni-podaci.component'
 import { IskustvoComponent } from '../iskustvo/iskustvo.component';
 import { ObrazovanjeComponent } from '../obrazovanje/obrazovanje.component';
 import { TehnoloskiStackComponent } from '../tehnoloski-stack/tehnoloski-stack.component';
+import { CiljeviMotivacijaComponent } from '../ciljevi-motivacija/ciljevi-motivacija.component';
 
 @Component({
   selector: 'app-word-view',
   templateUrl: './word-view.component.html',
   styleUrls: ['./word-view.component.css'],
   standalone: true,
-  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent, ObrazovanjeComponent, TehnoloskiStackComponent]
+  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent, ObrazovanjeComponent, TehnoloskiStackComponent, CiljeviMotivacijaComponent]
 })
 export class WordViewComponent implements OnInit {
   @Input() slika: string = '';
@@ -51,23 +52,46 @@ export class WordViewComponent implements OnInit {
     const iskustvoElements = await this.getIskustvoParagraphs();
     const obrazovanjeElements = await this.getObrazovanjeParagraphs();
     const tehnoloskiStackElements = await this.getTehnoloskiStackParagraphs();
-  
+    const ciljeviMotivacijaElements = await this.getCiljeviMotivacijaParagraphs();
+
     const doc = new Document({
+      styles: {
+        paragraphStyles: [
+          {
+            id: "motivacijaStyle",
+            name: "Motivacija Style",
+            basedOn: "Normal",
+            next: "Normal",
+            quickFormat: true,
+            run: {
+              font: "Segoe Script, Freestyle Script, Brush Script MT",
+              size: 32,
+              color: "000000",
+              italics: true
+            },
+            paragraph: {
+              spacing: { after: 120, line: 300 }
+            }
+          }
+        ]
+      },
       sections: [{
         properties: {},
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
-          new Paragraph({ text: '', spacing: { after: 200 } }),
+          new Paragraph({ text: '', spacing: { after: 100 } }),
           ...iskustvoElements,
-          new Paragraph({ text: '', spacing: { after: 200 } }),
+          new Paragraph({ text: '', spacing: { after: 100 } }),
           ...obrazovanjeElements,
-          new Paragraph({ text: '', spacing: { after: 200 } }),
+          new Paragraph({ text: '', spacing: { after: 100 } }),
           ...tehnoloskiStackElements,
+          new Paragraph({ text: '', spacing: { after: 200 } }),
+          ...ciljeviMotivacijaElements,
         ],
       }],
     });
-    
+   
     const blob = await Packer.toBlob(doc);
     saveAs(blob, 'zivotopis.docx');
     this.wordGenerated.emit();
@@ -177,12 +201,37 @@ export class WordViewComponent implements OnInit {
       return null;
     }
   }
-  
+
+  private async getCiljeviMotivacijaParagraphs(): Promise<Paragraph[]> {
+    console.log('Generating ciljevi i motivacija paragraphs...');
+    const paragraphs: Paragraph[] = [];
+    const ciljeviMotivacijaData = await this.dataService.getCiljeviMotivacijaData();
+
+    paragraphs.push(
+      new Paragraph({
+        text: "Ciljevi i Motivacija",
+        heading: HeadingLevel.HEADING_2,
+        thematicBreak: true,
+      })
+    );
+
+    for (const motivacija of ciljeviMotivacijaData) {
+      paragraphs.push(
+        new Paragraph({
+          text: motivacija,
+          style: "motivacijaStyle",
+        })
+      );
+    }
+
+    return paragraphs;
+  }
+
   private async getObrazovanjeParagraphs(): Promise<(Paragraph | Table)[]> {
     console.log('Generating obrazovanje paragraphs...');
     const elements: (Paragraph | Table)[] = [];
     const obrazovanjeData = await this.dataService.getEducationData();
-  
+ 
     elements.push(
       new Paragraph({
         text: "Obrazovanje",
@@ -190,7 +239,7 @@ export class WordViewComponent implements OnInit {
         thematicBreak: true,
       })
     );
-  
+ 
     for (const obrazovanje of obrazovanjeData) {
       const tableRows: TableRow[] = [
         new TableRow({
@@ -230,7 +279,7 @@ export class WordViewComponent implements OnInit {
           ],
         }),
       ];
-  
+ 
       const table = new Table({
         rows: tableRows,
         width: {
@@ -246,9 +295,9 @@ export class WordViewComponent implements OnInit {
           insideVertical: { style: BorderStyle.NONE },
         },
       });
-  
+ 
       elements.push(table);
-  
+ 
       if (obrazovanje.description) {
         elements.push(
           new Paragraph({
@@ -256,7 +305,7 @@ export class WordViewComponent implements OnInit {
           })
         );
       }
-  
+ 
       if (obrazovanje.bulletPoints && obrazovanje.bulletPoints.length > 0) {
         for (const point of obrazovanje.bulletPoints) {
           elements.push(
@@ -267,10 +316,10 @@ export class WordViewComponent implements OnInit {
           );
         }
       }
-  
+ 
       elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
-  
+ 
     return elements;
   }
 
@@ -297,107 +346,107 @@ export class WordViewComponent implements OnInit {
     }
     return new Paragraph({});
   }
-  
-private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
-  console.log('Generating iskustvo paragraphs...');
-  const elements: (Paragraph | Table)[] = [
-    new Paragraph({ text: '', spacing: { before: 200 } })
-  ];
-  const iskustvoData = await this.dataService.getExperienceData();
-
-  elements.push(
-    new Paragraph({
-      text: "Radno iskustvo",
-      heading: HeadingLevel.HEADING_2,
-      thematicBreak: true,
-    })
-  );
-
-  for (const iskustvo of iskustvoData) {
-    const tableRows: TableRow[] = [
-      new TableRow({
-        children: [
-          new TableCell({
-            children: [
-              await this.getCompanyIconParagraph(iskustvo.companyIcon),
-            ],
-            width: {
-              size: 10,
-              type: WidthType.PERCENTAGE,
-            },
-          }),
-          new TableCell({
-            children: [
-              new Paragraph({
-                children: [
-                  new TextRun({ text: iskustvo.position, bold: true })
-                ]
-              }),
-              new Paragraph({ text: iskustvo.company }),
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
-                    italics: true
-                  })
-                ]
-              }),
-              new Paragraph({ text: iskustvo.location }),
-            ],
-            width: {
-              size: 90,
-              type: WidthType.PERCENTAGE,
-            },
-          }),
-        ],
-      }),
+ 
+  private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
+    console.log('Generating iskustvo paragraphs...');
+    const elements: (Paragraph | Table)[] = [
+      new Paragraph({ text: '', spacing: { before: 200 } })
     ];
+    const iskustvoData = this.dataService.getExperienceData();
 
-    const table = new Table({
-      rows: tableRows,
-      width: {
-        size: 100,
-        type: WidthType.PERCENTAGE,
-      },
-      borders: {
-        top: { style: BorderStyle.NONE },
-        bottom: { style: BorderStyle.NONE },
-        left: { style: BorderStyle.NONE },
-        right: { style: BorderStyle.NONE },
-        insideHorizontal: { style: BorderStyle.NONE },
-        insideVertical: { style: BorderStyle.NONE },
-      },
-    });
+    elements.push(
+      new Paragraph({
+        text: "Radno iskustvo",
+        heading: HeadingLevel.HEADING_2,
+        thematicBreak: true,
+      })
+    );
 
-    elements.push(table);
-
-    if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
-      elements.push(
-        new Paragraph({
+    for (const iskustvo of iskustvoData) {
+      const tableRows: TableRow[] = [
+        new TableRow({
           children: [
-            new TextRun({
-              text: "Odgovornosti:",
-              bold: true
-            })
+            new TableCell({
+              children: [
+                await this.getCompanyIconParagraph(iskustvo.companyIcon),
+              ],
+              width: {
+                size: 10,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({ text: iskustvo.position, bold: true })
+                  ]
+                }),
+                new Paragraph({ text: iskustvo.company }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
+                      italics: true
+                    })
+                  ]
+                }),
+                new Paragraph({ text: iskustvo.location }),
+              ],
+              width: {
+                size: 90,
+                type: WidthType.PERCENTAGE,
+              },
+            }),
           ],
-        })
-      );
+        }),
+      ];
 
-      for (const responsibility of iskustvo.responsibilities) {
+      const table = new Table({
+        rows: tableRows,
+        width: {
+          size: 100,
+          type: WidthType.PERCENTAGE,
+        },
+        borders: {
+          top: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.NONE },
+        },
+      });
+
+      elements.push(table);
+
+      if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
         elements.push(
           new Paragraph({
-            text: responsibility,
-            bullet: { level: 0 },
+            children: [
+              new TextRun({
+                text: "Odgovornosti:",
+                bold: true
+              })
+            ],
           })
         );
+
+        for (const responsibility of iskustvo.responsibilities) {
+          elements.push(
+            new Paragraph({
+              text: responsibility,
+              bullet: { level: 0 },
+            })
+          );
+        }
       }
+
+      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
 
-    elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
+    return elements;
   }
-
-  return elements;
-}
 
   private async getCompanyIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
     if (iconPath) {
@@ -473,17 +522,17 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
       for (const link of this.osobniPodaci.socialLinks) {
         const iconRun = await this.getSocialIconImageRun(link.platform);
         const paragraphChildren: (ImageRun | TextRun)[] = [];
-        
+       
         if (iconRun) {
           paragraphChildren.push(iconRun);
         }
-        
+       
         paragraphChildren.push(
           new TextRun({
             text: ` ${link.platform}: ${link.url}`,
           })
         );
-  
+ 
         const paragraph = new Paragraph({
           children: paragraphChildren,
         });
@@ -513,8 +562,8 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
   private async getTehnoloskiStackParagraphs(): Promise<(Paragraph | Table)[]> {
     console.log('Generating tehnoloski stack paragraphs...');
     const elements: (Paragraph | Table)[] = [];
-    const tehnologijeData = await this.dataService.getTechnologiesData();
-  
+    const tehnologijeData = this.dataService.getTechnologiesData();
+ 
     elements.push(
       new Paragraph({
         text: "Tehnološki Stack",
@@ -522,7 +571,7 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
         thematicBreak: true,
       })
     );
-  
+ 
     for (const tehnologija of tehnologijeData) {
       const tableRows: TableRow[] = [
         new TableRow({
@@ -560,7 +609,7 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
           ],
         }),
       ];
-  
+ 
       const table = new Table({
         rows: tableRows,
         width: {
@@ -576,9 +625,9 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
           insideVertical: { style: BorderStyle.NONE },
         },
       });
-  
+ 
       elements.push(table);
-  
+ 
       if (tehnologija.opis) {
         elements.push(
           new Paragraph({
@@ -586,7 +635,7 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
           })
         );
       }
-  
+ 
       if (tehnologija.bulletPoints && tehnologija.bulletPoints.length > 0) {
         for (const point of tehnologija.bulletPoints) {
           elements.push(
@@ -597,10 +646,10 @@ private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
           );
         }
       }
-  
+ 
       elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
-  
+ 
     return elements;
   }
 

@@ -284,12 +284,12 @@
   box-shadow: none;
 }
 
-.pdf-mode .motivation-item p {
+.pdf-mode .motivation-item p, .word-mode .motivation-item p {
   font-family: 'DancingScript', 'Dancing Script', cursive;
   font-size: 11pt;
   line-height: 1.2;
   color: #3a3a3a;
-  text-shadow: none;
+  font-style: italic;
 }
 
 .dancing-script {

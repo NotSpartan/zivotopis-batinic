@@ -93,6 +93,12 @@
   background-color: #0056b3;
 }
 
+.pdf-mode app-ciljevi-motivacija,
+.word-mode app-ciljevi-motivacija {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
 .pdf-mode .content-container > *, .word-mode .content-container > * {
   margin-bottom: 0.4rem;
 }

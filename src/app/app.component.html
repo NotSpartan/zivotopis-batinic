@@ -46,9 +46,10 @@
           [isGeneratingPDF]="isGeneratingPDF()">
         </app-tehnoloski-stack>
         <app-ciljevi-motivacija
-          *ngSwitchCase="'ciljevi-motivacija'"
-          [isGeneratingPDF]="isGeneratingPDF()">
-        </app-ciljevi-motivacija>
+        *ngSwitchCase="'ciljevi-motivacija'"
+        [isGeneratingPDF]="isGeneratingPDF()"
+        [isGeneratingWord]="isGeneratingWord()">
+      </app-ciljevi-motivacija>
       </ng-container>
     </div>
 

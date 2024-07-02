@@ -24,7 +24,7 @@
     <button (click)="nextMotivation()" class="nav-button next">&gt;</button>
   </div>
 
-  <div class="motivation-list" *ngIf="isGeneratingPDF">
+  <div class="motivation-list" *ngIf="isGeneratingPDF || isGeneratingWord">
     <div *ngFor="let motivation of motivations()" class="motivation-item pdf">
       <p class="dancing-script">{{ motivation.text }}</p>
     </div>
