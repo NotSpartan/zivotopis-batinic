@@ -55,7 +55,7 @@
 
 /* Obrazovanje */
 .word-content .obrazovanje-section {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .word-content .obrazovanje-item {
@@ -80,7 +80,7 @@
 
 /* Iskustvo */
 .word-content .iskustvo-section {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .word-content .iskustvo-item {
@@ -122,7 +122,7 @@
 
 /* Section styles */
 .word-content .section {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .word-content .section-title {

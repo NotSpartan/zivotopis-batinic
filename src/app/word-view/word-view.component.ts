@@ -65,7 +65,7 @@ export class WordViewComponent implements OnInit {
             quickFormat: true,
             run: {
               font: "Segoe Script, Freestyle Script, Brush Script MT",
-              size: 32,
+              size: 24,
               color: "000000",
               italics: true
             },
@@ -80,11 +80,11 @@ export class WordViewComponent implements OnInit {
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
-          new Paragraph({ text: '', spacing: { after: 100 } }),
+          new Paragraph({ text: '', spacing: { after: 25 } }),
           ...iskustvoElements,
-          new Paragraph({ text: '', spacing: { after: 100 } }),
+          new Paragraph({ text: '', spacing: { after: 25 } }),
           ...obrazovanjeElements,
-          new Paragraph({ text: '', spacing: { after: 100 } }),
+          new Paragraph({ text: '', spacing: { after: 25 } }),
           ...tehnoloskiStackElements,
           new Paragraph({ text: '', spacing: { after: 200 } }),
           ...ciljeviMotivacijaElements,
