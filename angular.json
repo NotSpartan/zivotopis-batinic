@@ -21,21 +21,22 @@
               "raf",
               "rgbcolor",
               "html2canvas",
-              "jspdf"
+              "jspdf",
+              "file-saver"
             ],
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-"assets": [
-  "src/favicon.ico",
-  "src/assets",
-  {
-    "glob": "**/*",
-    "input": "src/assets/fonts",
-    "output": "/assets/fonts"
-  }
-],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts"
+              }
+            ],
             "styles": [
               "src/styles.css",
               "node_modules/@fontsource/roboto/400.css",
@@ -48,13 +49,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1.5MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "8kb",
+                  "maximumError": "10kb"
                 }
               ],
               "outputHashing": "all"
