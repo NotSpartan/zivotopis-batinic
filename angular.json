@@ -110,7 +110,8 @@
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "/zivotopis-batinic/",
-            "buildTarget": "zivotopis-batinic:build:production"
+            "buildTarget": "zivotopis-batinic:build:production",
+            "branch": "gh-pages"
           }
         }
       }
