@@ -151,27 +151,93 @@ export class WordViewComponent implements OnInit {
     return new Paragraph({}); // Vraća prazan paragraf ako nema slike
   }
 
-  private async getSocialIconImageRun(platform: string): Promise<ImageRun | null> {
-    const iconPath = `assets/${platform.toLowerCase()}-icon.png`;
-    try {
-      const response = await fetch(iconPath);
-      const blob = await response.blob();
-      const arrayBuffer = await blob.arrayBuffer();
-      return new ImageRun({
-        data: arrayBuffer,
-        transformation: {
-          width: 16,
-          height: 16,
-        },
-      });
-    } catch (error) {
-      console.error(`Error loading icon for ${platform}:`, error);
-      return null;
-    }
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   private async getOsobniPodaciParagraphs(): Promise<Paragraph[]> {
-    console.log('Generating osobni podaci paragraphs...');
+    const osobniPodaci = this.dataService.getOsobniPodaciData();
     const paragraphs: Paragraph[] = [];
 
     paragraphs.push(
@@ -238,6 +304,7 @@ export class WordViewComponent implements OnInit {
       }
     }
 
+    if (this.osobniPodaci.ciljevi) {
     if (this.osobniPodaci.ciljevi) {
       paragraphs.push(
         new Paragraph({
