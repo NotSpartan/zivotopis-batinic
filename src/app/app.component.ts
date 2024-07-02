@@ -39,6 +39,10 @@ export class AppComponent {
   isGeneratingWord = signal(false);
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     const data = this.dataService.getOsobniPodaciData();
     this.imePrezime.set(data.imePrezime || 'Josip Batinić');
     this.titula.set(data.titula || 'Software Developer');

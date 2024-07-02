@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, WritableSignal, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, WritableSignal, signal, OnInit } from '@angular/core';
 import { 
   Document, 
   Packer, 
@@ -31,17 +31,25 @@ interface SocialLink {
   standalone: true,
   imports: [ProfileHeaderComponent, OsobniPodaciComponent]
 })
-export class WordViewComponent {
+export class WordViewComponent implements OnInit {
   @Input() slika: string = '';
   @Input() imePrezime: WritableSignal<string> = signal('');
   @Input() titula: WritableSignal<string> = signal('');
   @Output() wordGenerated = new EventEmitter<void>();
 
+  osobniPodaci: any;
+
   constructor(private dataService: DataService) {}
 
+  ngOnInit() {
+    this.osobniPodaci = this.dataService.getOsobniPodaciData();
+    console.log('Osobni podaci u WordViewComponent:', this.osobniPodaci);
+  }
+
   async generateWord() {
+    console.log('Generating Word document...');
     const imageParagraph = await this.getImageParagraph();
-    const osobniPodaciParagraphs = this.getOsobniPodaciParagraphs();
+    const osobniPodaciParagraphs = await this.getOsobniPodaciParagraphs();
     
     const doc = new Document({
       sections: [{
@@ -143,8 +151,27 @@ export class WordViewComponent {
     return new Paragraph({}); // Vraća prazan paragraf ako nema slike
   }
 
-  private getOsobniPodaciParagraphs(): Paragraph[] {
-    const osobniPodaci = this.dataService.getOsobniPodaciData();
+  private async getSocialIconImageRun(platform: string): Promise<ImageRun | null> {
+    const iconPath = `assets/${platform.toLowerCase()}-icon.png`;
+    try {
+      const response = await fetch(iconPath);
+      const blob = await response.blob();
+      const arrayBuffer = await blob.arrayBuffer();
+      return new ImageRun({
+        data: arrayBuffer,
+        transformation: {
+          width: 16,
+          height: 16,
+        },
+      });
+    } catch (error) {
+      console.error(`Error loading icon for ${platform}:`, error);
+      return null;
+    }
+  }
+
+  private async getOsobniPodaciParagraphs(): Promise<Paragraph[]> {
+    console.log('Generating osobni podaci paragraphs...');
     const paragraphs: Paragraph[] = [];
 
     paragraphs.push(
@@ -156,10 +183,10 @@ export class WordViewComponent {
     );
 
     const fields = [
-      { icon: "Osoba:", value: osobniPodaci.imePrezime },
-      { icon: "Pozicija:", value: osobniPodaci.titula },
-      { icon: "Telefon:", value: osobniPodaci.telefon },
-      { icon: "E-pošta:", value: osobniPodaci.email },
+      { icon: "Osoba:", value: this.osobniPodaci.imePrezime },
+      { icon: "Pozicija:", value: this.osobniPodaci.titula },
+      { icon: "Telefon:", value: this.osobniPodaci.telefon },
+      { icon: "E-pošta:", value: this.osobniPodaci.email },
     ];
 
     fields.forEach(field => {
@@ -178,7 +205,7 @@ export class WordViewComponent {
       }
     });
 
-    if (osobniPodaci.socialLinks && osobniPodaci.socialLinks.length > 0) {
+    if (this.osobniPodaci.socialLinks && this.osobniPodaci.socialLinks.length > 0) {
       paragraphs.push(
         new Paragraph({
           children: [
@@ -190,16 +217,28 @@ export class WordViewComponent {
         })
       );
 
-      osobniPodaci.socialLinks.forEach((link: SocialLink) => {
-        paragraphs.push(
-          new Paragraph({
-            text: `${link.platform}: ${link.url}`,
+      for (const link of this.osobniPodaci.socialLinks) {
+        const iconRun = await this.getSocialIconImageRun(link.platform);
+        const paragraphChildren: (ImageRun | TextRun)[] = [];
+        
+        if (iconRun) {
+          paragraphChildren.push(iconRun);
+        }
+        
+        paragraphChildren.push(
+          new TextRun({
+            text: ` ${link.platform}: ${link.url}`,
           })
         );
-      });
+  
+        const paragraph = new Paragraph({
+          children: paragraphChildren,
+        });
+        paragraphs.push(paragraph);
+      }
     }
 
-    if (osobniPodaci.ciljevi) {
+    if (this.osobniPodaci.ciljevi) {
       paragraphs.push(
         new Paragraph({
           children: [
@@ -210,7 +249,7 @@ export class WordViewComponent {
           ],
         }),
         new Paragraph({
-          text: osobniPodaci.ciljevi,
+          text: this.osobniPodaci.ciljevi,
         })
       );
     }

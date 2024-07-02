@@ -15,12 +15,6 @@
   box-shadow: 0 0 3px rgba(0,0,0,0.1);
 }
 
-@media screen and (max-width: 210mm) {
-  .pdf-preview, .word-preview {
-    width: 100%;
-  }
-}
-
 .horizontal-nav {
   background-color: #333;
   padding: 4px 0;
@@ -75,7 +69,6 @@
 
 .generate-pdf-button, .generate-word-button {
   padding: 6px 12px;
-  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 2px;
@@ -84,7 +77,11 @@
   transition: background-color 0.3s;
 }
 
-.generate-pdf-button:hover, .generate-word-button:hover {
+.generate-pdf-button {
+  background-color: #4CAF50;
+}
+
+.generate-pdf-button:hover {
   background-color: #45a049;
 }
 
@@ -94,6 +91,38 @@
 
 .generate-word-button:hover {
   background-color: #0056b3;
+}
+
+.pdf-mode .content-container > *, .word-mode .content-container > * {
+  margin-bottom: 0.4rem;
+}
+
+.pdf-mode .pdf-content > *, .word-mode .word-content > * {
+  padding: 0.4rem;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+}
+
+.pdf-mode app-profile-header,
+.pdf-mode app-osobni-podaci,
+.pdf-mode app-iskustvo,
+.pdf-mode app-obrazovanje,
+.pdf-mode app-tehnoloski-stack,
+.pdf-mode app-ciljevi-motivacija,
+.word-mode app-profile-header,
+.word-mode app-osobni-podaci,
+.word-mode app-iskustvo,
+.word-mode app-obrazovanje,
+.word-mode app-tehnoloski-stack,
+.word-mode app-ciljevi-motivacija {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+@media screen and (max-width: 210mm) {
+  .pdf-preview, .word-preview {
+    width: 100%;
+  }
 }
 
 @media print {
@@ -127,30 +156,9 @@
     padding: 3px 6px;
     font-size: 0.75rem;
   }
-}
 
-.pdf-mode .content-container > *, .word-mode .content-container > * {
-  margin-bottom: 0.4rem;
-}
-
-.pdf-mode .pdf-content > *, .word-mode .word-content > * {
-  padding: 0.4rem;
-  background-color: #f0f0f0;
-  border-radius: 2px;
-}
-
-.pdf-mode app-profile-header,
-.pdf-mode app-osobni-podaci,
-.pdf-mode app-iskustvo,
-.pdf-mode app-obrazovanje,
-.pdf-mode app-tehnoloski-stack,
-.pdf-mode app-ciljevi-motivacija,
-.word-mode app-profile-header,
-.word-mode app-osobni-podaci,
-.word-mode app-iskustvo,
-.word-mode app-obrazovanje,
-.word-mode app-tehnoloski-stack,
-.word-mode app-ciljevi-motivacija {
-  display: block;
-  margin-bottom: 0.4rem;
+  .generate-pdf-button, .generate-word-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, signal, computed, inject, WritableSignal, EventEmitter } from '@angular/core';
+import { Component, Input, Output, signal, computed, inject, WritableSignal, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -9,7 +9,7 @@ interface Field {
   value: WritableSignal<string>;
   type: 'text' | 'email' | 'tel';
   placeholder: string;
-  name: string; // Dodano za lakše referenciranje
+  name: string;
 }
 
 interface SocialLink {
@@ -24,8 +24,12 @@ interface SocialLink {
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class OsobniPodaciComponent {
+export class OsobniPodaciComponent implements OnInit {
   @Input() isGeneratingPDF = false;
+  @Input() isGeneratingWord = false;
+
+  @Output() imePrezimeChange = new EventEmitter<string>();
+  @Output() titulaChange = new EventEmitter<string>();
 
   private authService = inject(AuthService);
   private dataService = inject(DataService);
@@ -37,10 +41,6 @@ export class OsobniPodaciComponent {
   telefon = signal('');
   isEditing = signal(false);
   ciljevi: WritableSignal<string> = signal('');
-
-  @Output() imePrezimeChange = new EventEmitter<string>();
-  @Output() titulaChange = new EventEmitter<string>();
-
   socialLinks = signal<SocialLink[]>([]);
 
   newSocialLink = { platform: '', url: '' };
@@ -55,32 +55,35 @@ export class OsobniPodaciComponent {
   ]);
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     const data = this.dataService.getOsobniPodaciData();
     this.imePrezime.set(data.imePrezime || this.getDefaultValue('imePrezime'));
     this.titula.set(data.titula || this.getDefaultValue('titula'));
     this.telefon.set(data.telefon || this.getDefaultValue('telefon'));
     this.email.set(data.email || this.getDefaultValue('email'));
-    this.socialLinks.set(data.socialLinks.length > 0 ? data.socialLinks : this.getDefaultSocialLinks());
+    this.socialLinks.set(data.socialLinks?.length > 0 ? data.socialLinks : this.getDefaultSocialLinks());
     this.ciljevi.set(data.ciljevi || this.getDefaultValue('ciljevi'));
   }
 
   updateField(field: Field, event: Event) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     
     const input = event.target as HTMLInputElement;
     field.value.set(input.value);
-  
+
     if (field.name === 'imePrezime') {
       this.imePrezimeChange.emit(this.imePrezime());
-      this.updateDataService();
     } else if (field.name === 'titula') {
       this.titulaChange.emit(this.titula());
-      this.updateDataService();
     }
+    this.updateDataService();
   }
 
   addSocialLink() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     
     if (this.newSocialLink.platform && this.newSocialLink.url) {
       this.socialLinks.update(links => [...links, { ...this.newSocialLink }]);
@@ -90,7 +93,7 @@ export class OsobniPodaciComponent {
   }
 
   removeSocialLink(index: number) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     
     this.socialLinks.update(links => links.filter((_, i) => i !== index));
     this.updateDataService();
@@ -101,13 +104,13 @@ export class OsobniPodaciComponent {
   }
 
   toggleEdit() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     
     this.isEditing.update(state => !state);
   }
 
   updateCiljevi(newCiljevi: string) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     
     this.ciljevi.set(newCiljevi);
     this.updateDataService();
@@ -124,8 +127,7 @@ export class OsobniPodaciComponent {
     });
   }
 
-  // Nove metode za zadane vrijednosti
-  getDefaultValue(fieldName: string): string {
+  private getDefaultValue(fieldName: string): string {
     const defaults: { [key: string]: string } = {
       imePrezime: 'Ana Horvat',
       titula: 'Software Developer',
@@ -136,7 +138,7 @@ export class OsobniPodaciComponent {
     return defaults[fieldName] || '';
   }
 
-  getDefaultSocialLinks(): SocialLink[] {
+  private getDefaultSocialLinks(): SocialLink[] {
     return [
       { platform: 'linkedin', url: 'https://www.linkedin.com/in/ana-horvat' },
       { platform: 'github', url: 'https://github.com/anahorvat' },
