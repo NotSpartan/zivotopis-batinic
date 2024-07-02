@@ -68,8 +68,8 @@
   <app-word-view
     *ngIf="isGeneratingWord()"
     [slika]="slika()"
-    [imePrezime]="imePrezime()"
-    [titula]="titula()"
+    [imePrezime]="imePrezime"
+    [titula]="titula"
     (wordGenerated)="onWordGenerated()">
   </app-word-view>
 </div>

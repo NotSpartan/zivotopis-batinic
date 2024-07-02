@@ -17,6 +17,7 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() titula: WritableSignal<string> = signal('');
   @Input() isAuthor: boolean = false;
   @Input() isGeneratingPDF: boolean = false;
+  @Input() isGeneratingWord: boolean = false;
   @Output() fileSelected = new EventEmitter<Event>();
   @Output() slikaChange = new EventEmitter<string>();
 
@@ -33,7 +34,7 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     this.imePrezime.set(data.imePrezime);
     this.titula.set(data.titula);
     this.slika = data.slika || '';
-    if (!this.isGeneratingPDF) {
+    if (!this.isGeneratingPDF && !this.isGeneratingWord) {
       this.startTitleAnimation();
     }
   }
@@ -43,21 +44,21 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   }
 
   updateImePrezime(newImePrezime: string) {
-    if (!this.isGeneratingPDF) {
+    if (!this.isGeneratingPDF && !this.isGeneratingWord) {
       this.imePrezime.set(newImePrezime);
       this.updateDataService();
     }
   }
 
   updateTitula(newTitula: string) {
-    if (!this.isGeneratingPDF) {
+    if (!this.isGeneratingPDF && !this.isGeneratingWord) {
       this.titula.set(newTitula);
       this.updateDataService();
     }
   }
 
   onFileSelected(event: Event) {
-    if (!this.isGeneratingPDF) {
+    if (!this.isGeneratingPDF && !this.isGeneratingWord) {
       const input = (event.target as HTMLInputElement)?.files?.[0];
       if (input) {
         const reader = new FileReader();
@@ -75,7 +76,7 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   }
 
   deleteImage() {
-    if (!this.isGeneratingPDF) {
+    if (!this.isGeneratingPDF && !this.isGeneratingWord) {
       this.slika = '';
       this.slikaChange.emit('');
       this.updateDataService();

@@ -1,4 +1,15 @@
 <div class="word-preview">
-    <button (click)="generateWord()" class="generate-word-button">Generate and Download Word</button>
+  <div class="word-content">
+    <app-profile-header
+      [slika]="slika"
+      [imePrezime]="imePrezime"
+      [titula]="titula"
+      [isAuthor]="false"
+      [isGeneratingWord]="true">
+    </app-profile-header>
+    <!-- Ovdje možete dodati ostale komponente koje želite uključiti u Word dokument -->
   </div>
-  
+  <button (click)="generateWord()" class="generate-word-button">
+    <i class="fa fa-file-word-o"></i> Generate and Download Word
+  </button>
+</div>

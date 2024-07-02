@@ -3,14 +3,14 @@
   width: 100%;
 }
 
-:host-context(.pdf-mode) {
+:host-context(.pdf-mode), :host-context(.word-mode) {
   padding: 0.4rem;
   background-color: transparent;
   border-radius: 2px;
   margin-bottom: 0.4rem;
 }
 
-:host-context(.pdf-page) {
+:host-context(.pdf-page), :host-context(.word-page) {
   display: block;
   page-break-inside: avoid;
 }
@@ -30,7 +30,7 @@
   margin-bottom: 2px;
 }
 
-.pdf-mode .profile-header {
+.pdf-mode .profile-header, .word-mode .profile-header {
   min-height: auto;
   padding: 0.4rem;
   background: transparent;
@@ -68,7 +68,7 @@
   align-items: center;
 }
 
-.pdf-mode .profile-content {
+.pdf-mode .profile-content, .word-mode .profile-content {
   flex-grow: 1;
   align-items: flex-start;
 }
@@ -86,7 +86,7 @@
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 }
 
-.pdf-mode .profile-image-container {
+.pdf-mode .profile-image-container, .word-mode .profile-image-container {
   width: 90px;
   height: 90px;
   border: 1px solid #333;
@@ -102,7 +102,7 @@
   filter: brightness(0.9);
 }
 
-.pdf-mode .profile-image {
+.pdf-mode .profile-image, .word-mode .profile-image {
   filter: none;
 }
 
@@ -154,7 +154,7 @@
   text-align: center;
 }
 
-.pdf-mode .profile-title {
+.pdf-mode .profile-title, .word-mode .profile-title {
   text-align: left;
 }
 
@@ -165,7 +165,7 @@
   font-weight: 600;
 }
 
-.pdf-mode .profile-title h2 {
+.pdf-mode .profile-title h2, .word-mode .profile-title h2 {
   font-size: 1.1rem;
   color: #333;
   margin-bottom: 0.2rem;
@@ -179,7 +179,7 @@
   font-weight: 400;
 }
 
-.pdf-mode .profile-title p {
+.pdf-mode .profile-title p, .word-mode .profile-title p {
   font-size: 0.85rem;
   color: #555;
   font-weight: 500;
@@ -192,6 +192,41 @@
 
 .cursor {
   animation: blink 0.7s infinite;
+}
+
+.word-mode .profile-header {
+  min-height: auto;
+  padding: 0.4rem;
+  background: transparent;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.word-mode .profile-image-container {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #333;
+  margin-right: 0.4rem;
+  margin-bottom: 0;
+}
+
+.word-mode .profile-title {
+  text-align: left;
+}
+
+.word-mode .profile-title h2 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.word-mode .profile-title p {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 500;
 }
 
 @keyframes blink {

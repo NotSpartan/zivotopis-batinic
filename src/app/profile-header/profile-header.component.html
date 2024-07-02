@@ -1,4 +1,4 @@
-<div class="profile-header" [class.pdf-mode]="isGeneratingPDF">
+<div class="profile-header" [class.pdf-mode]="isGeneratingPDF" [class.word-mode]="isGeneratingWord">
   <div class="logo-container" *ngIf="!isGeneratingPDF">
     <img src="assets/logo-cv-aplikacije.png" alt="CV Logo" class="app-logo">
   </div>
@@ -22,8 +22,8 @@
     <div class="profile-info">
       <div class="profile-title">
         <h2>{{ imePrezime() || 'Ana Horvat' }}</h2>
-        <p *ngIf="!isGeneratingPDF" class="animated-title">{{ displayedTitle() || 'Software Developer' }}<span class="cursor">|</span></p>
-        <p *ngIf="isGeneratingPDF">{{ titula() || 'Senior Software Engineer' }}</p>
+        <p *ngIf="!isGeneratingPDF && !isGeneratingWord" class="animated-title">{{ displayedTitle() || 'Software Developer' }}<span class="cursor">|</span></p>
+        <p *ngIf="isGeneratingPDF || isGeneratingWord">{{ titula() || 'Senior Software Engineer' }}</p>
       </div>
     </div>
   </div>
