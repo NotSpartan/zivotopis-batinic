@@ -1,21 +1,26 @@
 .word-preview {
-  width: 100%;
-  max-width: 800px;
+  width: 210mm;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20mm;
   background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 .word-content {
   margin-bottom: 20px;
+  font-family: 'Calibri', 'Arial', sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  color: #333;
 }
 
 .generate-word-button {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
@@ -25,20 +30,130 @@
 }
 
 .generate-word-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 .generate-word-button i {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 600px) {
+.social-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Header styles */
+.word-content .header {
+  margin-bottom: 20px;
+}
+
+.word-content .header h1 {
+  font-size: 18pt;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.word-content .header h2 {
+  font-size: 14pt;
+  font-weight: normal;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Section styles */
+.word-content .section {
+  margin-bottom: 15px;
+}
+
+.word-content .section-title {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+  border-bottom: 1pt solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* List styles */
+.word-content ul, .word-content ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.word-content li {
+  margin-bottom: 5px;
+}
+
+/* Table styles */
+.word-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.word-content th, .word-content td {
+  border: 1pt solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.word-content th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+/* Link styles */
+.word-content a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.word-content a:hover {
+  text-decoration: underline;
+}
+
+/* Page break */
+.word-content .page-break {
+  page-break-before: always;
+}
+
+@media screen and (max-width: 210mm) {
   .word-preview {
-    padding: 10px;
+    width: 100%;
+    padding: 10mm;
   }
 
   .generate-word-button {
     font-size: 14px;
     padding: 8px 16px;
+  }
+}
+
+@media print {
+  .word-preview {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .generate-word-button {
+    display: none;
+  }
+
+  .word-content {
+    font-size: 11pt;
+  }
+
+  .word-content .header h1 {
+    font-size: 18pt;
+  }
+
+  .word-content .header h2 {
+    font-size: 14pt;
+  }
+
+  .word-content .section-title {
+    font-size: 14pt;
   }
 }

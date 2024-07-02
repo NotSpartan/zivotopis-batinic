@@ -66,10 +66,10 @@
   </app-pdf-view>
 
   <app-word-view
-    *ngIf="isGeneratingWord()"
-    [slika]="slika()"
-    [imePrezime]="imePrezime"
-    [titula]="titula"
-    (wordGenerated)="onWordGenerated()">
-  </app-word-view>
+  *ngIf="isGeneratingWord()"
+  [slika]="slika()"
+  [imePrezime]="imePrezime"
+  [titula]="titula"
+  (wordGenerated)="onWordGenerated()">
+</app-word-view>
 </div>

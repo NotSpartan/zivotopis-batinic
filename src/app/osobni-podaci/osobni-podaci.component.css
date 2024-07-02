@@ -3,14 +3,14 @@
   width: 100%;
 }
 
-:host-context(.pdf-mode) {
+:host-context(.pdf-mode), :host-context(.word-mode) {
   padding: 0.3rem;
   background-color: transparent;
   border-radius: 2px;
   margin-bottom: 0.3rem;
 }
 
-:host-context(.pdf-page) {
+:host-context(.pdf-page), :host-context(.word-page) {
   display: block;
   page-break-inside: avoid;
 }
@@ -23,7 +23,7 @@
   margin-bottom: 4px;
 }
 
-.profile-card.pdf-mode {
+.profile-card.pdf-mode, .profile-card.word-mode {
   box-shadow: none;
   padding: 0;
   background-color: transparent;
@@ -55,7 +55,7 @@
   background-color: #e74c3c;
 }
 
-.pdf-mode .subtitle {
+.pdf-mode .subtitle, .word-mode .subtitle {
   font-size: 1.1rem;
   margin-bottom: 0.2rem;
 }
@@ -64,7 +64,7 @@
   padding: 0.2rem;
 }
 
-.profile-body.pdf-mode .field {
+.profile-body.pdf-mode .field, .profile-body.word-mode .field {
   margin-bottom: 0.1rem;
 }
 
@@ -218,7 +218,8 @@
   background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
 }
 
-.pdf-mode .btn, .pdf-mode .action-button {
+.pdf-mode .btn, .pdf-mode .action-button,
+.word-mode .btn, .word-mode .action-button {
   display: none;
 }
 
