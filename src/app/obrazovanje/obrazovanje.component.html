@@ -1,11 +1,11 @@
-<div class="education-container" [class.pdf-mode]="isGeneratingPDF">
+<div class="education-container" [class.pdf-mode]="isGeneratingPDF" [class.word-mode]="isGeneratingWord">
   <h2 class="subtitle">Obrazovanje</h2>
   
   <div class="education-list">
     <div *ngFor="let education of sortedEducations()" class="education-item">
       <div class="education-header">
         <span class="year">{{ formatYearToHrv(education.year) }}</span>
-        <div class="education-controls" *ngIf="!isGeneratingPDF">
+        <div class="education-controls" *ngIf="!isGeneratingPDF && !isGeneratingWord">
           <button (click)="startEditing(education)" class="icon-button edit-button">
             <i class="fas fa-edit"></i>
           </button>
@@ -28,7 +28,7 @@
       <ul class="bullet-points">
         <li *ngFor="let point of education.bulletPoints">{{ point }}</li>
       </ul>
-      <div class="upload-icon" *ngIf="!isGeneratingPDF">
+      <div class="upload-icon" *ngIf="!isGeneratingPDF && !isGeneratingWord">
         <label [for]="'icon-upload-' + education.id" class="upload-button">
           <i class="fas fa-upload"></i> Dodaj logo
         </label>
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div *ngIf="editingEducation && !isGeneratingPDF" class="edit-education">
+  <div *ngIf="editingEducation && !isGeneratingPDF && !isGeneratingWord" class="edit-education">
     <input [(ngModel)]="editingEducation.year" placeholder="Godina (GGGG)" class="education-input">
     <input [(ngModel)]="editingEducation.title" placeholder="Titula" class="education-input">
     <input [(ngModel)]="editingEducation.institution" placeholder="Institucija" class="education-input">
@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <div class="add-education" *ngIf="!isGeneratingPDF">
+  <div class="add-education" *ngIf="!isGeneratingPDF && !isGeneratingWord">
     <h3>Dodaj novo obrazovanje</h3>
     <input [(ngModel)]="newEducation.year" placeholder="Godina (GGGG)" class="education-input">
     <input [(ngModel)]="newEducation.title" placeholder="Titula" class="education-input">

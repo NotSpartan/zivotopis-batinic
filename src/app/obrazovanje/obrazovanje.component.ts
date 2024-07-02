@@ -23,6 +23,7 @@ interface Obrazovanje {
 })
 export class ObrazovanjeComponent {
   @Input() isGeneratingPDF = false;
+  @Input() isGeneratingWord = false;
  
   private dataService = inject(DataService);
 
@@ -78,7 +79,7 @@ export class ObrazovanjeComponent {
   }
 
   addEducation() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.newEducation.year && this.newEducation.title && this.newEducation.institution && this.newEducation.location) {
       const newId = Math.max(...this.educations().map(e => e.id), 0) + 1;
       this.educations.update(educations => {
@@ -92,7 +93,7 @@ export class ObrazovanjeComponent {
   }
 
   removeEducation(id: number) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.educations.update(educations => {
       const updatedEducations = educations.filter(e => e.id !== id);
       this.dataService.setEducationData(updatedEducations);
@@ -101,12 +102,12 @@ export class ObrazovanjeComponent {
   }
 
   startEditing(education: Obrazovanje) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.editingEducation = { ...education, bulletPoints: [...education.bulletPoints] };
   }
 
   saveEdit() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.editingEducation) {
       this.educations.update(educations => {
         const updatedEducations = educations.map(e =>
@@ -120,12 +121,12 @@ export class ObrazovanjeComponent {
   }
 
   cancelEdit() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     this.editingEducation = null;
   }
 
   addBulletPoint() {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.newBulletPoint.trim()) {
       if (this.editingEducation) {
         this.editingEducation.bulletPoints.push(this.newBulletPoint.trim());
@@ -137,7 +138,7 @@ export class ObrazovanjeComponent {
   }
 
   removeBulletPoint(index: number) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     if (this.editingEducation) {
       this.editingEducation.bulletPoints.splice(index, 1);
     } else {
@@ -146,7 +147,7 @@ export class ObrazovanjeComponent {
   }
 
   onFileSelected(event: Event, education: Obrazovanje) {
-    if (this.isGeneratingPDF) return;
+    if (this.isGeneratingPDF || this.isGeneratingWord) return;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();

@@ -19,18 +19,14 @@ import { DataService } from '../services/data.service';
 import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
 import { OsobniPodaciComponent } from '../osobni-podaci/osobni-podaci.component';
 import { IskustvoComponent } from '../iskustvo/iskustvo.component';
-
-interface SocialLink {
-  platform: string;
-  url: string;
-}
+import { ObrazovanjeComponent } from '../obrazovanje/obrazovanje.component';
 
 @Component({
   selector: 'app-word-view',
   templateUrl: './word-view.component.html',
   styleUrls: ['./word-view.component.css'],
   standalone: true,
-  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent]
+  imports: [ProfileHeaderComponent, OsobniPodaciComponent, IskustvoComponent, ObrazovanjeComponent]
 })
 export class WordViewComponent implements OnInit {
   @Input() slika: string = '';
@@ -52,8 +48,7 @@ export class WordViewComponent implements OnInit {
     const imageParagraph = await this.getImageParagraph();
     const osobniPodaciParagraphs = await this.getOsobniPodaciParagraphs();
     const iskustvoElements = await this.getIskustvoParagraphs();
-  
-    console.log('Iskustvo elements:', iskustvoElements); // Dodajte ovu liniju za debugging
+    const obrazovanjeElements = await this.getObrazovanjeParagraphs();
   
     const doc = new Document({
       sections: [{
@@ -61,8 +56,10 @@ export class WordViewComponent implements OnInit {
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
-          new Paragraph({ text: '', spacing: { after: 100 } }),
+          new Paragraph({ text: '', spacing: { after: 200 } }),
           ...iskustvoElements,
+          new Paragraph({ text: '', spacing: { after: 200 } }),
+          ...obrazovanjeElements,
         ],
       }],
     });
@@ -176,29 +173,27 @@ export class WordViewComponent implements OnInit {
       return null;
     }
   }
-
-  private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
-    console.log('Generating iskustvo paragraphs...');
-    const elements: (Paragraph | Table)[] = [
-      new Paragraph({ text: '', spacing: { before: 200 } })
-    ];
-    const iskustvoData = await this.dataService.getExperienceData();
+  
+  private async getObrazovanjeParagraphs(): Promise<(Paragraph | Table)[]> {
+    console.log('Generating obrazovanje paragraphs...');
+    const elements: (Paragraph | Table)[] = [];
+    const obrazovanjeData = await this.dataService.getEducationData();
   
     elements.push(
       new Paragraph({
-        text: "Radno iskustvo",
+        text: "Obrazovanje",
         heading: HeadingLevel.HEADING_2,
         thematicBreak: true,
       })
     );
   
-    for (const iskustvo of iskustvoData) {
+    for (const obrazovanje of obrazovanjeData) {
       const tableRows: TableRow[] = [
         new TableRow({
           children: [
             new TableCell({
               children: [
-                await this.getCompanyIconParagraph(iskustvo.companyIcon),
+                await this.getInstitutionIconParagraph(obrazovanje.institutionIcon),
               ],
               width: {
                 size: 10,
@@ -209,34 +204,19 @@ export class WordViewComponent implements OnInit {
               children: [
                 new Paragraph({
                   children: [
-                    new TextRun({
-                      text: iskustvo.position,
-                      bold: true
-                    })
+                    new TextRun({ text: obrazovanje.title, bold: true })
                   ]
                 }),
+                new Paragraph({ text: obrazovanje.institution }),
                 new Paragraph({
                   children: [
                     new TextRun({
-                      text: iskustvo.company
-                    })
-                  ]
-                }),
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
+                      text: obrazovanje.year,
                       italics: true
                     })
                   ]
                 }),
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: iskustvo.location
-                    })
-                  ]
-                }),
+                new Paragraph({ text: obrazovanje.location }),
               ],
               width: {
                 size: 90,
@@ -253,44 +233,168 @@ export class WordViewComponent implements OnInit {
           size: 100,
           type: WidthType.PERCENTAGE,
         },
+        borders: {
+          top: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.NONE },
+        },
       });
   
       elements.push(table);
   
-      // Dodajte odgovornosti ako postoje
-      if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
+      if (obrazovanje.description) {
         elements.push(
           new Paragraph({
-            children: [
-              new TextRun({
-                text: "Odgovornosti:",
-                bold: true
-              })
-            ],
-            bullet: { level: 0 },
+            text: obrazovanje.description,
           })
         );
+      }
   
-        for (const responsibility of iskustvo.responsibilities) {
+      if (obrazovanje.bulletPoints && obrazovanje.bulletPoints.length > 0) {
+        for (const point of obrazovanje.bulletPoints) {
           elements.push(
             new Paragraph({
-              children: [
-                new TextRun({
-                  text: responsibility
-                })
-              ],
-              bullet: { level: 1 },
+              text: point,
+              bullet: { level: 0 },
             })
           );
         }
       }
   
-      elements.push(new Paragraph({ text: '', spacing: { after: 200 } })); // Razmak između iskustava
+      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
   
     return elements;
   }
+
+  private async getInstitutionIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
+    if (iconPath) {
+      try {
+        const response = await fetch(iconPath);
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+        return new Paragraph({
+          children: [
+            new ImageRun({
+              data: arrayBuffer,
+              transformation: {
+                width: 50,
+                height: 50,
+              },
+            }),
+          ],
+        });
+      } catch (error) {
+        console.error('Error loading institution icon:', error);
+      }
+    }
+    return new Paragraph({});
+  }
   
+private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
+  console.log('Generating iskustvo paragraphs...');
+  const elements: (Paragraph | Table)[] = [
+    new Paragraph({ text: '', spacing: { before: 200 } })
+  ];
+  const iskustvoData = await this.dataService.getExperienceData();
+
+  elements.push(
+    new Paragraph({
+      text: "Radno iskustvo",
+      heading: HeadingLevel.HEADING_2,
+      thematicBreak: true,
+    })
+  );
+
+  for (const iskustvo of iskustvoData) {
+    const tableRows: TableRow[] = [
+      new TableRow({
+        children: [
+          new TableCell({
+            children: [
+              await this.getCompanyIconParagraph(iskustvo.companyIcon),
+            ],
+            width: {
+              size: 10,
+              type: WidthType.PERCENTAGE,
+            },
+          }),
+          new TableCell({
+            children: [
+              new Paragraph({
+                children: [
+                  new TextRun({ text: iskustvo.position, bold: true })
+                ]
+              }),
+              new Paragraph({ text: iskustvo.company }),
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
+                    italics: true
+                  })
+                ]
+              }),
+              new Paragraph({ text: iskustvo.location }),
+            ],
+            width: {
+              size: 90,
+              type: WidthType.PERCENTAGE,
+            },
+          }),
+        ],
+      }),
+    ];
+
+    const table = new Table({
+      rows: tableRows,
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      borders: {
+        top: { style: BorderStyle.NONE },
+        bottom: { style: BorderStyle.NONE },
+        left: { style: BorderStyle.NONE },
+        right: { style: BorderStyle.NONE },
+        insideHorizontal: { style: BorderStyle.NONE },
+        insideVertical: { style: BorderStyle.NONE },
+      },
+    });
+
+    elements.push(table);
+
+    if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
+      elements.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Odgovornosti:",
+              bold: true
+            })
+          ],
+        })
+      );
+
+      for (const responsibility of iskustvo.responsibilities) {
+        elements.push(
+          new Paragraph({
+            text: responsibility,
+            bullet: { level: 0 },
+          })
+        );
+      }
+    }
+
+    elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
+  }
+
+  return elements;
+}
+
   private async getCompanyIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
     if (iconPath) {
       try {

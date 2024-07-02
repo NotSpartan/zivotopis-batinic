@@ -37,7 +37,8 @@
         <app-obrazovanje
           class="page-break-inside-auto"
           *ngSwitchCase="'obrazovanje'"
-          [isGeneratingPDF]="isGeneratingPDF()">
+          [isGeneratingPDF]="isGeneratingPDF()"
+          [isGeneratingWord]="isGeneratingWord()">
         </app-obrazovanje>
         <app-tehnoloski-stack
           class="page-break-inside-auto"
@@ -66,10 +67,10 @@
   </app-pdf-view>
 
   <app-word-view
-  *ngIf="isGeneratingWord()"
-  [slika]="slika()"
-  [imePrezime]="imePrezime"
-  [titula]="titula"
-  (wordGenerated)="onWordGenerated()">
-</app-word-view>
+    *ngIf="isGeneratingWord()"
+    [slika]="slika()"
+    [imePrezime]="imePrezime"
+    [titula]="titula"
+    (wordGenerated)="onWordGenerated()">
+  </app-word-view>
 </div>

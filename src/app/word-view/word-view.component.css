@@ -43,6 +43,31 @@
   margin-right: 5px;
   vertical-align: middle;
 }
+/* Obrazovanje */
+.word-content .obrazovanje-section {
+  margin-bottom: 15px;
+}
+
+.word-content .obrazovanje-item {
+  margin-bottom: 10px;
+}
+
+.word-content .obrazovanje-item h3 {
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
+.word-content .obrazovanje-item .year {
+  font-style: italic;
+  color: #666;
+}
+
+.word-content .obrazovanje-item ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
 /* Iskustvo */
 .word-content .iskustvo-section {
   margin-bottom: 15px;

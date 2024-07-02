@@ -8,7 +8,7 @@
   page-break-inside: auto;
 }
 
-:host-context(.pdf-mode) {
+:host-context(.pdf-mode), :host-context(.word-mode) {
   padding: 0.2rem;
   background-color: transparent;
   border-radius: 2px;
@@ -23,7 +23,7 @@
   margin-bottom: 8px;
 }
 
-.education-container.pdf-mode {
+.education-container.pdf-mode, .education-container.word-mode {
   background-color: transparent;
   box-shadow: none;
   padding: 0.2rem 0;
@@ -55,7 +55,7 @@
   background-color: #e74c3c;
 }
 
-.pdf-mode .subtitle {
+.pdf-mode .subtitle, .word-mode .subtitle {
   font-size: 1rem;
   margin-bottom: 0.4rem;
 }
@@ -73,7 +73,7 @@
   position: relative;
 }
 
-.pdf-mode .education-item {
+.pdf-mode .education-item, .word-mode .education-item {
   background-color: transparent;
   border-left: none;
   box-shadow: none;
@@ -94,7 +94,7 @@
   font-size: 0.75rem;
 }
 
-.pdf-mode .year {
+.pdf-mode .year, .word-mode .year {
   color: #333;
 }
 
@@ -343,13 +343,16 @@
 .pdf-mode .education-controls,
 .pdf-mode .upload-icon,
 .pdf-mode .add-education,
-.pdf-mode .edit-education {
+.pdf-mode .edit-education,
+.word-mode .education-controls,
+.word-mode .upload-icon,
+.word-mode .add-education,
+.word-mode .edit-education {
   display: none;
 }
 
-.pdf-mode .tehnologija-item,
-.pdf-mode .experience-item,
-.pdf-mode .education-item {
+.pdf-mode .education-item,
+.word-mode .education-item {
   border-left: 2px solid #28a745;
   padding-left: 8px;
   margin-bottom: 8px;
