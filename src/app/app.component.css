@@ -100,7 +100,7 @@
 }
 
 .pdf-mode .content-container > *, .word-mode .content-container > * {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .pdf-mode .pdf-content > *, .word-mode .word-content > * {

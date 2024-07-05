@@ -70,7 +70,22 @@ export class WordViewComponent implements OnInit {
               italics: true
             },
             paragraph: {
-              spacing: { after: 120, line: 300 }
+              spacing: { after: 60, line: 240 }
+            }
+          },
+          {
+            id: "sectionHeading",
+            name: "Section Heading",
+            basedOn: "Heading2",
+            next: "Normal",
+            quickFormat: true,
+            run: {
+              size: 24,
+              bold: true,
+              color: "0000FF",  // Plava boja
+            },
+            paragraph: {
+              spacing: { before: 20, after: 0, line: 240 }
             }
           }
         ]
@@ -80,13 +95,13 @@ export class WordViewComponent implements OnInit {
         children: [
           this.createHeaderTable(imageParagraph),
           ...osobniPodaciParagraphs,
-          new Paragraph({ text: '', spacing: { after: 25 } }),
+          new Paragraph({ text: '', spacing: { before: 10, after: 10 } }),
           ...iskustvoElements,
-          new Paragraph({ text: '', spacing: { after: 25 } }),
+          new Paragraph({ text: '', spacing: { before: 10, after: 10 } }),
           ...obrazovanjeElements,
-          new Paragraph({ text: '', spacing: { after: 25 } }),
+          new Paragraph({ text: '', spacing: { before: 10, after: 10 } }),
           ...tehnoloskiStackElements,
-          new Paragraph({ text: '', spacing: { after: 200 } }),
+          new Paragraph({ text: '', spacing: { before: 10, after: 10 } }),
           ...ciljeviMotivacijaElements,
         ],
       }],
@@ -96,7 +111,6 @@ export class WordViewComponent implements OnInit {
     saveAs(blob, 'zivotopis.docx');
     this.wordGenerated.emit();
   }
-
   private createHeaderTable(imageParagraph: Paragraph): Table {
     return new Table({
       width: {
@@ -140,10 +154,10 @@ export class WordViewComponent implements OnInit {
               },
               verticalAlign: VerticalAlign.CENTER,
               margins: {
-                top: 100,
-                bottom: 100,
-                left: 100,
-                right: 100,
+                top: 30,
+                bottom: 30,
+                left: 30,
+                right: 30,
               },
             }),
           ],
@@ -179,7 +193,7 @@ export class WordViewComponent implements OnInit {
         console.error('Error loading image:', error);
       }
     }
-    return new Paragraph({}); // Vraća prazan paragraf ako nema slike
+    return new Paragraph({});
   }
 
   private async getSocialIconImageRun(platform: string): Promise<ImageRun | null> {
@@ -201,7 +215,6 @@ export class WordViewComponent implements OnInit {
       return null;
     }
   }
-
   private async getCiljeviMotivacijaParagraphs(): Promise<Paragraph[]> {
     console.log('Generating ciljevi i motivacija paragraphs...');
     const paragraphs: Paragraph[] = [];
@@ -209,9 +222,24 @@ export class WordViewComponent implements OnInit {
 
     paragraphs.push(
       new Paragraph({
-        text: "Ciljevi i Motivacija",
-        heading: HeadingLevel.HEADING_2,
-        thematicBreak: true,
+        children: [
+          new TextRun({
+            text: "Ciljevi i Motivacija",
+            size: 24,
+            bold: true,
+            color: "0000FF",
+          }),
+        ],
+        style: "sectionHeading",
+        spacing: { after: 10 },
+        border: {
+          bottom: {
+            color: "0000FF",
+            space: 1,
+            style: BorderStyle.SINGLE,
+            size: 6,
+          },
+        },
       })
     );
 
@@ -220,6 +248,7 @@ export class WordViewComponent implements OnInit {
         new Paragraph({
           text: motivacija,
           style: "motivacijaStyle",
+          spacing: { before: 10, after: 10 }
         })
       );
     }
@@ -234,9 +263,24 @@ export class WordViewComponent implements OnInit {
  
     elements.push(
       new Paragraph({
-        text: "Obrazovanje",
-        heading: HeadingLevel.HEADING_2,
-        thematicBreak: true,
+        children: [
+          new TextRun({
+            text: "Obrazovanje",
+            size: 24,
+            bold: true,
+            color: "0000FF",
+          }),
+        ],
+        style: "sectionHeading",
+        spacing: { after: 10 },
+        border: {
+          bottom: {
+            color: "0000FF",
+            space: 1,
+            style: BorderStyle.SINGLE,
+            size: 6,
+          },
+        },
       })
     );
  
@@ -258,18 +302,26 @@ export class WordViewComponent implements OnInit {
                 new Paragraph({
                   children: [
                     new TextRun({ text: obrazovanje.title, bold: true })
-                  ]
+                  ],
+                  spacing: { before: 10, after: 10 }
                 }),
-                new Paragraph({ text: obrazovanje.institution }),
+                new Paragraph({
+                  text: obrazovanje.institution,
+                  spacing: { before: 10, after: 10 }
+                }),
                 new Paragraph({
                   children: [
                     new TextRun({
                       text: obrazovanje.year,
                       italics: true
                     })
-                  ]
+                  ],
+                  spacing: { before: 10, after: 10 }
                 }),
-                new Paragraph({ text: obrazovanje.location }),
+                new Paragraph({
+                  text: obrazovanje.location,
+                  spacing: { before: 10, after: 10 }
+                }),
               ],
               width: {
                 size: 90,
@@ -302,6 +354,7 @@ export class WordViewComponent implements OnInit {
         elements.push(
           new Paragraph({
             text: obrazovanje.description,
+            spacing: { before: 10, after: 10 }
           })
         );
       }
@@ -312,17 +365,15 @@ export class WordViewComponent implements OnInit {
             new Paragraph({
               text: point,
               bullet: { level: 0 },
+              spacing: { before: 5, after: 5 }
             })
           );
         }
       }
- 
-      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
  
     return elements;
   }
-
   private async getInstitutionIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
     if (iconPath) {
       try {
@@ -346,19 +397,32 @@ export class WordViewComponent implements OnInit {
     }
     return new Paragraph({});
   }
- 
+
   private async getIskustvoParagraphs(): Promise<(Paragraph | Table)[]> {
     console.log('Generating iskustvo paragraphs...');
-    const elements: (Paragraph | Table)[] = [
-      new Paragraph({ text: '', spacing: { before: 200 } })
-    ];
+    const elements: (Paragraph | Table)[] = [];
     const iskustvoData = this.dataService.getExperienceData();
 
     elements.push(
       new Paragraph({
-        text: "Radno iskustvo",
-        heading: HeadingLevel.HEADING_2,
-        thematicBreak: true,
+        children: [
+          new TextRun({
+            text: "Radno iskustvo",
+            size: 24,
+            bold: true,
+            color: "0000FF",
+          }),
+        ],
+        style: "sectionHeading",
+        spacing: { after: 10 },
+        border: {
+          bottom: {
+            color: "0000FF",
+            space: 1,
+            style: BorderStyle.SINGLE,
+            size: 6,
+          },
+        },
       })
     );
 
@@ -380,18 +444,26 @@ export class WordViewComponent implements OnInit {
                 new Paragraph({
                   children: [
                     new TextRun({ text: iskustvo.position, bold: true })
-                  ]
+                  ],
+                  spacing: { before: 10, after: 10 }
                 }),
-                new Paragraph({ text: iskustvo.company }),
+                new Paragraph({
+                  text: iskustvo.company,
+                  spacing: { before: 10, after: 10 }
+                }),
                 new Paragraph({
                   children: [
                     new TextRun({
                       text: `${iskustvo.startDate} - ${iskustvo.endDate || 'Trenutno'}`,
                       italics: true
                     })
-                  ]
+                  ],
+                  spacing: { before: 10, after: 10 }
                 }),
-                new Paragraph({ text: iskustvo.location }),
+                new Paragraph({
+                  text: iskustvo.location,
+                  spacing: { before: 10, after: 10 }
+                }),
               ],
               width: {
                 size: 90,
@@ -417,7 +489,6 @@ export class WordViewComponent implements OnInit {
           insideVertical: { style: BorderStyle.NONE },
         },
       });
-
       elements.push(table);
 
       if (iskustvo.responsibilities && iskustvo.responsibilities.length > 0) {
@@ -429,6 +500,7 @@ export class WordViewComponent implements OnInit {
                 bold: true
               })
             ],
+            spacing: { before: 10, after: 5 }
           })
         );
 
@@ -437,17 +509,15 @@ export class WordViewComponent implements OnInit {
             new Paragraph({
               text: responsibility,
               bullet: { level: 0 },
+              spacing: { before: 5, after: 5 }
             })
           );
         }
       }
-
-      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
 
     return elements;
   }
-
   private async getCompanyIconParagraph(iconPath: string | undefined): Promise<Paragraph> {
     if (iconPath) {
       try {
@@ -469,7 +539,7 @@ export class WordViewComponent implements OnInit {
         console.error('Error loading company icon:', error);
       }
     }
-    return new Paragraph({}); // Vraća prazan paragraf ako nema ikone
+    return new Paragraph({});
   }
 
   private async getOsobniPodaciParagraphs(): Promise<Paragraph[]> {
@@ -478,9 +548,24 @@ export class WordViewComponent implements OnInit {
 
     paragraphs.push(
       new Paragraph({
-        text: "Osobni podaci",
-        heading: HeadingLevel.HEADING_2,
-        thematicBreak: true,
+        children: [
+          new TextRun({
+            text: "Osobni podaci",
+            size: 24,
+            bold: true,
+            color: "0000FF",
+          }),
+        ],
+        style: "sectionHeading",
+        spacing: { after: 10 },
+        border: {
+          bottom: {
+            color: "0000FF",
+            space: 1,
+            style: BorderStyle.SINGLE,
+            size: 6,
+          },
+        },
       })
     );
 
@@ -502,6 +587,7 @@ export class WordViewComponent implements OnInit {
               }),
               new TextRun(field.value),
             ],
+            spacing: { before: 10, after: 10 }
           })
         );
       }
@@ -516,6 +602,7 @@ export class WordViewComponent implements OnInit {
               bold: true,
             }),
           ],
+          spacing: { before: 10, after: 5 }
         })
       );
 
@@ -535,6 +622,7 @@ export class WordViewComponent implements OnInit {
  
         const paragraph = new Paragraph({
           children: paragraphChildren,
+          spacing: { before: 5, after: 5 }
         });
         paragraphs.push(paragraph);
       }
@@ -549,9 +637,11 @@ export class WordViewComponent implements OnInit {
               bold: true,
             }),
           ],
+          spacing: { before: 10, after: 5 }
         }),
         new Paragraph({
           text: this.osobniPodaci.ciljevi,
+          spacing: { before: 5, after: 10 }
         })
       );
     }
@@ -566,9 +656,24 @@ export class WordViewComponent implements OnInit {
  
     elements.push(
       new Paragraph({
-        text: "Tehnološki Stack",
-        heading: HeadingLevel.HEADING_2,
-        thematicBreak: true,
+        children: [
+          new TextRun({
+            text: "Tehnološki Stack",
+            size: 24,
+            bold: true,
+            color: "0000FF",
+          }),
+        ],
+        style: "sectionHeading",
+        spacing: { after: 10 },
+        border: {
+          bottom: {
+            color: "0000FF",
+            space: 1,
+            style: BorderStyle.SINGLE,
+            size: 6,
+          },
+        },
       })
     );
  
@@ -590,7 +695,8 @@ export class WordViewComponent implements OnInit {
                 new Paragraph({
                   children: [
                     new TextRun({ text: tehnologija.naziv, bold: true })
-                  ]
+                  ],
+                  spacing: { before: 10, after: 5 }
                 }),
                 new Paragraph({
                   children: [
@@ -598,7 +704,8 @@ export class WordViewComponent implements OnInit {
                       text: tehnologija.razina,
                       italics: true
                     })
-                  ]
+                  ],
+                  spacing: { before: 5, after: 10 }
                 }),
               ],
               width: {
@@ -632,6 +739,7 @@ export class WordViewComponent implements OnInit {
         elements.push(
           new Paragraph({
             text: tehnologija.opis,
+            spacing: { before: 5, after: 5 }
           })
         );
       }
@@ -642,12 +750,11 @@ export class WordViewComponent implements OnInit {
             new Paragraph({
               text: point,
               bullet: { level: 0 },
+              spacing: { before: 5, after: 5 }
             })
           );
         }
       }
- 
-      elements.push(new Paragraph({ text: '', spacing: { after: 200 } }));
     }
  
     return elements;

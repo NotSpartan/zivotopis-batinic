@@ -102,6 +102,17 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
+.word-mode * {
+  margin-bottom: 0.2rem;
+}
+
+.word-mode .word-content > * {
+  padding: 0.4rem;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 0.6rem; 
+}
+
 @media (max-width: 600px) {
   body {
     font-size: 13px; /* Smanjeno s 14px */
