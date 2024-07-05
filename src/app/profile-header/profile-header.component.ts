@@ -20,6 +20,8 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
   @Input() isGeneratingWord: boolean = false;
   @Output() fileSelected = new EventEmitter<Event>();
   @Output() slikaChange = new EventEmitter<string>();
+  @Output() generatePDF = new EventEmitter<void>();
+  @Output() generateWord = new EventEmitter<void>();
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
@@ -116,5 +118,13 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     if (this.animationInterval) {
       clearInterval(this.animationInterval);
     }
+  }
+
+  onGeneratePDF() {
+    this.generatePDF.emit();
+  }
+
+  onGenerateWord() {
+    this.generateWord.emit();
   }
 }

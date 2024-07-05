@@ -7,7 +7,10 @@
       [titula]="titula"
       [isAuthor]="isAuthor()"
       [isGeneratingPDF]="isGeneratingPDF()"
-      (slikaChange)="updateSlika($event)">
+      [isGeneratingWord]="isGeneratingWord()"
+      (slikaChange)="updateSlika($event)"
+      (generatePDF)="generatePDF()"
+      (generateWord)="generateWord()">
     </app-profile-header>
 
     <nav class="horizontal-nav">
@@ -51,11 +54,6 @@
         [isGeneratingWord]="isGeneratingWord()">
       </app-ciljevi-motivacija>
       </ng-container>
-    </div>
-
-    <div class="button-container">
-      <button (click)="generatePDF()" class="generate-pdf-button">Generiraj PDF</button>
-      <button (click)="generateWord()" class="generate-word-button">Generiraj Word</button>
     </div>
   </ng-container>
 

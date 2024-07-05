@@ -1,4 +1,8 @@
 <div class="profile-header" [class.pdf-mode]="isGeneratingPDF" [class.word-mode]="isGeneratingWord">
+  <div class="generate-buttons" *ngIf="!isGeneratingPDF && !isGeneratingWord">
+    <button (click)="onGeneratePDF()" class="generate-button generate-pdf-button">Generiraj PDF</button>
+    <button (click)="onGenerateWord()" class="generate-button generate-word-button">Generiraj Word</button>
+  </div>
   <div class="logo-container" *ngIf="!isGeneratingPDF">
     <img src="assets/logo-cv-aplikacije.png" alt="CV Logo" class="app-logo">
   </div>

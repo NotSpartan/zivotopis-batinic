@@ -228,6 +228,40 @@
   color: #555;
   font-weight: 500;
 }
+.generate-buttons {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.generate-button {
+  padding: 6px 12px;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.generate-pdf-button {
+  background-color: #4CAF50;
+}
+
+.generate-pdf-button:hover {
+  background-color: #45a049;
+}
+
+.generate-word-button {
+  background-color: #007bff;
+}
+
+.generate-word-button:hover {
+  background-color: #0056b3;
+}
 
 @keyframes blink {
   0% { opacity: 0; }
@@ -272,5 +306,14 @@
 
   .action-icon i {
     font-size: 11px;
+  }
+  .generate-buttons {
+    top: 0.2rem;
+    right: 0.2rem;
+  }
+
+  .generate-button {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
