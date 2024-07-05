@@ -1,5 +1,6 @@
 <div class="motivations-container" [class.pdf-mode]="isGeneratingPDF">
   <h2 class="subtitle">Ciljevi i motivacija</h2>
+
   <div class="motivation-slider" *ngIf="!isGeneratingPDF">
     <button (click)="previousMotivation()" class="nav-button prev">&lt;</button>
     <div class="motivation-item-container">
@@ -26,7 +27,7 @@
 
   <div class="motivation-list" *ngIf="isGeneratingPDF || isGeneratingWord">
     <div *ngFor="let motivation of motivations()" class="motivation-item pdf">
-      <p class="dancing-script">{{ motivation.text }}</p>
+      <p class="dancing-script pdf-motivation-text">{{ motivation.text }}</p>
     </div>
   </div>
 
